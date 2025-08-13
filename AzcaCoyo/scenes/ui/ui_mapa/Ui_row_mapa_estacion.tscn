@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm34a4cfowx5o"]
+
+[ext_resource type="Script" uid="uid://byf5jnvk17gkv" path="res://scripts/ui/perfil/ui_row_mapa_estacion.gd" id="1_06db2"]
+[ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_0n88w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_soy30"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06db2"]
+
+[node name="UiRowMapaEstacion" type="Control"]
+custom_minimum_size = Vector2(1080, 60)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_06db2")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1080.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_soy30")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ID" type="Label" parent="Panel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0n88w")
+theme_override_font_sizes/font_size = 24
+text = "00"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_06db2")
+
+[node name="Name_site" type="Label" parent="Panel/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_0n88w")
+theme_override_font_sizes/font_size = 24
+text = "Nombre del sitio"
+
+[node name="Date" type="Label" parent="Panel/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("2_0n88w")
+theme_override_font_sizes/font_size = 24
+text = "11:39 hrs  13/08/2025"
+
+[node name="inLine" type="TextureRect" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_06db2")
+
+[node name="Pressure" type="Label" parent="Panel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(83, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0n88w")
+theme_override_font_sizes/font_size = 24
+text = "999.00"

@@ -15,9 +15,9 @@ var tiempo_click: float = 0.0
 var hiden_panel: bool = false;
 
 func _ready() -> void:
-	for interceptor in range(18):
+	for proyecto in [23, 22]:
 		var instanced_scene = scene_row_mapa.instantiate()
-		instanced_scene.inicializar_row(interceptor + 1);
+		instanced_scene.inicializar_row(proyecto);
 		container.add_child(instanced_scene);
 
 	GlobalSignals.connect_on_camera_leave_initial_position(_on_camera_leave_initial_position, true)

@@ -4,7 +4,7 @@ extends Node3D
 @onready var directional_light_3d: DirectionalLight3D = $DirectionalLight3D
 @onready var camera_3d_perfil: Camera3D = $Camera3D_Perfil
 @onready var mesh_mapa: Node3D = $MeshMapa
-@onready var sitios: Node3D = $sitios
+#@onready var sitios: Node3D = $sitios
 
 var _environment: Environment;
 var diccionario_interceptores: Dictionary;

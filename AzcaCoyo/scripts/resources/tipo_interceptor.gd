@@ -1,0 +1,4 @@
+extends Resource
+class_name TIPO_INTERCEPTOR
+
+enum INTERCEPTORES { EC, ICP, IP, IC, IO, IOS, GC, RH, MIR, CNCCH, IOO, PDH, RM, TEO, RC, ICC, IZT, RCH }

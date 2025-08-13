@@ -1,0 +1,246 @@
+[gd_scene load_steps=17 format=3 uid="uid://clnmqye7ns1ni"]
+
+[ext_resource type="PackedScene" uid="uid://ujssxlwvupla" path="res://scenes/ui/ui_mapa/ui_header_mapa.tscn" id="1_88x2m"]
+[ext_resource type="Script" uid="uid://didwhedxkgo3c" path="res://scripts/ui/mapa/ui_mapa.gd" id="1_otdg0"]
+[ext_resource type="PackedScene" uid="uid://cvtp8tpq1n5dg" path="res://scenes/ui/ui_progressbar/ui_progressbar_perfil.tscn" id="2_0p2wn"]
+[ext_resource type="Texture2D" path="res://assets/textures/UI/Atlas/Atlas_movil_Lumbreras.png" id="3_b6ewb"]
+[ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="4_lrvv6"]
+[ext_resource type="Texture2D" uid="uid://brqctps36yhrv" path="res://assets/textures/UI/Atlas/atlas_lumbreras.tres" id="6_0p2wn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ik3r0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1os0f"]
+atlas = ExtResource("6_0p2wn")
+region = Rect2(477, 384, 53, 53)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b6ewb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dpn2k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1os0f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3b2s8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrvv6"]
+atlas = ExtResource("3_b6ewb")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b2s8"]
+atlas = SubResource("AtlasTexture_lrvv6")
+region = Rect2(236, 513, 40, 40)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0p2wn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh1my"]
+
+[node name="UiMapa" type="Control"]
+custom_minimum_size = Vector2(1080, 1720)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_otdg0")
+scene_lista_signal = ExtResource("2_0p2wn")
+
+[node name="ResetCamara" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(53, 53)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ik3r0")
+
+[node name="Button" type="Button" parent="ResetCamara"]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="ResetCamara/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_1os0f")
+expand_mode = 1
+
+[node name="panel_lista_mapa" type="Panel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -800.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer_mapa" type="VBoxContainer" parent="panel_lista_mapa"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UiHeaderMapa" parent="panel_lista_mapa/VBoxContainer_mapa" instance=ExtResource("1_88x2m")]
+layout_mode = 2
+
+[node name="row_containers" type="Panel" parent="panel_lista_mapa/VBoxContainer_mapa"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VScrollBar" type="ScrollContainer" parent="panel_lista_mapa/VBoxContainer_mapa/row_containers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="panel_lista_mapa/VBoxContainer_mapa/row_containers/VScrollBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="panel_sitio_seleccionado" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_b6ewb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="panel_sitio_seleccionado"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="panel_sitio_seleccionado/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dpn2k")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="panel_sitio_seleccionado/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="DataContainer" type="PanelContainer" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1os0f")
+
+[node name="TextureRect" type="TextureRect" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer/DataContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer/DataContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="Info_principal" type="HBoxContainer" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer/DataContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="lbl_id" type="Label" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer/DataContainer/VBoxContainer/Info_principal"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(124, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_lrvv6")
+theme_override_font_sizes/font_size = 40
+text = "53"
+horizontal_alignment = 2
+
+[node name="VSeparator" type="VSeparator" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer/DataContainer/VBoxContainer/Info_principal"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3b2s8")
+
+[node name="tr_enlace" type="TextureRect" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer/DataContainer/VBoxContainer/Info_principal"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_3b2s8")
+expand_mode = 1
+
+[node name="lbl_nombre" type="Label" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer/DataContainer/VBoxContainer/Info_principal"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(505, 49)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lrvv6")
+theme_override_font_sizes/font_size = 40
+text = "Riachuelo Serpentino"
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Info_secundaria" type="HBoxContainer" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer/DataContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="lbl_interceptor" type="Label" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer/DataContainer/VBoxContainer/Info_secundaria"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(124, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lrvv6")
+theme_override_font_sizes/font_size = 42
+text = "CNCCH"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer/DataContainer/VBoxContainer/Info_secundaria"]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3b2s8")
+
+[node name="lbl_fecha" type="Label" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer/DataContainer/VBoxContainer/Info_secundaria"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(345, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lrvv6")
+theme_override_font_sizes/font_size = 33
+text = "07/04/2025 10:16:03"
+vertical_alignment = 1
+
+[node name="Panel_nivel" type="PanelContainer" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0p2wn")
+
+[node name="ColorRect" type="ColorRect" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer/Panel_nivel"]
+layout_mode = 2
+color = Color(0.0392157, 0.0392157, 0.0392157, 0.898039)
+
+[node name="NivelesContainer" type="VBoxContainer" parent="panel_sitio_seleccionado/VBoxContainer/HBoxContainer/Panel_nivel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="panel_sitio_seleccionado/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_kh1my")
+
+[connection signal="pressed" from="ResetCamara/Button" to="." method="_on_button_pressed"]

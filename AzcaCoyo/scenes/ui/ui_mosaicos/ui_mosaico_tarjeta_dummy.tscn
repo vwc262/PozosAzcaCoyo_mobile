@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxb6d73h85y4b"]
+
+[ext_resource type="Texture2D" uid="uid://brqctps36yhrv" path="res://assets/textures/UI/Atlas/atlas_lumbreras.tres" id="6_y48uh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ud7p2"]
+bg_color = Color(0.298039, 0.298039, 0.298039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quljt"]
+resource_local_to_scene = true
+atlas = ExtResource("6_y48uh")
+region = Rect2(360, 961, 340, 340)
+
+[node name="ui_mosaico_tarjeta" type="Panel"]
+clip_children = 2
+clip_contents = true
+custom_minimum_size = Vector2(340, 332)
+anchors_preset = -1
+anchor_right = 0.315
+anchor_bottom = 0.173
+offset_right = -0.200043
+offset_bottom = -0.160004
+pivot_offset = Vector2(200, 140)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ud7p2")
+
+[node name="tr_render" type="TextureRect" parent="."]
+modulate = Color(0.677567, 0.677567, 0.677567, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_quljt")
+expand_mode = 1
+stretch_mode = 6

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://7pq1m3m18e7c"]
+
+[ext_resource type="Script" uid="uid://cj3iqrnvgnpwb" path="res://scripts/managers/persistent.gd" id="1_rekdi"]
+
+[node name="Persistent" type="Node3D"]
+script = ExtResource("1_rekdi")

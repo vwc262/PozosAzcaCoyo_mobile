@@ -1,0 +1,123 @@
+[gd_scene load_steps=17 format=3 uid="uid://dt04pr11undsv"]
+
+[ext_resource type="PackedScene" uid="uid://6f5xnygytt85" path="res://assets/models/Props/Etiqueta_Perfil_3D.glb" id="1_wrb0p"]
+[ext_resource type="Shader" uid="uid://dsoh76iwnm2lm" path="res://assets/shaders/MarcadorPerfilEsfera.gdshader" id="2_ggxo0"]
+[ext_resource type="Script" uid="uid://cob4dby7f28by" path="res://scripts/ui/perfil/mini_sitio_perfil.gd" id="2_xmxkr"]
+[ext_resource type="Texture2D" uid="uid://cpn46myokymt8" path="res://assets/textures/FX/linea2.png" id="3_xmxkr"]
+[ext_resource type="Shader" uid="uid://byy7n1g8y7iv3" path="res://assets/shaders/MarcadorPerfil.gdshader" id="4_tq1j1"]
+[ext_resource type="Texture2D" uid="uid://ix3hkxclnfi1" path="res://assets/textures/FX/linea1.png" id="5_ve56s"]
+[ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="7_xmxkr"]
+[ext_resource type="PackedScene" uid="uid://daxjysw6xnd2j" path="res://assets/models/Perfil/iconos/Icono3D_Base_a.fbx" id="8_78vog"]
+[ext_resource type="Shader" uid="uid://m7mwmxqf35s3" path="res://assets/shaders/dither_base.gdshader" id="9_fb5xc"]
+[ext_resource type="PackedScene" uid="uid://3jf6mkwgylwb" path="res://assets/models/Perfil/iconos/Icono3D_Base_b.fbx" id="10_ebafb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_78vog"]
+noise_type = 0
+frequency = 0.018
+offset = Vector3(192.75, 0, 0)
+fractal_type = 2
+fractal_octaves = 10
+fractal_lacunarity = 1.585
+fractal_gain = 0.565
+fractal_weighted_strength = 1.0
+cellular_distance_function = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fb5xc"]
+noise = SubResource("FastNoiseLite_78vog")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebafb"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_ggxo0")
+shader_parameter/albedo = Color(0.0941176, 0.435294, 1, 1)
+shader_parameter/speed = 0.5
+shader_parameter/uvDirection = Vector2(2.68, 1)
+shader_parameter/gradient = ExtResource("3_xmxkr")
+shader_parameter/fresAmount = 1.0
+shader_parameter/fresIntensity = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_fb5xc")
+shader_parameter/max_distance = 10.0
+shader_parameter/min_distance = 5.0
+shader_parameter/dither_scale = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ggxo0"]
+radius = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lr4la"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_tq1j1")
+shader_parameter/albedo = Color(0.094222, 0.433877, 1, 1)
+shader_parameter/speed = 1.0
+shader_parameter/uvDirection = Vector2(1, 1)
+shader_parameter/gradient = ExtResource("5_ve56s")
+shader_parameter/fresAmount = 3.472
+shader_parameter/fresIntensity = 2.105
+shader_parameter/max_distance = 10.0
+shader_parameter/min_distance = 5.0
+shader_parameter/dither_scale = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_emx6v"]
+render_priority = 0
+shader = ExtResource("9_fb5xc")
+shader_parameter/max_distance = 10.0
+shader_parameter/min_distance = 5.0
+shader_parameter/dither_scale = 1.0
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("2_xmxkr")
+
+[node name="Etiqueta_Perfil_3D" parent="." instance=ExtResource("1_wrb0p")]
+
+[node name="Sphere" parent="Etiqueta_Perfil_3D" index="0"]
+transform = Transform3D(0.539938, -0.0078325, 0.00234947, 0.00783255, 0.539943, 4.96935e-06, -0.0023493, 2.91148e-05, 0.539995, 0, 2.57218, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_ebafb")
+
+[node name="Area3D" type="Area3D" parent="Etiqueta_Perfil_3D/Sphere" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Etiqueta_Perfil_3D/Sphere/Area3D"]
+shape = SubResource("SphereShape3D_ggxo0")
+
+[node name="Perfil_Poste" parent="Etiqueta_Perfil_3D" index="1"]
+visible = false
+surface_material_override/0 = SubResource("ShaderMaterial_lr4la")
+
+[node name="POI" type="Camera3D" parent="Etiqueta_Perfil_3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.97767, 0.210148, 0, -0.210148, 0.97767, 0, 2.93247, 6.01215)
+
+[node name="lbl_id" type="Label3D" parent="Etiqueta_Perfil_3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6453, 0)
+billboard = 1
+modulate = Color(1, 0.768627, 0.196078, 1)
+text = "40"
+font = ExtResource("7_xmxkr")
+font_size = 150
+
+[node name="mimico_container" type="Node3D" parent="Etiqueta_Perfil_3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018889, 0)
+
+[node name="Icono3D_Base_a" parent="Etiqueta_Perfil_3D/mimico_container" instance=ExtResource("8_78vog")]
+
+[node name="Cylinder_013" parent="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_a" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
+
+[node name="Cylinder_014" parent="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_a" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
+
+[node name="Cylinder_016" parent="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_a" index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
+
+[node name="Icono3D_Base_b" parent="Etiqueta_Perfil_3D/mimico_container" instance=ExtResource("10_ebafb")]
+unique_name_in_owner = true
+
+[node name="Cylinder_015" parent="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_b" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
+
+[connection signal="input_event" from="Etiqueta_Perfil_3D/Sphere/Area3D" to="." method="_on_area_3d_input_event"]
+
+[editable path="Etiqueta_Perfil_3D"]
+[editable path="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_a"]
+[editable path="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_b"]

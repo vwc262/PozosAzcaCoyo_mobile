@@ -1,0 +1,215 @@
+[gd_scene load_steps=18 format=3 uid="uid://clnmqye7ns1ni"]
+
+[ext_resource type="PackedScene" uid="uid://ujssxlwvupla" path="res://scenes/ui/ui_mapa/ui_header_mapa.tscn" id="1_88x2m"]
+[ext_resource type="Script" uid="uid://didwhedxkgo3c" path="res://scripts/ui/mapa/ui_mapa.gd" id="1_otdg0"]
+[ext_resource type="PackedScene" uid="uid://dtdo0ib2qvk6d" path="res://scenes/ui/ui_mapa/ui_row_mapa.tscn" id="3_1os0f"]
+[ext_resource type="Texture2D" uid="uid://byebl4fsxd384" path="res://assets/textures/UI/Atlas/Atlas_Lumbreras.webp" id="5_0p2wn"]
+[ext_resource type="Texture2D" uid="uid://brqctps36yhrv" path="res://assets/textures/UI/Atlas/atlas_lumbreras.tres" id="6_0p2wn"]
+[ext_resource type="PackedScene" uid="uid://c6tmgs7l7eemo" path="res://scenes/ui/ui_info_estacion/ui_info_sitio.tscn" id="6_1os0f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh1my"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0p2wn"]
+atlas = ExtResource("6_0p2wn")
+region = Rect2(10, 576, 876, 64)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ik3r0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1os0f"]
+atlas = ExtResource("6_0p2wn")
+region = Rect2(802, 502, 70, 70)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3b2s8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b2s8"]
+atlas = ExtResource("6_0p2wn")
+region = Rect2(725, 502, 70, 70)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0p2wn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1os0f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dpn2k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpn2k"]
+atlas = ExtResource("5_0p2wn")
+region = Rect2(677, 513, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh1my"]
+atlas = SubResource("AtlasTexture_dpn2k")
+
+[node name="UiMapa" type="Control"]
+custom_minimum_size = Vector2(1080, 1720)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_otdg0")
+scene_row_mapa = ExtResource("3_1os0f")
+
+[node name="header_container" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kh1my")
+
+[node name="TextureRect" type="TextureRect" parent="header_container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0p2wn")
+expand_mode = 1
+
+[node name="ResetCamara" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -130.0
+offset_top = 90.0
+offset_right = -60.0
+offset_bottom = 160.0
+grow_horizontal = 0
+scale = Vector2(1.5, 1.5)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ik3r0")
+
+[node name="Button" type="Button" parent="ResetCamara"]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="ResetCamara/Button"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_1os0f")
+expand_mode = 1
+
+[node name="ResetPines" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -130.0
+offset_top = 200.0
+offset_right = -60.0
+offset_bottom = 270.0
+grow_horizontal = 0
+scale = Vector2(1.5, 1.5)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3b2s8")
+
+[node name="TextureRect" type="TextureRect" parent="ResetPines"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_3b2s8")
+
+[node name="panel_lista_mapa" type="Panel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 980.0
+offset_bottom = 1780.0
+grow_horizontal = 2
+
+[node name="PanelContainer" type="Panel" parent="panel_lista_mapa"]
+layout_mode = 2
+offset_right = 1080.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0p2wn")
+
+[node name="UiHeaderMapa" parent="panel_lista_mapa/PanelContainer" instance=ExtResource("1_88x2m")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_right = 1080.0
+offset_bottom = 90.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1os0f")
+
+[node name="VBoxContainer_mapa" type="VBoxContainer" parent="panel_lista_mapa"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 89.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="row_containers" type="Panel" parent="panel_lista_mapa/VBoxContainer_mapa"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VScrollBar" type="ScrollContainer" parent="panel_lista_mapa/VBoxContainer_mapa/row_containers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="panel_lista_mapa/VBoxContainer_mapa/row_containers/VScrollBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="btn_esconder_lista" type="Button" parent="panel_lista_mapa"]
+z_index = 2
+layout_mode = 2
+offset_left = 520.0
+offset_top = -40.0
+offset_right = 560.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dpn2k")
+flat = true
+
+[node name="tr_btn_esconder" type="TextureRect" parent="panel_lista_mapa/btn_esconder_lista"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+pivot_offset = Vector2(20, 20)
+mouse_filter = 2
+texture = SubResource("AtlasTexture_kh1my")
+
+[node name="UiInfoSitio" parent="." instance=ExtResource("6_1os0f")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_top = 1920.0
+offset_bottom = 2109.0
+
+[connection signal="pressed" from="ResetCamara/Button" to="." method="_on_button_pressed"]
+[connection signal="gui_input" from="ResetPines/TextureRect" to="." method="_on_texture_rect_gui_input"]
+[connection signal="gui_input" from="panel_lista_mapa/btn_esconder_lista" to="." method="_on_button_header_gui_input"]

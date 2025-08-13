@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dpoym5ab6ta42"]
+
+[ext_resource type="Shader" uid="uid://b65vbfrcp0ue5" path="res://assets/shaders/TileMasterShader.gdshader" id="1_wtiem"]
+[ext_resource type="Texture2D" uid="uid://dn5n1xcr2bc0y" path="res://assets/textures/Tiles/Excavated_Mud_2K_D.jpg" id="2_bu20y"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wtiem")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedoAdd = Color(0, 0, 0, 1)
+shader_parameter/common_texutres = ExtResource("2_bu20y")
+shader_parameter/tile2 = 0.001
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/index = 0
+shader_parameter/uvScale = Vector3(1, 1, 1)
+shader_parameter/useAlpha = false

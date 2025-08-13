@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://dc7dofxjpmmwi"]
+
+[ext_resource type="Script" uid="uid://hm620yp3gqsr" path="res://scripts/ui/perfil/lista/ui_lista_signal.gd" id="1_33kjn"]
+[ext_resource type="Texture2D" uid="uid://brqctps36yhrv" path="res://assets/textures/UI/Atlas/atlas_lumbreras.tres" id="2_6uak1"]
+[ext_resource type="PackedScene" uid="uid://cgoqcu8ep24yc" path="res://scenes/ui/ui_progressbar/ui_progressbar.tscn" id="3_7eqbq"]
+[ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="3_tmo3s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6uak1"]
+atlas = ExtResource("2_6uak1")
+region = Rect2(11.9948, 11.03, 878.072, 48.0726)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tmo3s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvmaa"]
+
+[node name="UiListaSitioSignal" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(1080, 100)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 2
+script = ExtResource("1_33kjn")
+
+[node name="Control" type="TextureRect" parent="."]
+modulate = Color(0.136564, 0.0768868, 0.999999, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_6uak1")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 87)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tmo3s")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="separador_provicional" type="Panel" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dvmaa")
+
+[node name="Nombre_signal" type="Label" parent="Panel/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("3_tmo3s")
+theme_override_font_sizes/font_size = 28
+text = "Nombre_signal"
+
+[node name="UiProgressbar" parent="Panel/HBoxContainer" instance=ExtResource("3_7eqbq")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10

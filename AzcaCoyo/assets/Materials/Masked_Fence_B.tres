@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://22y1cmdkmat4"]
+
+[ext_resource type="Shader" uid="uid://bdiwormwcdub1" path="res://assets/shaders/MaskedMasterShader.gdshader" id="1_6tyca"]
+[ext_resource type="Texture2D" uid="uid://cyswm340dhpeu" path="res://assets/textures/Tiles/T_RejaA_O.PNG" id="2_bvta1"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_6tyca")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/base_texture = ExtResource("2_bvta1")
+shader_parameter/index = 0
+shader_parameter/uvScale = Vector3(1, 1, 1)
+shader_parameter/useAlpha = true

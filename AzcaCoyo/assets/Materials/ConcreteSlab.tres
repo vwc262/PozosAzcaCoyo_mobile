@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bms7s0ffvllws"]
+
+[ext_resource type="Shader" uid="uid://b65vbfrcp0ue5" path="res://assets/shaders/TileMasterShader.gdshader" id="1_n4w3n"]
+[ext_resource type="Texture2D" uid="uid://c4daq56aqq2su" path="res://assets/textures/Tiles/Concrete_Slab_2K_D.jpg" id="2_14rt6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_n4w3n")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedoAdd = Color(0, 0, 0, 1)
+shader_parameter/common_texutres = ExtResource("2_14rt6")
+shader_parameter/tile2 = 0.001
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/index = 0
+shader_parameter/uvScale = Vector3(1, 1, 1)
+shader_parameter/useAlpha = false

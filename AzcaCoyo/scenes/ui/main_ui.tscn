@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b48qd0er3rtvd"]
+
+[ext_resource type="Script" uid="uid://deu63evanwg3p" path="res://scripts/ui/main_ui.gd" id="1_b1beo"]
+[ext_resource type="PackedScene" uid="uid://bie37yodquj0o" path="res://scenes/ui/nav_bar/ui_navbar.tscn" id="3_l8t6x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l8t6x"]
+
+[node name="MainUi" type="CanvasLayer"]
+layer = 0
+script = ExtResource("1_b1beo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="ui_contenedor_persistente" type="Panel" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l8t6x")
+
+[node name="UiNavbar" parent="VBoxContainer" instance=ExtResource("3_l8t6x")]
+layout_mode = 2

@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bgasct3ahxy72"]
+
+[ext_resource type="Shader" uid="uid://b65vbfrcp0ue5" path="res://assets/shaders/TileMasterShader.gdshader" id="1_8sc4i"]
+[ext_resource type="Texture2D" uid="uid://ce4lpyf2e6x62" path="res://assets/textures/Tiles/Rough_Asphalt_2K_D.jpg" id="2_fyu80"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8sc4i")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedoAdd = Color(0, 0, 0, 1)
+shader_parameter/common_texutres = ExtResource("2_fyu80")
+shader_parameter/tile2 = 0.4
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/index = 0
+shader_parameter/uvScale = Vector3(1, 1, 1)
+shader_parameter/useAlpha = false

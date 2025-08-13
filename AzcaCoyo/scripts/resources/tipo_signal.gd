@@ -1,0 +1,31 @@
+class_name TIPO_SIGNAL
+extends Resource
+
+enum Tipo_Signal {
+	Default= 0,
+	Nivel= 1,
+	Presion= 2,
+	Gasto= 3,
+	Totalizado= 4,
+	ValvulaAnalogica= 5,
+	ValvulaDiscreta= 6,
+	Bomba= 7,
+	PerillaBomba= 8,
+	PerillaGeneral= 9,
+	Voltaje= 10,
+	Enlace= 11,
+	FallaAC= 12,
+	Tiempo= 13,
+	Mantenimiento= 14,
+	PuertaAbierta= 15,
+	VoltajeRango= 16,
+	CorrienteRango= 17,
+	PotenciaTotal= 18,
+	FactorPotencia= 19,
+	Precipitacion= 20,
+	Temperatura= 21,
+	Humedad= 22,
+	RadiacionSolar= 23,
+	Intensidad= 24,
+	Direccion= 25,
+}

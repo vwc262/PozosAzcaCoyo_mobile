@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://5dich0mxfse5"]
+
+[ext_resource type="Shader" uid="uid://bdiwormwcdub1" path="res://assets/shaders/MaskedMasterShader.gdshader" id="1_vnosl"]
+[ext_resource type="Texture2D" uid="uid://b3limny7nihwo" path="res://assets/textures/Tiles/T_FenceC_opacity.PNG" id="2_c5fcx"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vnosl")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/base_texture = ExtResource("2_c5fcx")
+shader_parameter/index = 0
+shader_parameter/uvScale = Vector3(1, 1, 1)
+shader_parameter/useAlpha = true

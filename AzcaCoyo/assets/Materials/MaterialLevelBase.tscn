@@ -1,0 +1,152 @@
+[gd_scene load_steps=23 format=3 uid="uid://cf7771rir1m8i"]
+
+[ext_resource type="Material" uid="uid://d07lonojj60fv" path="res://assets/Materials/Mossy_Grass.tres" id="1_16s4f"]
+[ext_resource type="Shader" uid="uid://b65vbfrcp0ue5" path="res://assets/shaders/TileMasterShader.gdshader" id="1_t3m1r"]
+[ext_resource type="Material" uid="uid://cb58yxjoxg586" path="res://assets/Materials/StainedConcrete.tres" id="2_1evn2"]
+[ext_resource type="Material" uid="uid://d07wvve6wlhnp" path="res://assets/Materials/Concrete_Road.tres" id="3_cjjcj"]
+[ext_resource type="Material" uid="uid://22y1cmdkmat4" path="res://assets/Materials/Masked_Fence_B.tres" id="4_1evn2"]
+[ext_resource type="Material" uid="uid://0v5v4p7p8uwj" path="res://assets/Materials/Stucco.tres" id="4_t4esy"]
+[ext_resource type="Material" uid="uid://bms7s0ffvllws" path="res://assets/Materials/ConcreteSlab.tres" id="5_u4uml"]
+[ext_resource type="Material" uid="uid://5dich0mxfse5" path="res://assets/Materials/Masked_Fence_C.tres" id="6_1evn2"]
+[ext_resource type="Texture2D" uid="uid://cbya8hpc8o564" path="res://assets/textures/Tiles/T_Brick_Wall_vl0hdboew_2K_D.jpg" id="6_ckjng"]
+[ext_resource type="Texture2D" uid="uid://bv3ym81eeomg6" path="res://assets/textures/Tiles/Gravel_On_Soil_2K_D.jpg" id="8_cjjcj"]
+[ext_resource type="Material" uid="uid://bgasct3ahxy72" path="res://assets/Materials/RoughAlphalt.tres" id="10_ckjng"]
+[ext_resource type="Material" uid="uid://dec8i8nuqadlq" path="res://assets/Materials/LayeredRock.tres" id="11_1evn2"]
+[ext_resource type="Material" uid="uid://bowdds6ikeciy" path="res://assets/Materials/Cast_material.tres" id="12_16s4f"]
+[ext_resource type="Texture2D" uid="uid://c4fpedb3xuueq" path="res://assets/textures/Tiles/wornConcrete_2K_Albedo.jpg" id="12_ikqh7"]
+[ext_resource type="Material" uid="uid://dpoym5ab6ta42" path="res://assets/Materials/ExcavatedDirt.tres" id="13_cjjcj"]
+[ext_resource type="Material" uid="uid://364wel8ixb1h" path="res://assets/Materials/Scratched_Metal.tres" id="13_t4esy"]
+[ext_resource type="Material" uid="uid://cenmcn6o0xwss" path="res://assets/Materials/Rusty_Corrugated.tres" id="14_1evn2"]
+[ext_resource type="Material" uid="uid://dv71k8178ii8y" path="res://assets/Materials/Rusty_Metal.tres" id="18_cjjcj"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_w1fq8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_72qi8"]
+render_priority = 0
+shader = ExtResource("1_t3m1r")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedoAdd = Color(0, 0, 0, 1)
+shader_parameter/common_texutres = ExtResource("6_ckjng")
+shader_parameter/tile2 = 0.001
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/index = 0
+shader_parameter/uvScale = Vector3(1, 1, 1)
+shader_parameter/useAlpha = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ckh5m"]
+render_priority = 0
+shader = ExtResource("1_t3m1r")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedoAdd = Color(0, 0, 0, 1)
+shader_parameter/common_texutres = ExtResource("8_cjjcj")
+shader_parameter/tile2 = 0.001
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/index = 0
+shader_parameter/uvScale = Vector3(1, 1, 1)
+shader_parameter/useAlpha = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6vps"]
+render_priority = 0
+shader = ExtResource("1_t3m1r")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedoAdd = Color(0, 0, 0, 1)
+shader_parameter/common_texutres = ExtResource("12_ikqh7")
+shader_parameter/tile2 = 0.001
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/index = 0
+shader_parameter/uvScale = Vector3(1, 1, 1)
+shader_parameter/useAlpha = false
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("1_16s4f")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28586, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("2_1evn2")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20842, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("3_cjjcj")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.87743, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("4_1evn2")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33684, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("6_1evn2")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57402, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("4_t4esy")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.72646, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("5_u4uml")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94489, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = SubResource("ShaderMaterial_72qi8")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08439, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("11_1evn2")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.21277, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = SubResource("ShaderMaterial_ckh5m")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.49158, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("13_cjjcj")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8456, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("10_ckjng")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9418, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("14_1evn2")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1404, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("12_16s4f")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.3106, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("13_t4esy")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7161, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("18_cjjcj")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7161, 0, 0)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = ExtResource("18_cjjcj")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 10.1632, -0.00566298, 0.00147653)
+mesh = SubResource("QuadMesh_w1fq8")
+surface_material_override/0 = SubResource("ShaderMaterial_w6vps")

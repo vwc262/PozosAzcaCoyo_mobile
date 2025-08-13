@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://0v5v4p7p8uwj"]
+
+[ext_resource type="Shader" uid="uid://b65vbfrcp0ue5" path="res://assets/shaders/TileMasterShader.gdshader" id="1_u6vud"]
+[ext_resource type="Texture2D" uid="uid://8tla7xu5r6s5" path="res://assets/textures/Tiles/Stucco_2K_Albedo.jpg" id="2_clbro"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_u6vud")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedoAdd = Color(0.49, 0.49, 0.49, 1)
+shader_parameter/common_texutres = ExtResource("2_clbro")
+shader_parameter/tile2 = 0.01
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/index = 0
+shader_parameter/uvScale = Vector3(1, 1, 1)
+shader_parameter/useAlpha = false

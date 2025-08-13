@@ -1,0 +1,161 @@
+[gd_scene load_steps=12 format=3 uid="uid://rn0re58djrpm"]
+
+[ext_resource type="Script" uid="uid://cvq1sb4u431vl" path="res://scripts/ui/mosaicos/ui_mosaico_ramal.gd" id="1_c80h5"]
+[ext_resource type="Texture2D" uid="uid://byebl4fsxd384" path="res://assets/textures/UI/Atlas/Atlas_Lumbreras.webp" id="2_4yetr"]
+[ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_c80h5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lyanu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyanu"]
+atlas = ExtResource("2_4yetr")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00srb"]
+atlas = SubResource("AtlasTexture_lyanu")
+region = Rect2(547, 437, 200, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yetr"]
+atlas = ExtResource("2_4yetr")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyc45"]
+atlas = SubResource("AtlasTexture_4yetr")
+region = Rect2(236, 513, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nf13w"]
+atlas = ExtResource("2_4yetr")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h04qu"]
+atlas = SubResource("AtlasTexture_nf13w")
+region = Rect2(236, 513, 40, 40)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xn47p"]
+
+[node name="ui_mosaico_categoria_ramal" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 432)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 29.0
+grow_horizontal = 2
+size_flags_vertical = 0
+mouse_filter = 1
+script = ExtResource("1_c80h5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="nombre_ramal_contenedor" type="Panel" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lyanu")
+
+[node name="tr_interceptor" type="TextureRect" parent="VBoxContainer/HBoxContainer/nombre_ramal_contenedor"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(307, 100)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 307.0
+grow_vertical = 2
+texture = SubResource("AtlasTexture_00srb")
+
+[node name="lbl_nombre_interceptor" type="Label" parent="VBoxContainer/HBoxContainer/nombre_ramal_contenedor"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 95.0
+offset_top = -31.0
+offset_right = 486.0
+offset_bottom = 31.0
+grow_vertical = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_c80h5")
+theme_override_font_sizes/font_size = 52
+text = "nombre interceptor"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = SubResource("AtlasTexture_dyc45")
+
+[node name="lbl_online_valor" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_c80h5")
+theme_override_font_sizes/font_size = 32
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
+modulate = Color(1, 0.282935, 0.221296, 1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = SubResource("AtlasTexture_h04qu")
+
+[node name="lbl_offline_valor" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_c80h5")
+theme_override_font_sizes/font_size = 32
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="tarjetas_contenedor" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xn47p")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/tarjetas_contenedor"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = -20.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/tarjetas_contenedor/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10

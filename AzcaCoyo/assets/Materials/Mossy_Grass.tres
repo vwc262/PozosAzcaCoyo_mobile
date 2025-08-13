@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://d07lonojj60fv"]
+
+[ext_resource type="Shader" uid="uid://b65vbfrcp0ue5" path="res://assets/shaders/TileMasterShader.gdshader" id="1_j8cfp"]
+[ext_resource type="Texture2D" uid="uid://cc4640dbjk7ne" path="res://assets/textures/Tiles/Moss.jpg" id="2_a00bd"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_j8cfp")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedoAdd = Color(0, 0, 0, 1)
+shader_parameter/common_texutres = ExtResource("2_a00bd")
+shader_parameter/tile2 = 0.001
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/index = 0
+shader_parameter/uvScale = Vector3(1, 1, 1)
+shader_parameter/useAlpha = false

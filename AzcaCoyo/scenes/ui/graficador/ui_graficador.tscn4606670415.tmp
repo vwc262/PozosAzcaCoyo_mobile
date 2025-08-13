@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://0op1dh0r0bxv"]
+
+[ext_resource type="Script" uid="uid://vu1mghl1gluq" path="res://scripts/ui/graficador/ui_graficador.gd" id="1_h63pk"]
+[ext_resource type="Script" uid="uid://cermyieoqtc7q" path="res://addons/god_plot/tools/graphs/graph_2d.gd" id="1_ng6qm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h63pk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vyr47"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ctd1n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ujgf"]
+
+[node name="UiGraficador" type="PanelContainer"]
+custom_minimum_size = Vector2(1080, 650)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1270.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h63pk")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_h63pk")
+
+[node name="ColorRect" type="ColorRect" parent="Panel3"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="separador1" type="Panel" parent="Panel3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vyr47")
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel3/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ctd1n")
+
+[node name="lbl_titulo" type="Label" parent="Panel3/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "título gráfica"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="separador2" type="Panel" parent="Panel3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vyr47")
+
+[node name="Panel" type="Panel" parent="Panel3/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7ujgf")
+
+[node name="Graph2D" type="Control" parent="Panel3/VBoxContainer/Panel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(950, 550)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_ng6qm")
+x_max = 24.0
+x_tick_count = 12
+metadata/_custom_type_script = "uid://cermyieoqtc7q"
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_datos_24h_recibidos"]

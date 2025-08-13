@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnpl6letj6lfi"]
+
+[ext_resource type="Script" uid="uid://glk856dgtcsk" path="res://scripts/fetcher/fetcher.gd" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://b48qd0er3rtvd" path="res://scenes/ui/main_ui.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://7pq1m3m18e7c" path="res://scenes/world/persistent.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://bwgt5ivjqeg1f" path="res://scripts/managers/camera_manager.gd" id="4_jyhfs"]
+
+[node name="Main" type="Node"]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+script = ExtResource("1_0wfyh")
+uri_update = "https://virtualwavecontrol.com.mx/api24/VWC/app2024/getUpdatelite?idProyecto=25"
+
+[node name="MainUi" parent="." instance=ExtResource("1_o5qli")]
+
+[node name="CameraTransitioner" type="Node3D" parent="."]
+script = ExtResource("4_jyhfs")
+
+[node name="Persistent" parent="." instance=ExtResource("3_sugp2")]
+
+[connection signal="request_completed" from="HTTPRequest" to="HTTPRequest" method="_on_request_completed"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh7augu4upct4"]
+
+[ext_resource type="Script" uid="uid://byeqyn02bryqq" path="res://scripts/ui/particular/ui_particular.gd" id="1_xh4ti"]
+[ext_resource type="PackedScene" uid="uid://c6tmgs7l7eemo" path="res://scenes/ui/ui_info_estacion/ui_info_sitio.tscn" id="2_ogh0v"]
+
+[node name="UiParticular" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xh4ti")
+
+[node name="UiInfoSitio" parent="." instance=ExtResource("2_ogh0v")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -567.0
+offset_bottom = 0.0
+grow_vertical = 0

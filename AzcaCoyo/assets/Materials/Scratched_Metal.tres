@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://364wel8ixb1h"]
+
+[ext_resource type="Shader" uid="uid://b65vbfrcp0ue5" path="res://assets/shaders/TileMasterShader.gdshader" id="1_d3ll6"]
+[ext_resource type="Texture2D" uid="uid://dvho0vt0lsjxp" path="res://assets/textures/Tiles/Scratched_Painted_Metal_D.jpg" id="2_50j8e"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_d3ll6")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedoAdd = Color(0, 0, 0, 1)
+shader_parameter/common_texutres = ExtResource("2_50j8e")
+shader_parameter/tile2 = 0.001
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/index = 0
+shader_parameter/uvScale = Vector3(1, 1, 1)
+shader_parameter/useAlpha = false

@@ -1,0 +1,107 @@
+[gd_scene load_steps=6 format=3 uid="uid://cp1luk4b2jybe"]
+
+[ext_resource type="Script" uid="uid://hpvgwnj432i6" path="res://scripts/ui/perfil/lista/ui_lista_alarmados.gd" id="1_kbvbq"]
+[ext_resource type="Texture2D" uid="uid://brqctps36yhrv" path="res://assets/textures/UI/Atlas/atlas_lumbreras.tres" id="1_uy6x6"]
+[ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="3_uofbd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbvbq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uofbd"]
+atlas = ExtResource("1_uy6x6")
+region = Rect2(414, 513, 50, 50)
+
+[node name="UiListaAlarmados" type="Control"]
+layout_mode = 3
+anchor_right = 0.185
+anchor_bottom = 0.052
+offset_right = 0.199997
+offset_bottom = 0.159996
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_kbvbq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PreventivoContaner" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kbvbq")
+
+[node name="PreventivoTexture" type="TextureRect" parent="HBoxContainer/PreventivoContaner"]
+unique_name_in_owner = true
+modulate = Color(0.414704, 0.414704, 0.414704, 1)
+custom_minimum_size = Vector2(85, 50)
+layout_mode = 2
+offset_right = 85.0
+offset_bottom = 100.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_uofbd")
+expand_mode = 1
+
+[node name="Preventivo_text" type="Label" parent="HBoxContainer/PreventivoContaner"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -5.49001
+offset_right = 12.0
+offset_bottom = 39.51
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_uofbd")
+theme_override_font_sizes/font_size = 28
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CriticoContaner" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kbvbq")
+
+[node name="CriticoTexture" type="TextureRect" parent="HBoxContainer/CriticoContaner"]
+unique_name_in_owner = true
+modulate = Color(1, 0.360844, 0.293565, 1)
+custom_minimum_size = Vector2(85, 50)
+layout_mode = 2
+offset_right = 85.0
+offset_bottom = 100.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_uofbd")
+expand_mode = 1
+
+[node name="Critico_text" type="Label" parent="HBoxContainer/CriticoContaner"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -5.49001
+offset_right = 12.0
+offset_bottom = 39.51
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_uofbd")
+theme_override_font_sizes/font_size = 28
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1

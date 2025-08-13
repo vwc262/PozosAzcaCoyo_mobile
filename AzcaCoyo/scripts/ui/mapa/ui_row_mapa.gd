@@ -9,24 +9,24 @@ extends Node
 
 var id_estaciones: Array[int]
 var estaciones: Array[Estacion]
-var interceptor: int
+var id_proyecto: int
 var interceptor_abreviacion: String;
 var online_count: int;
 
 const UMBRAL_SINGLE_CLICK := 0.25
 var tiempo_click: float = 0.0
 
-func inicializar_row(_interceptor: int):
-	interceptor = _interceptor
+func inicializar_row(_id_proyecto: int):
+	id_proyecto = _id_proyecto
 	
 func _ready() -> void:
-	lbl_nombre_interceptor.text = GlobalData.get_name_interceptor(interceptor);
-	color_interceptor.modulate = GlobalData.get_color_interceptor(interceptor);
+	lbl_nombre_interceptor.text = GlobalData.get_name_interceptor(id_proyecto);
+	color_interceptor.modulate = GlobalData.get_color_interceptor(id_proyecto);
 	
 	var _estaciones = GlobalData.get_all_data();
 	
 	for estacion: Estacion in _estaciones:
-		if estacion.tipo_interceptor == interceptor:
+		if estacion.id_proyecto == id_proyecto:
 			id_estaciones.append(estacion.id_estacion);
 			estaciones.append(estacion)
 			
@@ -50,7 +50,7 @@ func _on_update_app():
 	var _estaciones = GlobalData.get_all_data();
 	
 	for estacion: Estacion in _estaciones:
-		if estacion.tipo_interceptor == interceptor:
+		if estacion.id_proyecto == id_proyecto:
 			online_count += 1 if estacion.is_estacion_en_linea() else 0
 			
 	lbl_total_online.text = str(online_count);

@@ -29,7 +29,7 @@ func init_data_info(_id_estacion: int) -> void:
 		child.visible = false;
 	
 	id_estacion = _id_estacion;
-	estacion = GlobalData.get_estacion(id_estacion);
+	estacion = GlobalData.get_estacion(id_estacion, estacion.id_proyecto);
 	
 	var n = 0;
 
@@ -43,9 +43,8 @@ func init_data_info(_id_estacion: int) -> void:
 
 func update():
 	if id_estacion != 0:
-		estacion = GlobalData.get_estacion(id_estacion);
+		estacion = GlobalData.get_estacion(id_estacion, estacion.id_proyecto);
 		tr_enlace.modulate = estacion.get_color_enlace();
 		lbl_id.text = str(estacion.id_estacion)
-		lbl_interceptor.text = estacion.abreviacion_interceptor
 		lbl_nombre.text = estacion.nombre
 		lbl_fecha.text = GlobalUtils.formatear_fecha(estacion.tiempo)

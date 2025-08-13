@@ -9,7 +9,7 @@
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 script = ExtResource("1_0wfyh")
-uri_update = "https://virtualwavecontrol.com.mx/api24/VWC/app2024/getUpdatelite?idProyecto=25"
+uri_update = "https://virtualwavecontrol.com.mx/api24/VWC/app2024/getUpdatelite?idProyecto="
 
 [node name="MainUi" parent="." instance=ExtResource("1_o5qli")]
 

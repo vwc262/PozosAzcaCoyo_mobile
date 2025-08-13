@@ -2,21 +2,13 @@ extends RefCounted
 class_name Estacion
 @export var id_estacion: int
 @export var nombre: String
-@export var latitud: float
-@export var longitud: float
 @export var tiempo: String
 @export var enlace: int
 @export var falla_energia: int
 @export var abreviacion: String
 @export var tipo_estacion: int
 @export var signals = {}
-var lineas: Array[Linea] = []
-@export var conexiones: int
-@export var fallas: int
-@export var tipo_poleo: int
-@export var abreviacion_interceptor: String
-@export var tipo_interceptor: int
-@export var interceptor: String
+@export var id_proyecto: int
 
 const tolerancia_minutos : int = 15
 
@@ -24,18 +16,12 @@ const tolerancia_minutos : int = 15
 func _init(jsonData):
 	self.id_estacion = jsonData["idEstacion"]
 	self.nombre = jsonData["nombre"]
-	self.latitud = jsonData["latitud"]
-	self.longitud = jsonData["longitud"]
 	self.tiempo = jsonData["tiempo"]
 	self.enlace = jsonData["enlace"]
 	self.falla_energia = jsonData["fallaEnergia"]
 	self.abreviacion = jsonData["abreviacion"]
 	self.tipo_estacion = jsonData["tipoEstacion"]
-	self.conexiones = jsonData["conexiones"]
-	self.fallas = jsonData["fallas"]
-	self.abreviacion_interceptor = jsonData["abreviacion_interceptor"]
-	self.tipo_interceptor = jsonData["tipo_interceptor"]
-	self.interceptor = jsonData["interceptor"]
+	self.id_proyecto = jsonData["tipo_interceptor"]
 
 func is_tiempo_NoValido()->bool:
 	var current_time = Time.get_unix_time_from_datetime_dict(Time.get_datetime_dict_from_system(false))
@@ -55,11 +41,11 @@ func get_color_enlace():
 
 func update_estacion(jsonDataUpdate) -> Estacion:
 	self.enlace = jsonDataUpdate.E
-	self.tiempo =  jsonDataUpdate.T	
-	self.falla_energia = jsonDataUpdate.F	
-	for signalId_update in jsonDataUpdate.S.keys():			
-		self.signals[int(signalId_update)].update_signal(jsonDataUpdate.S[signalId_update])		
-	return self	
+	self.tiempo =  jsonDataUpdate.T
+	self.falla_energia = jsonDataUpdate.F
+	for signalId_update in jsonDataUpdate.S.keys():
+		self.signals[int(signalId_update)].update_signal(jsonDataUpdate.S[signalId_update])
+	return self
 
 func get_all_signals_by_type(tipo_signal: TIPO_SIGNAL.Tipo_Signal) -> Array[Señal]:
 	var keys = self.signals.keys();

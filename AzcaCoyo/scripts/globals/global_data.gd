@@ -39,7 +39,7 @@ func parse_station_data(data) -> Estacion:
 		
 	return estacion
 
-func get_estacion(id_estacion:int, id_proyecto:int = 23 ) -> Estacion:
+func get_estacion(id_estacion:int, id_proyecto:int ) -> Estacion:
 	return estacionesDict[id_proyecto][id_estacion];
 
 func get_all_data() -> Array:
@@ -88,21 +88,3 @@ func get_color_signal(ordinal: int) -> Color:
 		3:
 			color = Color("f5228e")
 	return color
-
-func get_estado_alarmado(estacion: Estacion) -> TIPO_ALERTA.ENUM_ALERTA:
-	var tipo_alerta = TIPO_ALERTA.ENUM_ALERTA.NORMAL
-	for nivel: Señal in estacion.signals.values():
-		if nivel.tipo_signal == 1 && (nivel.valor > 0 && nivel.valor < 9999):
-			var preventivo = nivel.semaforo.preventivo if nivel.semaforo else 6.0
-			var critico = nivel.semaforo.critico if nivel.semaforo else 5.0
-			var valor = nivel.valor
-			if valor >= critico:
-				tipo_alerta = TIPO_ALERTA.ENUM_ALERTA.CRITICO
-				break
-			elif valor >= preventivo:
-				tipo_alerta = TIPO_ALERTA.ENUM_ALERTA.PREVENTIVO
-	return tipo_alerta
-	
-func get_color_estdado_alertado(estacion: Estacion) -> Color:
-	var alerta: TIPO_ALERTA.ENUM_ALERTA = GlobalData.get_estado_alarmado(estacion);
-	return Color(0, .7, 0) if alerta == TIPO_ALERTA.ENUM_ALERTA.NORMAL else Color(.7, .7, 0) if alerta == TIPO_ALERTA.ENUM_ALERTA.PREVENTIVO else Color(.7, 0, 0)

@@ -1,11 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://clnmqye7ns1ni"]
+[gd_scene load_steps=17 format=3 uid="uid://clnmqye7ns1ni"]
 
 [ext_resource type="PackedScene" uid="uid://ujssxlwvupla" path="res://scenes/ui/ui_mapa/ui_header_mapa.tscn" id="1_88x2m"]
 [ext_resource type="Script" uid="uid://didwhedxkgo3c" path="res://scripts/ui/mapa/ui_mapa.gd" id="1_otdg0"]
 [ext_resource type="PackedScene" uid="uid://dtdo0ib2qvk6d" path="res://scenes/ui/ui_mapa/ui_row_mapa.tscn" id="3_1os0f"]
 [ext_resource type="Texture2D" uid="uid://byebl4fsxd384" path="res://assets/textures/UI/Atlas/Atlas_Lumbreras.webp" id="5_0p2wn"]
 [ext_resource type="Texture2D" uid="uid://brqctps36yhrv" path="res://assets/textures/UI/Atlas/atlas_lumbreras.tres" id="6_0p2wn"]
-[ext_resource type="PackedScene" uid="uid://c6tmgs7l7eemo" path="res://scenes/ui/ui_info_estacion/ui_info_sitio.tscn" id="6_1os0f"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh1my"]
 
@@ -203,12 +202,6 @@ rotation = 3.14159
 pivot_offset = Vector2(20, 20)
 mouse_filter = 2
 texture = SubResource("AtlasTexture_kh1my")
-
-[node name="UiInfoSitio" parent="." instance=ExtResource("6_1os0f")]
-unique_name_in_owner = true
-layout_mode = 1
-offset_top = 1920.0
-offset_bottom = 2109.0
 
 [connection signal="pressed" from="ResetCamara/Button" to="." method="_on_button_pressed"]
 [connection signal="gui_input" from="ResetPines/TextureRect" to="." method="_on_texture_rect_gui_input"]

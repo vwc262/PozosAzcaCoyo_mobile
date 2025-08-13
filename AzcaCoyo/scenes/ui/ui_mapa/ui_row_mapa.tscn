@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dtdo0ib2qvk6d"]
+[gd_scene load_steps=15 format=3 uid="uid://dtdo0ib2qvk6d"]
 
 [ext_resource type="Script" uid="uid://dnvqhofgnvws8" path="res://scripts/ui/mapa/ui_row_mapa.gd" id="1_yan8p"]
-[ext_resource type="PackedScene" uid="uid://cp1luk4b2jybe" path="res://scenes/ui/ui_perfil/lista/ui_lista_alarmados.tscn" id="2_1jgkp"]
 [ext_resource type="Texture2D" uid="uid://brqctps36yhrv" path="res://assets/textures/UI/Atlas/atlas_lumbreras.tres" id="2_xgcp5"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="3_4em0a"]
 [ext_resource type="Texture2D" uid="uid://byebl4fsxd384" path="res://assets/textures/UI/Atlas/Atlas_Lumbreras.webp" id="4_e4f3b"]
@@ -17,8 +16,6 @@ atlas = ExtResource("2_xgcp5")
 region = Rect2(547, 437, 200, 65)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mrqtx"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yt8k0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hsqub"]
 
@@ -123,21 +120,6 @@ size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("3_4em0a")
 theme_override_font_sizes/font_size = 32
 text = "nombre_del_interceptor"
-
-[node name="Total_alarmados" type="Panel" parent="Panel/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_yt8k0")
-
-[node name="UiListaAlarmados" parent="Panel/HBoxContainer/Total_alarmados" instance=ExtResource("2_1jgkp")]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
 
 [node name="contador_contenedor" type="Panel" parent="Panel/HBoxContainer"]
 custom_minimum_size = Vector2(155, 0)

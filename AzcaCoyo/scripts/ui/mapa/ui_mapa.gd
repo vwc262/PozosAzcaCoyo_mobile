@@ -4,7 +4,6 @@ extends Node
 
 @onready var container: VBoxContainer = %VBoxContainer
 @onready var panel_lista_mapa: Panel = %panel_lista_mapa
-@onready var ui_info_sitio = %UiInfoSitio
 @onready var tr_btn_esconder: TextureRect = %tr_btn_esconder
 @onready var btn_esconder_lista: Button = $panel_lista_mapa/btn_esconder_lista
 
@@ -46,7 +45,6 @@ func _on_camera_reset_position():
 	hiden_panel = false;
 	get_tween().tween_property(tr_btn_esconder, "rotation_degrees", 180, transition_time)
 	get_tween().tween_property(panel_lista_mapa, "position", Vector2(0, 980), transition_time)
-	await get_tween().tween_property(ui_info_sitio, "position", Vector2(0, 2500), transition_time).finished
 	btn_esconder_lista.z_index = 2;
 
 func get_container_size(_container: Control) -> float:
@@ -54,12 +52,9 @@ func get_container_size(_container: Control) -> float:
 
 func _on_mini_site_clicked(_id_estacion: int):
 	if _id_estacion != 0:
-		ui_info_sitio.init_data_info(_id_estacion)
 		
 		btn_esconder_lista.z_index = 0;
 		get_tween().tween_property(panel_lista_mapa, "position", Vector2(0, 1960), transition_time)
-		var altura = get_container_size(ui_info_sitio);
-		get_tween().tween_property(ui_info_sitio, "position", Vector2(0, 1920 - altura - 128), transition_time)
 
 func _on_button_pressed():
 	GlobalSignals.on_mini_site_clicked.emit(0)

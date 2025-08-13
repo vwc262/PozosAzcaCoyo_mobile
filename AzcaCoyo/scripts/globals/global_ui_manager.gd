@@ -1,9 +1,6 @@
 extends Node
 
 const UI_MAPA = preload("res://scenes/ui/ui_mapa/ui_mapa.tscn")
-const UI_PARTICULAR = preload("res://scenes/ui/ui_particular/ui_particular.tscn")
-const UI_MOSAICOS = preload("res://scenes/ui/ui_mosaicos/ui_mosaico.tscn")
-const UI_ESTRUCTURAS = preload("res://scenes/ui/ui_estructuras/ui_estructuras.tscn")
 
 var ui_persistente: Node = null
 var escena_actual: Node = null
@@ -12,9 +9,6 @@ var modulo_actual: TIPO_MODULO.UI = TIPO_MODULO.UI.MAPA;
 # Asociación entre módulo y escena
 var rutas_modulos := {
 	TIPO_MODULO.UI.MAPA: UI_MAPA,
-	TIPO_MODULO.UI.MOSAICOS: UI_MOSAICOS,
-	TIPO_MODULO.UI.PARTICULAR: UI_PARTICULAR,
-	TIPO_MODULO.UI.ESTRUCTURAS: UI_ESTRUCTURAS
 }
 
 func inicializar_contenedor(_ui_persistente):

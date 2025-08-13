@@ -13,7 +13,7 @@ extends Node3D
 
 var id_estacion: int
 var estacion: Estacion;
-var interceptor: int;
+var id_proyecto: int;
 var initial_position: Vector3;
 
 var camera3D: Camera3D;
@@ -30,8 +30,9 @@ var do_rotate:bool = false;
 @onready var mini_lumbrera = preload("res://scenes/minis/lumbrera.tscn")
 @onready var mini_presa = preload("res://scenes/minis/presa.tscn")
 
-func initialize(_id_estacion: int):
+func initialize(_id_estacion: int, _id_proyecto: int):
 	id_estacion = _id_estacion
+	id_proyecto = _id_proyecto
 
 func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
@@ -45,8 +46,8 @@ func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: 
 
 func _ready() -> void:
 	lbl_id.text = str(id_estacion)
-	estacion = GlobalData.get_estacion(id_estacion);
-	interceptor = estacion.tipo_interceptor;
+	estacion = GlobalData.get_estacion(id_estacion, id_proyecto);
+	id_proyecto = estacion.id_proyecto;
 	
 	camera3D = get_viewport().get_camera_3d()
 	initial_position = camera3D.global_position;

@@ -14,7 +14,6 @@ class_name Señal
 	get : return self.valor != -0.9;
 @export var linea: int
 @export var habilitar: int
-var semaforo: Semaforo
 
 
 func _init(jsonData):
@@ -30,32 +29,6 @@ func _init(jsonData):
 	self.linea = jsonData["linea"]
 	self.habilitar = jsonData["habilitar"]
 
-func get_color_barra_vida() -> Color:
-	var color_to_return = Color(.7,.7,.7)
-	var preventivo = semaforo.preventivo
-	var critico = semaforo.critico
-	if tipo_signal == 1:
-		if dentro_rango:
-			if valor > preventivo and valor <= critico:
-				color_to_return = Color(.7, .7, 0) # Amarillo
-			elif valor > critico:
-				color_to_return = Color(.7, 0, 0) # Rojo
-			else:
-				color_to_return = Color(0, .7, 0) # Verde
-	return color_to_return
-	
-func get_tipo_alerta() -> TIPO_ALERTA.ENUM_ALERTA:
-	var tipo_alerta = TIPO_ALERTA.ENUM_ALERTA.NORMAL;
-	if tipo_signal == 1:
-		if semaforo != null:
-			if valor > semaforo.normal and valor <= semaforo.preventivo:
-				tipo_alerta = TIPO_ALERTA.ENUM_ALERTA.PREVENTIVO
-			elif valor > semaforo.preventivo:
-				tipo_alerta = TIPO_ALERTA.ENUM_ALERTA.CRITICO
-			else:
-				tipo_alerta = TIPO_ALERTA.ENUM_ALERTA.NORMAL
-	return tipo_alerta
-	
 func get_unities() -> String:
 	match tipo_signal:
 			1:  return  "[m]"

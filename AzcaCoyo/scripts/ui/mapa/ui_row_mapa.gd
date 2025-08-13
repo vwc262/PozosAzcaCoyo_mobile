@@ -2,7 +2,6 @@ extends Node
 
 @onready var color_interceptor: TextureRect = %color_interceptor
 @onready var lbl_nombre_interceptor: Label = %lbl_nombre_interceptor
-@onready var ui_lista_alarmados: Control = %UiListaAlarmados
 @onready var lbl_total_online: Label = %lbl_total_online
 @onready var lbl_total_offline: Label = %lbl_total_offline
 @onready var tr_seleccion: TextureRect = %tr_seleccion
@@ -33,7 +32,6 @@ func _ready() -> void:
 	if id_estaciones.size() == 0:
 		self.queue_free();
 	else:
-		ui_lista_alarmados.set_data_estacion(estaciones)
 		interceptor_abreviacion = estaciones[0].abreviacion_interceptor;
 		
 		GlobalSignals.connect_on_update_app(_on_update_app, true)

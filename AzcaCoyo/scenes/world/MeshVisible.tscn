@@ -1,3 +1,42 @@
-[gd_scene format=3 uid="uid://r0wqipvjl0o8"]
+[gd_scene load_steps=7 format=3 uid="uid://r0wqipvjl0o8"]
+
+[ext_resource type="PackedScene" uid="uid://blidfg1mh0ssf" path="res://assets/models/Perfil/cdmx_web.glb" id="1_bsxf1"]
+[ext_resource type="Texture2D" uid="uid://bnd5fid0m8s1x" path="res://assets/textures/Perfil/cdmx_Normal.jpg" id="2_440tp"]
+[ext_resource type="PackedScene" uid="uid://clu5lk7wrk4ds" path="res://assets/models/Perfil/mapacdmx_web.glb" id="3_o8smc"]
+[ext_resource type="Texture2D" uid="uid://bo0vexmf7m4xg" path="res://assets/textures/Perfil/Terreno_Normal.jpg" id="4_xl65y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xu1cq"]
+albedo_color = Color(0.118239, 0.134542, 0.351598, 1)
+normal_enabled = true
+normal_scale = 5.0
+normal_texture = ExtResource("2_440tp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8s3ku"]
+albedo_color = Color(0.178524, 0.225136, 0.471674, 1)
+normal_enabled = true
+normal_texture = ExtResource("4_xl65y")
 
 [node name="Mapa" type="Node3D"]
+
+[node name="cdmx_web" parent="." instance=ExtResource("1_bsxf1")]
+
+[node name="CrystalCDMX" parent="cdmx_web" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_xu1cq")
+
+[node name="mapacdmx_web" parent="." instance=ExtResource("3_o8smc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19278, 0, 0.851069)
+
+[node name="Plane_005" parent="mapacdmx_web" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_8s3ku")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -1.19159, 2.79147, -0.459681)
+light_energy = 6.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0.394421, 2.79147, 3.75882)
+light_color = Color(0.0491084, 0.658665, 0.692364, 1)
+light_energy = 10.0
+
+[editable path="cdmx_web"]
+[editable path="mapacdmx_web"]

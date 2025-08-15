@@ -75,7 +75,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.157586, 0, -1.13919)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.688982, 0, -0.257721)
 
 [node name="Aeropuerto" parent="." instance=ExtResource("6_o8smc")]
-transform = Transform3D(0.915, 0, 0, 0, 0.915, 0, 0, 0, 0.915, 0, 0.0533155, 0)
+transform = Transform3D(0.625168, 0, 0, 0, 0.625168, 0, 0, 0, 0.625168, 0.291193, 0.234451, 0.00303352)
 
 [node name="Skeleton3D" parent="Aeropuerto/Rig_Avion" index="0"]
 bones/1/rotation = Quaternion(0, 0.707107, 0, 0.707107)
@@ -85,8 +85,11 @@ bones/3/rotation = Quaternion(-0.0745646, 0.947744, -0.30924, -0.0243296)
 bones/4/position = Vector3(-1.45828e-07, 81.4418, 1.32325e-06)
 bones/4/rotation = Quaternion(1.05367e-08, 7.3757e-08, -0.707107, 0.707107)
 
+[node name="Avion" parent="Aeropuerto/Rig_Avion/Skeleton3D" index="0"]
+transform = Transform3D(0.797831, 0, -1.42109e-14, 0, 0.797831, 0, 1.42109e-14, 0, 0.797831, -3.8147e-06, 0, 1.52588e-05)
+
 [node name="Base_aeropuerto" parent="Aeropuerto" index="1"]
-transform = Transform3D(3.49597e-11, 0, -0.000111366, 0, 0.000111366, 0, 0.000111366, 0, 3.49597e-11, 1.30222, 0.57179, 0.419584)
+transform = Transform3D(2.78919e-11, 0, -8.88512e-05, 0, 8.88512e-05, 0, 8.88512e-05, 0, 2.78919e-11, 1.30222, 0.57179, 0.419584)
 
 [editable path="cdmx_web"]
 [editable path="mapacdmx_web"]

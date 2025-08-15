@@ -1,12 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://r0wqipvjl0o8"]
+[gd_scene load_steps=10 format=3 uid="uid://r0wqipvjl0o8"]
 
 [ext_resource type="PackedScene" uid="uid://blidfg1mh0ssf" path="res://assets/models/Perfil/cdmx_web.glb" id="1_bsxf1"]
 [ext_resource type="Texture2D" uid="uid://bnd5fid0m8s1x" path="res://assets/textures/Perfil/cdmx_Normal.jpg" id="2_440tp"]
+[ext_resource type="Texture2D" uid="uid://c5ff5qdfjwydd" path="res://assets/textures/Perfil/mapacdmxTEO3_Bake1024.png" id="2_xl65y"]
 [ext_resource type="PackedScene" uid="uid://clu5lk7wrk4ds" path="res://assets/models/Perfil/mapacdmx_web.glb" id="3_o8smc"]
 [ext_resource type="Texture2D" uid="uid://bo0vexmf7m4xg" path="res://assets/textures/Perfil/Terreno_Normal.jpg" id="4_xl65y"]
+[ext_resource type="PackedScene" uid="uid://cy52y56xpfvt4" path="res://assets/models/Perfil/DecoradoresPerfil/Mini_Representativos.glb" id="5_440tp"]
+[ext_resource type="PackedScene" uid="uid://bfwukg77r6r4l" path="res://assets/models/Perfil/DecoradoresPerfil/Aeropuerto.glb" id="6_o8smc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xu1cq"]
-albedo_color = Color(0.118239, 0.134542, 0.351598, 1)
+albedo_texture = ExtResource("2_xl65y")
 normal_enabled = true
 normal_scale = 5.0
 normal_texture = ExtResource("2_440tp")
@@ -38,5 +41,54 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0.394421, 2.79147, 3.75882)
 light_color = Color(0.0491084, 0.658665, 0.692364, 1)
 light_energy = 10.0
 
+[node name="Mini_Representativos" parent="." instance=ExtResource("5_440tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.592377, 1.36899)
+
+[node name="Angel_v03" parent="Mini_Representativos" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.157887, 0, -0.785472)
+
+[node name="BasilicaDeGuadalupe" parent="Mini_Representativos" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0874169, 0, -1.69713)
+
+[node name="Catedral" parent="Mini_Representativos" index="2"]
+transform = Transform3D(-0.999989, 0.00263929, 0.00380253, 0.00264186, 0.999996, 0.000667977, -0.00380074, 0.000678041, -0.999993, 0.326602, -5.96046e-08, -1.01991)
+
+[node name="chapultepec" parent="Mini_Representativos" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.994666, 0, -0.929776)
+
+[node name="MiniFiestaInn" parent="Mini_Representativos" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.799757, 0, 0.330744)
+
+[node name="FuenteDePetroleos" parent="Mini_Representativos" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51825, -1.19209e-07, -0.577429)
+
+[node name="Manacar" parent="Mini_Representativos" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44013, 1.19209e-07, 0.911159)
+
+[node name="Mitikah" parent="Mini_Representativos" index="7"]
+transform = Transform3D(-2.48569e-08, 0, 0.568658, 0, 0.568658, 0, -0.568658, 0, -2.48569e-08, -0.94481, 0, 0.943769)
+
+[node name="TorreLatino_v3" parent="Mini_Representativos" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.157586, 0, -1.13919)
+
+[node name="WTCmini_sinPlaza" parent="Mini_Representativos" index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.688982, 0, -0.257721)
+
+[node name="Aeropuerto" parent="." instance=ExtResource("6_o8smc")]
+transform = Transform3D(0.915, 0, 0, 0, 0.915, 0, 0, 0, 0.915, 0, 0.0533155, 0)
+
+[node name="Skeleton3D" parent="Aeropuerto/Rig_Avion" index="0"]
+bones/1/rotation = Quaternion(0, 0.707107, 0, 0.707107)
+bones/2/rotation = Quaternion(0.0699289, -0.45149, 0.888822, 0.0355215)
+bones/3/position = Vector3(2.86829e-06, 117.194, -4.86089e-06)
+bones/3/rotation = Quaternion(-0.0745646, 0.947744, -0.30924, -0.0243296)
+bones/4/position = Vector3(-1.45828e-07, 81.4418, 1.32325e-06)
+bones/4/rotation = Quaternion(1.05367e-08, 7.3757e-08, -0.707107, 0.707107)
+
+[node name="Base_aeropuerto" parent="Aeropuerto" index="1"]
+transform = Transform3D(3.49597e-11, 0, -0.000111366, 0, 0.000111366, 0, 0.000111366, 0, 3.49597e-11, 1.30222, 0.57179, 0.419584)
+
 [editable path="cdmx_web"]
 [editable path="mapacdmx_web"]
+[editable path="Mini_Representativos"]
+[editable path="Aeropuerto"]

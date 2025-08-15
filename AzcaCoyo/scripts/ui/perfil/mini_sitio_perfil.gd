@@ -2,11 +2,10 @@ extends Node3D
 
 @onready var poi: Camera3D = %POI
 @onready var etiqueta_perfil_3d: Node3D = $Etiqueta_Perfil_3D
-#@onready var sphere: MeshInstance3D = $Etiqueta_Perfil_3D/Sphere
-#@onready var perfil_poste: MeshInstance3D = $Etiqueta_Perfil_3D/Perfil_Poste
+@onready var sphere: MeshInstance3D = $Etiqueta_Perfil_3D/Sphere
 @onready var lbl_id: Label3D = %lbl_id
 @onready var mimico_container: Node3D = %mimico_container
-#@onready var icono_3d_base_b: Node3D = %Icono3D_Base_b
+@onready var icono_3d_base_b: Node3D = %Icono3D_Base_b
 
 @export var min_scale: float = 0.6;
 @export var max_scale: float = 1.8;
@@ -17,8 +16,8 @@ var id_proyecto: int;
 var initial_position: Vector3;
 
 var camera3D: Camera3D;
-var min_distance: float = 0.0
-var max_distance: float = 0.0
+var min_distance: float = 1.0
+var max_distance: float = 4.0
 
 const UMBRAL_SINGLE_CLICK := 0.25
 var tiempo_click: float = 0.0
@@ -26,9 +25,7 @@ var rotate_speed: float = 1.0;
 
 var do_rotate:bool = false;
 
-@onready var mini_canal = preload("res://scenes/minis/canal.tscn")
-@onready var mini_lumbrera = preload("res://scenes/minis/lumbrera.tscn")
-@onready var mini_presa = preload("res://scenes/minis/presa.tscn")
+@onready var pozo = preload("res://scenes/minis/pozo.tscn")
 
 func initialize(_id_estacion: int, _id_proyecto: int):
 	id_estacion = _id_estacion
@@ -51,11 +48,9 @@ func _ready() -> void:
 	
 	camera3D = get_viewport().get_camera_3d()
 	initial_position = camera3D.global_position;
-	max_distance = initial_position.distance_to(global_position)
+	#max_distance = initial_position.distance_to(global_position)
 	
-	var mini_instanced = (mini_canal.instantiate() if estacion.tipo_estacion == TIPO_ESTACION.ENUM_Estacion.CANAL else
-						mini_lumbrera.instantiate() if estacion.tipo_estacion == TIPO_ESTACION.ENUM_Estacion.LUMBRERA else 
-						mini_presa.instantiate())
+	var mini_instanced = pozo.instantiate()
 	
 	mimico_container.add_child(mini_instanced);
 	
@@ -69,8 +64,8 @@ func _process(_delta: float) -> void:
 	var t = inverse_lerp(max_distance, min_distance, distance)
 	etiqueta_perfil_3d.scale = Vector3.ONE * lerp(min_scale, max_scale, t)
 	
-	#if do_rotate:
-		#icono_3d_base_b.rotate_y(_delta * rotate_speed)
+	if do_rotate:
+		icono_3d_base_b.rotate_y(_delta * rotate_speed)
 
 func _exit_tree() -> void:
 	GlobalSignals.connect_on_click_interceptor(_on_click_interceptor, false)

@@ -9,8 +9,8 @@ uniform float fresIntensity : hint_range(0.0, 10.0) = 1.0;
 uniform sampler2D noise;
 
 // dither
-uniform float max_distance = 5.0; // Distancia máxima a la que el objeto es completamente visible
-uniform float min_distance = 3.0;  // Distancia mínima a la que el objeto comienza a desvanecerse
+uniform float max_distance = 1.0; // Distancia máxima a la que el objeto es completamente visible
+uniform float min_distance = 0.0;  // Distancia mínima a la que el objeto comienza a desvanecerse
 uniform float dither_scale = 1.0;  // Escala del patrón de dithering
 
 void vertex() {

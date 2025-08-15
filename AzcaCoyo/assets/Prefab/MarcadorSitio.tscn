@@ -36,8 +36,8 @@ shader_parameter/gradient = ExtResource("3_xmxkr")
 shader_parameter/fresAmount = 1.0
 shader_parameter/fresIntensity = 1.0
 shader_parameter/noise = SubResource("NoiseTexture2D_fb5xc")
-shader_parameter/max_distance = 10.0
-shader_parameter/min_distance = 5.0
+shader_parameter/max_distance = 4.0
+shader_parameter/min_distance = 1.0
 shader_parameter/dither_scale = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ggxo0"]
@@ -53,24 +53,28 @@ shader_parameter/uvDirection = Vector2(1, 1)
 shader_parameter/gradient = ExtResource("5_ve56s")
 shader_parameter/fresAmount = 3.472
 shader_parameter/fresIntensity = 2.105
-shader_parameter/max_distance = 10.0
-shader_parameter/min_distance = 5.0
+shader_parameter/max_distance = 4.0
+shader_parameter/min_distance = 1.0
 shader_parameter/dither_scale = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_emx6v"]
 render_priority = 0
 shader = ExtResource("9_fb5xc")
-shader_parameter/max_distance = 10.0
-shader_parameter/min_distance = 5.0
+shader_parameter/max_distance = 4.0
+shader_parameter/min_distance = 1.0
 shader_parameter/dither_scale = 1.0
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("2_xmxkr")
 
+[node name="POI" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.97767, 0.210148, 0, -0.210148, 0.97767, 0, 0.675278, 1.34416)
+
 [node name="Etiqueta_Perfil_3D" parent="." instance=ExtResource("1_wrb0p")]
 
 [node name="Sphere" parent="Etiqueta_Perfil_3D" index="0"]
-transform = Transform3D(0.539938, -0.0078325, 0.00234947, 0.00783255, 0.539943, 4.96935e-06, -0.0023493, 2.91148e-05, 0.539995, 0, 2.57218, 0)
+transform = Transform3D(0.124986, -0.00181308, 0.00054386, 0.00181309, 0.124987, 1.14914e-06, -0.00054382, 6.73954e-06, 0.124999, 0, 0.610423, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_ebafb")
 
 [node name="Area3D" type="Area3D" parent="Etiqueta_Perfil_3D/Sphere" index="0"]
@@ -78,26 +82,23 @@ surface_material_override/0 = SubResource("ShaderMaterial_ebafb")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Etiqueta_Perfil_3D/Sphere/Area3D"]
 shape = SubResource("SphereShape3D_ggxo0")
 
-[node name="Perfil_Poste" parent="Etiqueta_Perfil_3D" index="1"]
-visible = false
-surface_material_override/0 = SubResource("ShaderMaterial_lr4la")
-
-[node name="POI" type="Camera3D" parent="Etiqueta_Perfil_3D"]
+[node name="lbl_id" type="Label3D" parent="Etiqueta_Perfil_3D/Sphere" index="1"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.97767, 0.210148, 0, -0.210148, 0.97767, 0, 2.93247, 6.01215)
-
-[node name="lbl_id" type="Label3D" parent="Etiqueta_Perfil_3D"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6453, 0)
+transform = Transform3D(1.99977, 0.0290095, -0.00870111, -0.0290093, 1.99979, 0.000107833, 0.00870176, 1.83862e-05, 1.99998, 0.000514299, 0.0354538, 3.25963e-07)
 billboard = 1
 modulate = Color(1, 0.768627, 0.196078, 1)
 text = "40"
 font = ExtResource("7_xmxkr")
 font_size = 150
 
+[node name="Perfil_Poste" parent="Etiqueta_Perfil_3D" index="1"]
+transform = Transform3D(-0.125, 0, -1.09278e-08, 0, 0.125, 0, 1.09278e-08, 0, -0.125, 0, 0, 0)
+visible = false
+surface_material_override/0 = SubResource("ShaderMaterial_lr4la")
+
 [node name="mimico_container" type="Node3D" parent="Etiqueta_Perfil_3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018889, 0)
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0.018889, 0)
 
 [node name="Icono3D_Base_a" parent="Etiqueta_Perfil_3D/mimico_container" instance=ExtResource("8_78vog")]
 

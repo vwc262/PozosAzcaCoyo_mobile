@@ -58,11 +58,8 @@ func _on_mini_site_clicked(_id_estacion: int):
 
 func _on_button_pressed():
 	GlobalSignals.on_mini_site_clicked.emit(0)
+	#GlobalSignals.on_click_interceptor.emit(0);
 	_on_camera_reset_position()
-
-func _on_texture_rect_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
-		GlobalSignals.on_click_interceptor.emit("NA");
 
 func _on_button_header_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():

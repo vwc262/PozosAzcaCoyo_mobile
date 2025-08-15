@@ -128,32 +128,25 @@ func handle_zoom(dir:int) -> void:
 	var vector_inclinado = Vector3.UP;
 	
 	var positionaux = position + (vector_inclinado) * zoom_direction
-	
-	#TODO: empuje
-	#var t = remap(positionaux.y, min_zoom, max_zoom, 0, 1)
-	#var w = exp(-4 * t)
-	#var empuje = Vector3.FORWARD * -lerp(0.0, (max_zoom - min_zoom), w)
-	#positionaux += empuje;
-		
 	var rotated_vector = Vector3(positionaux.x,positionaux.y,positionaux.z)
 	rotated_vector.y = clampf(rotated_vector.y,min_zoom,max_zoom);
 	
-	var v0 = initial_position;
-	v0.x = 0;
-	v0.z = 0;
+	#var v0 = initial_position;
+	#v0.x = 0;
+	#v0.z = 0;
+	#
+	#var v1 = global_position;
+	#v1.x = 0;
+	#v1.z = 0;
+	#
+	#var dist = v1.distance_to(v0)
 	
-	var v1 = global_position;
-	v1.x = 0;
-	v1.z = 0;
-	
-	var dist = v1.distance_to(v0)
-	
-	if dist > 1 and !movement_signal_emitted:
-		movement_signal_emitted = true;
-		GlobalSignals.on_camera_leave_initial_position.emit()
-	elif dist < 0.35 and movement_signal_emitted:
-		GlobalSignals.on_camera_reset_position.emit()
-		movement_signal_emitted = false;
+	#if dist > 1 and !movement_signal_emitted:
+		#movement_signal_emitted = true;
+		#GlobalSignals.on_camera_leave_initial_position.emit()
+	#elif dist < 0.35 and movement_signal_emitted:
+		#GlobalSignals.on_camera_reset_position.emit()
+		#movement_signal_emitted = false;
 		
 	apply_zoom_limits(rotated_vector, positionaux)
 

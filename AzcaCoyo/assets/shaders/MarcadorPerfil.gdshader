@@ -46,7 +46,7 @@ void fragment() {
 	//float fresnel = pow(1.0 - clamp(dot(normal, view), 0.0, 1.0), fresAmount)*fresIntensity;
 	float fresnel= fresnel(3.0, NORMAL, VIEW);
 	ALBEDO= texture(gradient,UV2).rgb*albedo.rgb;
-	EMISSION = albedo.rgb;
+	EMISSION = albedo.rgb * 0.75;
 	//EMISSION = fresnel * albedo.rgb*texture(gradient,UV).rgb;
 	ALPHA = fresnel+texture(gradient,UV2).r * smoothstep(0.0,1.0,UV.y*20.0);
 	//ALPHA = (fresnel+texture(gradient,UV2).r) * smoothstep(abs(1.0-((UV.y)*1.0)),0.0,1.0);
@@ -64,9 +64,9 @@ void fragment() {
 	float dithered_alpha = dither8x8(screen_pos, alpha);
 
 	 // Si el alpha ditherado es menor que 0, descartar el píxel
-	if (dithered_alpha < 0.0) {
-		discard;
-	}
+	//if (dithered_alpha < 0.0) {
+		//discard;
+	//}
 
 	ALPHA = COLOR.a * alpha;
 }

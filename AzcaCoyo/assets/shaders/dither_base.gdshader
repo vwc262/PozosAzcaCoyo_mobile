@@ -2,8 +2,8 @@ shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled;
 
 // Parámetros ajustables
-uniform float max_distance = 1.0; // Distancia máxima a la que el objeto es completamente visible
-uniform float min_distance = 0.0;  // Distancia mínima a la que el objeto comienza a desvanecerse
+uniform float max_distance = 4.0; // Distancia máxima a la que el objeto es completamente visible
+uniform float min_distance = 2.0;  // Distancia mínima a la que el objeto comienza a desvanecerse
 uniform float dither_scale = 1.0;  // Escala del patrón de dithering
 
 // Función de dithering (patrón Bayer 8x8)
@@ -36,9 +36,9 @@ void fragment() {
     float dithered_alpha = dither8x8(screen_pos, alpha);
 
     // Si el alpha ditherado es menor que 0, descartar el píxel
-    if (dithered_alpha < 0.0) {
-        discard;
-    }
+    //if (dithered_alpha < 0.0) {
+        //discard;
+    //}
 
     // Usar el vertex color en lugar de un color uniforme
     ALBEDO = COLOR.rgb;

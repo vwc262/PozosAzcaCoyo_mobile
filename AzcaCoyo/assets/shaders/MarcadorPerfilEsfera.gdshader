@@ -64,9 +64,9 @@ void fragment() {
 	float dithered_alpha = dither8x8(screen_pos, alpha);
 
 	 // Si el alpha ditherado es menor que 0, descartar el píxel
-	if (dithered_alpha < 0.0) {
-		discard;
-	}
+	//if (dithered_alpha < 0.0) {
+		//discard;
+	//}
 
 	ALPHA = COLOR.a * alpha;
 }

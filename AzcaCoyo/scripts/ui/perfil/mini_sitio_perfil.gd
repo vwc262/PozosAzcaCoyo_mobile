@@ -7,8 +7,8 @@ extends Node3D
 @onready var mimico_container: Node3D = %mimico_container
 @onready var icono_3d_base_b: Node3D = %Icono3D_Base_b
 
-@export var min_scale: float = 0.6;
-@export var max_scale: float = 1.8;
+@export var min_scale: float = 0.1;
+@export var max_scale: float = 0.45;
 
 var id_estacion: int
 var estacion: Estacion;
@@ -16,8 +16,8 @@ var id_proyecto: int;
 var initial_position: Vector3;
 
 var camera3D: Camera3D;
-var min_distance: float = 1.0
-var max_distance: float = 4.0
+var min_distance: float = 0.25
+var max_distance: float = 20.0
 
 const UMBRAL_SINGLE_CLICK := 0.25
 var tiempo_click: float = 0.0
@@ -55,31 +55,20 @@ func _ready() -> void:
 	mimico_container.add_child(mini_instanced);
 	
 	GlobalSignals.on_agregar_poi_perfil.emit(id_estacion, poi.global_transform);
-	GlobalSignals.connect_on_click_interceptor(_on_click_interceptor, true)
 	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, true)
 	
 func _process(_delta: float) -> void:
 	var distance = initial_position.distance_to(camera3D.global_position)
 	
-	var t = inverse_lerp(max_distance, min_distance, distance)
-	etiqueta_perfil_3d.scale = Vector3.ONE * lerp(min_scale, max_scale, t)
+	var t = remap(distance, min_distance, max_distance, 0, 1)
+	var w = exp(-4 * t)
+	etiqueta_perfil_3d.scale = Vector3.ONE * clamp(lerp(min_scale, max_scale, w), min_scale, max_scale)
 	
 	if do_rotate:
 		icono_3d_base_b.rotate_y(_delta * rotate_speed)
 
 func _exit_tree() -> void:
-	GlobalSignals.connect_on_click_interceptor(_on_click_interceptor, false)
 	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, false)
-	
-func _on_click_interceptor(_interceptor_abreviacion: String): pass
-	#if _interceptor_abreviacion == estacion.abreviacion_interceptor:
-		#sphere.get_surface_override_material(0)["shader_parameter/albedo"] = GlobalData.get_color_interceptor(interceptor)
-		#perfil_poste.get_surface_override_material(0)["shader_parameter/albedo"] = GlobalData.get_color_interceptor(interceptor)
-	#else:
-		#sphere.get_surface_override_material(0)["shader_parameter/albedo"] = Color(0.09, 0.43, 1.0, 1.0)
-		#perfil_poste.get_surface_override_material(0)["shader_parameter/albedo"] = Color(0.09, 0.43, 1.0, 1.0)
-	
-	#etiqueta_perfil_3d.visible = _interceptor_abreviacion == "NA" or _interceptor_abreviacion == estacion.abreviacion_interceptor
-	
+
 func _on_mini_site_clicked(_id_estacion: int):
 	do_rotate = id_estacion == _id_estacion

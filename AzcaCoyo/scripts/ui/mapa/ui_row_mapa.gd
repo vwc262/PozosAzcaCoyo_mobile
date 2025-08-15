@@ -1,9 +1,7 @@
 extends Node
 
 @export var scene_row_mapa_estacion: PackedScene
-
 @onready var sites_container = %SitesContainer
-
 @onready var color_interceptor: TextureRect = %color_interceptor
 @onready var lbl_nombre_interceptor: Label = %lbl_nombre_interceptor
 @onready var lbl_total_online: Label = %lbl_total_online
@@ -40,16 +38,14 @@ func _ready() -> void:
 	if id_estaciones.size() == 0:
 		self.queue_free();
 	else:
-		proyecto_name = proyecto_name;
-
 		GlobalSignals.connect_on_update_app(_on_update_app, true)
-		GlobalSignals.connect_on_click_interceptor(_on_click_interceptor, true)
+		GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, true)
 
 		_on_update_app()
 
 func _exit_tree() -> void:
 	GlobalSignals.connect_on_update_app(_on_update_app, false)
-	GlobalSignals.connect_on_click_interceptor(_on_click_interceptor, false)
+	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, false)
 
 func _on_update_app():
 	online_count = 0;
@@ -76,12 +72,10 @@ func _manejar_click():
 	var intervalo = tiempo_actual - tiempo_click
 	
 	if intervalo < UMBRAL_SINGLE_CLICK:
-		GlobalSignals.on_click_interceptor.emit(proyecto_name);
-		
-		tr_seleccion.visible = true;
+		GlobalSignals.on_mini_site_clicked.emit(-id_proyecto);
 
-func _on_click_interceptor(_proyecto_name: String):
-	#if _proyecto_name == "NA":
-		#return;
+func _on_mini_site_clicked(_id: int):
+	if _id == 0:
+		return;
 		
-	tr_seleccion.visible = false;
+	tr_seleccion.visible = _id == id_proyecto;

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cu68t3daqjklw"
-path="res://.godot/imported/Icono3D_Canal.fbx-25e8fc7d6098cdf1a3befe3d1f11aee4.scn"
+uid="uid://nm0kjj68ao3t"
+path="res://.godot/imported/Bomba_Azcacoyo_01.glb-34150aa9a1fb7855caae94033c7cb0a4.scn"
 
 [deps]
 
-source_file="res://assets/models/Perfil/iconos/Icono3D_Canal.fbx"
-dest_files=["res://.godot/imported/Icono3D_Canal.fbx-25e8fc7d6098cdf1a3befe3d1f11aee4.scn"]
+source_file="res://assets/models/Perfil/iconos/Bomba_Azcacoyo_01.glb"
+dest_files=["res://.godot/imported/Bomba_Azcacoyo_01.glb-34150aa9a1fb7855caae94033c7cb0a4.scn"]
 
 [params]
 
@@ -28,11 +28,10 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+gltf/naming_version=1
+gltf/embedded_image_handling=1

@@ -86,7 +86,7 @@ script = ExtResource("2_xmxkr")
 
 [node name="POI" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.97767, 0.210148, 0, -0.210148, 0.97767, 0, 0.675278, 1.34416)
+transform = Transform3D(1, 0, 0, 0, 0.817145, 0.576432, 0, -0.576432, 0.817145, 0, 1.94788, 4.40046)
 
 [node name="Etiqueta_Perfil_3D" parent="." instance=ExtResource("1_wrb0p")]
 

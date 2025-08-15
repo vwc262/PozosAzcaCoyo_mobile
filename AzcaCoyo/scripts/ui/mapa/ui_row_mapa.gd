@@ -72,10 +72,10 @@ func _manejar_click():
 	var intervalo = tiempo_actual - tiempo_click
 	
 	if intervalo < UMBRAL_SINGLE_CLICK:
-		GlobalSignals.on_mini_site_clicked.emit(-id_proyecto);
+		GlobalSignals.on_mini_site_clicked.emit(0, id_proyecto)
 
-func _on_mini_site_clicked(_id: int):
-	if _id == 0:
-		return;
+func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):
+	#if _id == 0:
+		#return;
 		
-	tr_seleccion.visible = _id == id_proyecto;
+	tr_seleccion.visible = _id_proyecto == id_proyecto;

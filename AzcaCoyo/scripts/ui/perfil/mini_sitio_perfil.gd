@@ -39,7 +39,7 @@ func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: 
 		var intervalo = tiempo_actual - tiempo_click
 	
 		if intervalo < UMBRAL_SINGLE_CLICK:
-			GlobalSignals.on_mini_site_clicked.emit(id_estacion)
+			GlobalSignals.on_mini_site_clicked.emit(id_estacion, id_proyecto)
 
 func _ready() -> void:
 	lbl_id.text = str(id_estacion)
@@ -54,7 +54,7 @@ func _ready() -> void:
 	
 	mimico_container.add_child(mini_instanced);
 	
-	GlobalSignals.on_agregar_poi_perfil.emit(id_estacion, poi.global_transform);
+	GlobalSignals.on_agregar_poi_perfil.emit(id_estacion, id_proyecto, poi.global_transform);
 	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, true)
 	
 func _process(_delta: float) -> void:

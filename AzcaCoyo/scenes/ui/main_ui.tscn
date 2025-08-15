@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b48qd0er3rtvd"]
+[gd_scene load_steps=3 format=3 uid="uid://b48qd0er3rtvd"]
 
 [ext_resource type="Script" uid="uid://deu63evanwg3p" path="res://scripts/ui/main_ui.gd" id="1_b1beo"]
-[ext_resource type="PackedScene" uid="uid://bie37yodquj0o" path="res://scenes/ui/nav_bar/ui_navbar.tscn" id="3_l8t6x"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l8t6x"]
 
@@ -23,6 +22,3 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_l8t6x")
-
-[node name="UiNavbar" parent="VBoxContainer" instance=ExtResource("3_l8t6x")]
-layout_mode = 2

@@ -5,7 +5,7 @@ signal on_update_app
 #region interaccion UI <-> navegacion
 signal on_camera_leave_initial_position()
 signal on_camera_reset_position()
-signal on_mini_site_clicked(_id:int)
+signal on_mini_site_clicked(_id:int, _id_proyecto: int)
 signal on_go_to_poi(_tipo:TIPO_POI.ENUM_POI)
 signal on_agregar_poi_perfil(_id_estacion:int, _transform: Transform3D)
 signal on_desactivar_eventos(_desactivar: bool)

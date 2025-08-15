@@ -12,10 +12,9 @@ class_name TouchCameraController
 
 # Límites del zoom
 @export_category("Configuracion Zoom")
-@export var min_zoom: float = 1.0
-@export var max_zoom: float = 11.0
-@export var min_zoom_inclination: float = 5
-@export var max_zoom_inclination: int = -15;
+@export var min_zoom: float = 1.15
+@export var max_zoom: float = 6.0
+@export var max_zoom_inclination: int = -35;
 
 # Límites del panning
 @export_category("Configuracion Paneo")
@@ -40,7 +39,7 @@ func guardar_posicion_inicial():
 	initial_position = global_position;
 	initial_camera_inclination = rotation_degrees.x
 	
-	GlobalSignals.on_agregar_poi_perfil.emit(0, global_transform)
+	GlobalSignals.on_agregar_poi_perfil.emit(0, 0, global_transform)
 	
 func _ready() -> void:
 	
@@ -131,23 +130,6 @@ func handle_zoom(dir:int) -> void:
 	var rotated_vector = Vector3(positionaux.x,positionaux.y,positionaux.z)
 	rotated_vector.y = clampf(rotated_vector.y,min_zoom,max_zoom);
 	
-	#var v0 = initial_position;
-	#v0.x = 0;
-	#v0.z = 0;
-	#
-	#var v1 = global_position;
-	#v1.x = 0;
-	#v1.z = 0;
-	#
-	#var dist = v1.distance_to(v0)
-	
-	#if dist > 1 and !movement_signal_emitted:
-		#movement_signal_emitted = true;
-		#GlobalSignals.on_camera_leave_initial_position.emit()
-	#elif dist < 0.35 and movement_signal_emitted:
-		#GlobalSignals.on_camera_reset_position.emit()
-		#movement_signal_emitted = false;
-		
 	apply_zoom_limits(rotated_vector, positionaux)
 
 # Aplicar límites al ZOOM
@@ -167,5 +149,5 @@ func get_angle(position_1: Vector2, position_2: Vector2) -> float:
 func _on_desactivar_eventos(desactivar: bool):
 	set_process_input(!desactivar)
 
-func _on_mini_site_clicked(_id_estacion: int):
+func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):
 	movement_signal_emitted = true

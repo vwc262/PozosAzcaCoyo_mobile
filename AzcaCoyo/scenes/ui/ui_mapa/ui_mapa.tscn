@@ -97,7 +97,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 980.0
-offset_bottom = 1780.0
+offset_bottom = 1920.0
 grow_horizontal = 2
 
 [node name="PanelContainer" type="Panel" parent="panel_lista_mapa"]
@@ -151,13 +151,16 @@ size_flags_vertical = 3
 
 [node name="btn_esconder_lista" type="Button" parent="panel_lista_mapa"]
 z_index = 2
-layout_mode = 2
-offset_left = 520.0
-offset_top = -40.0
-offset_right = 560.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2, 2)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -75.0
+offset_top = 12.0
+offset_right = -35.0
+offset_bottom = 52.0
+grow_horizontal = 0
+scale = Vector2(1.5, 1.5)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dpn2k")
 flat = true
 

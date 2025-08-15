@@ -91,6 +91,9 @@ transform = Transform3D(0.797831, 0, -1.42109e-14, 0, 0.797831, 0, 1.42109e-14, 
 [node name="Base_aeropuerto" parent="Aeropuerto" index="1"]
 transform = Transform3D(2.78919e-11, 0, -8.88512e-05, 0, 8.88512e-05, 0, 8.88512e-05, 0, 2.78919e-11, 1.30222, 0.57179, 0.419584)
 
+[node name="AnimationPlayer" parent="Aeropuerto" index="2"]
+next/Avion_Vuelo_001 = &"Avion_Vuelo_001"
+
 [editable path="cdmx_web"]
 [editable path="mapacdmx_web"]
 [editable path="Mini_Representativos"]

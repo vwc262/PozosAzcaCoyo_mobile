@@ -71,7 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51825, -1.19209e-07, -0.57
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44013, 1.19209e-07, 0.911159)
 
 [node name="Mitikah" parent="Mini_Representativos" index="7"]
-transform = Transform3D(-2.48569e-08, 0, 0.568658, 0, 0.568658, 0, -0.568658, 0, -2.48569e-08, -0.94481, 0, 0.943769)
+transform = Transform3D(-2.48569e-08, 0, 0.568658, 0, 0.568658, 0, -0.568658, 0, -2.48569e-08, -0.94481, 0, 0.88594)
 material_override = ExtResource("7_xu1cq")
 
 [node name="TorreLatino_v3" parent="Mini_Representativos" index="8"]

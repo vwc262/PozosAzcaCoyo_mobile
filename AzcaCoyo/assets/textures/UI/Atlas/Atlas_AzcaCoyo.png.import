@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1qqh4am8lm54"
-path="res://.godot/imported/Brillo_renglon5.webp-505237c81e9fd053da5b52dab389c7df.ctex"
+uid="uid://bbkvquesvjqld"
+path="res://.godot/imported/Atlas_AzcaCoyo.png-6919e367031edd0e3a9c3f590c9fd6df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/UI/Brillo_renglon5.webp"
-dest_files=["res://.godot/imported/Brillo_renglon5.webp-505237c81e9fd053da5b52dab389c7df.ctex"]
+source_file="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png"
+dest_files=["res://.godot/imported/Atlas_AzcaCoyo.png-6919e367031edd0e3a9c3f590c9fd6df.ctex"]
 
 [params]
 

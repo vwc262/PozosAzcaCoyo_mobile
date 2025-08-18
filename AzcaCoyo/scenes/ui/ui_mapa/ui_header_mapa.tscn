@@ -1,72 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://ujssxlwvupla"]
+[gd_scene load_steps=3 format=3 uid="uid://ujssxlwvupla"]
 
-[ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="1_q2646"]
-[ext_resource type="Texture2D" uid="uid://brqctps36yhrv" path="res://assets/textures/UI/Atlas/atlas_lumbreras.tres" id="2_uqjo5"]
+[ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="2_uqjo5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rgmkh"]
 atlas = ExtResource("2_uqjo5")
 region = Rect2(9, 875, 696, 60)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5g0nb"]
-atlas = ExtResource("2_uqjo5")
-region = Rect2(107, 491, 2, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rpw04"]
-atlas = ExtResource("2_uqjo5")
-region = Rect2(107, 491, 2, 48)
-
 [node name="UiHeaderMapa" type="PanelContainer"]
-custom_minimum_size = Vector2(0, 90)
+custom_minimum_size = Vector2(0, 45)
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -90.0
+offset_top = -60.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
 texture = SubResource("AtlasTexture_rgmkh")
-
-[node name="Panel" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-
-[node name="Emisores" type="Label" parent="Panel"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1_q2646")
-theme_override_font_sizes/font_size = 36
-text = "EMISORES"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="TextureRect" type="TextureRect" parent="Panel"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_5g0nb")
-
-[node name="Alertados" type="Label" parent="Panel"]
-custom_minimum_size = Vector2(190, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_q2646")
-theme_override_font_sizes/font_size = 32
-text = "Alertados"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="TextureRect2" type="TextureRect" parent="Panel"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_rpw04")
-
-[node name="EnLinea" type="Label" parent="Panel"]
-custom_minimum_size = Vector2(165, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_q2646")
-theme_override_font_sizes/font_size = 32
-text = "En línea"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true

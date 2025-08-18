@@ -50,19 +50,15 @@ func _on_camera_reset_position():
 func get_container_size(_container: Control) -> float:
 	return _container.get_combined_minimum_size().y
 
-func _on_mini_site_clicked(_id_estacion: int):
-	if _id_estacion != 0:
-		
-		btn_esconder_lista.z_index = 0;
-		get_tween().tween_property(panel_lista_mapa, "position", Vector2(0, 1960), transition_time)
+func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):pass
+	#if _id_estacion != 0:
+		#
+		#btn_esconder_lista.z_index = 0;
+		#get_tween().tween_property(panel_lista_mapa, "position", Vector2(0, 1960), transition_time)
 
 func _on_button_pressed():
-	GlobalSignals.on_mini_site_clicked.emit(0)
+	GlobalSignals.on_mini_site_clicked.emit(0, 0)
 	_on_camera_reset_position()
-
-func _on_texture_rect_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
-		GlobalSignals.on_click_interceptor.emit("NA");
 
 func _on_button_header_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():

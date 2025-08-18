@@ -1,6 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://brqctps36yhrv"]
-
-[ext_resource type="Texture2D" uid="uid://byebl4fsxd384" path="res://assets/textures/UI/Atlas/Atlas_Lumbreras.webp" id="1_4yhpj"]
-
-[resource]
-atlas = ExtResource("1_4yhpj")

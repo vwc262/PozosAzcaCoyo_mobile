@@ -5,15 +5,10 @@ signal on_update_app
 #region interaccion UI <-> navegacion
 signal on_camera_leave_initial_position()
 signal on_camera_reset_position()
-signal on_mini_site_clicked(_id_estacion:int)
+signal on_mini_site_clicked(_id:int, _id_proyecto: int)
 signal on_go_to_poi(_tipo:TIPO_POI.ENUM_POI)
 signal on_agregar_poi_perfil(_id_estacion:int, _transform: Transform3D)
-signal on_agregar_poi_particular(_tipo_poi:TIPO_POI.ENUM_POI, _transform: Transform3D)
 signal on_desactivar_eventos(_desactivar: bool)
-#endregion
-
-#region interaccion UI <-> 3D
-signal on_click_interceptor(_interceptor: String)
 #endregion
 
 #region UI <-> escenas
@@ -65,12 +60,6 @@ func connect_on_agregar_poi_perfil(callback:Callable,do_connect:bool) -> void:
 		on_agregar_poi_perfil.connect(callback)
 	elif on_agregar_poi_perfil.is_connected(callback):
 		on_agregar_poi_perfil.disconnect(callback)
-		
-func connect_on_agregar_poi_particular(callback:Callable,do_connect:bool) -> void:
-	if do_connect :
-		on_agregar_poi_particular.connect(callback)
-	elif on_agregar_poi_particular.is_connected(callback):
-		on_agregar_poi_particular.disconnect(callback)
 
 func connect_on_unload_perfil(callback:Callable,do_connect:bool) -> void:
 	if do_connect :
@@ -113,9 +102,3 @@ func connect_on_desactivar_eventos(callback:Callable,do_connect:bool) -> void:
 		on_desactivar_eventos.connect(callback)
 	elif on_desactivar_eventos.is_connected(callback):
 		on_desactivar_eventos.disconnect(callback)
-
-func connect_on_click_interceptor(callback:Callable,do_connect:bool) -> void:
-	if do_connect :
-		on_click_interceptor.connect(callback)
-	elif on_click_interceptor.is_connected(callback):
-		on_click_interceptor.disconnect(callback)

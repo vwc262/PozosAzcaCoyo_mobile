@@ -8,7 +8,7 @@ var id_proyecto: int = 22;
 const INFRAESTRUCTURA = preload("res://scripts/offline_data/infraestructura.json")
 #endregion
 
-var intervalo_timer : float = 10.0 #En Segundos
+var intervalo_timer : float = 5.0 #En Segundos
 var tiempo_acumulado : float = 0.0
 
 #region Lyfecycle

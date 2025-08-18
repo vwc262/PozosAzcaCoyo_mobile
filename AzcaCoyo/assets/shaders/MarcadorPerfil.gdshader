@@ -7,8 +7,8 @@ uniform float fresAmount : hint_range(0.0, 10.0) = 1.0;
 uniform float fresIntensity : hint_range(0.0, 10.0) = 1.0;
 
 // dither
-uniform float max_distance = 1.0; // Distancia máxima a la que el objeto es completamente visible
-uniform float min_distance = 0.0;  // Distancia mínima a la que el objeto comienza a desvanecerse
+uniform float max_distance = 10.0; // Distancia máxima a la que el objeto es completamente visible
+uniform float min_distance = 1.0;  // Distancia mínima a la que el objeto comienza a desvanecerse
 uniform float dither_scale = 1.0;  // Escala del patrón de dithering
 
 void vertex() {
@@ -43,30 +43,27 @@ void fragment() {
 	vec3 normal = normalize(TANGENT);
     vec3 view = normalize(VIEW);
 
-	//float fresnel = pow(1.0 - clamp(dot(normal, view), 0.0, 1.0), fresAmount)*fresIntensity;
 	float fresnel= fresnel(3.0, NORMAL, VIEW);
 	ALBEDO= texture(gradient,UV2).rgb*albedo.rgb;
 	EMISSION = albedo.rgb * 0.75;
-	//EMISSION = fresnel * albedo.rgb*texture(gradient,UV).rgb;
 	ALPHA = fresnel+texture(gradient,UV2).r * smoothstep(0.0,1.0,UV.y*20.0);
-	//ALPHA = (fresnel+texture(gradient,UV2).r) * smoothstep(abs(1.0-((UV.y)*1.0)),0.0,1.0);
-	// Called for every pixel the material is visible on.
 
 	// dither
 	// Calcular distancia a la cámara usando VIEW_MATRIX
     float distance = length((VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz);
 
 	// Calcular factor de transparencia basado en la distancia
-	float alpha = smoothstep(min_distance, max_distance, distance);
+	float alpha = 1.0 - smoothstep(min_distance, max_distance, distance);
+	alpha = pow(alpha, 5);
 
     // Aplicar dithering
 	vec2 screen_pos = FRAGCOORD.xy * dither_scale;
 	float dithered_alpha = dither8x8(screen_pos, alpha);
 
 	 // Si el alpha ditherado es menor que 0, descartar el píxel
-	//if (dithered_alpha < 0.0) {
-		//discard;
-	//}
+	if (dithered_alpha < 0.0) {
+		discard;
+	}
 
 	ALPHA = COLOR.a * alpha;
 }

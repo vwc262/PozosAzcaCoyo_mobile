@@ -4,6 +4,7 @@ extends Node3D
 @onready var etiqueta_perfil_3d: Node3D = $Etiqueta_Perfil_3D
 @onready var sphere: MeshInstance3D = $Etiqueta_Perfil_3D/Sphere
 @onready var lbl_id: Label3D = %lbl_id
+@onready var lbl_id2: Label3D = %lbl_id2
 @onready var mimico_container: Node3D = %mimico_container
 @onready var icono_3d_base_b: Node3D = %Icono3D_Base_b
 
@@ -27,7 +28,8 @@ var rotate_speed: float = 1.0;
 var do_rotate:bool = false;
 
 @onready var pozo = preload("res://scenes/minis/pozo.tscn")
-@onready var bomba_azcacoyo: Material = %Bomba_Azcacoyo_01.get_child(0).material_override
+@onready var etiqueta_perfil_mat: Material = %Etiqueta_Perfil_3D.get_node("Sphere").get_surface_override_material(0)
+@onready var bomba_azcacoyo_mat: Material = %Bomba_Azcacoyo_01.get_child(0).material_override
 
 func initialize(_id_estacion: int, _id_proyecto: int):
 	id_estacion = _id_estacion
@@ -45,6 +47,7 @@ func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: 
 
 func _ready() -> void:
 	lbl_id.text = str(id_estacion)
+	lbl_id2.text = str(id_estacion)
 	estacion = GlobalData.get_estacion(id_estacion, id_proyecto);
 	id_proyecto = estacion.id_proyecto;
 	
@@ -79,8 +82,8 @@ func _exit_tree() -> void:
 	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, false)
 	GlobalSignals.connect_on_update_app(_on_update_app, false)
 
-func _on_mini_site_clicked(_id_estacion: int):
-	do_rotate = id_estacion == _id_estacion
+func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):
+	do_rotate = id_estacion == _id_estacion && id_proyecto == _id_proyecto
 
 func _on_update_app():
 	estacion = GlobalData.get_estacion(id_estacion, id_proyecto);
@@ -88,4 +91,5 @@ func _on_update_app():
 	
 	var color = signal_bomba.get_color_bomba_vec4()
 	
-	bomba_azcacoyo.set_shader_parameter("albedo", color)
+	bomba_azcacoyo_mat.set_shader_parameter("albedo", color)
+	etiqueta_perfil_mat.set_shader_parameter("albedo", color)

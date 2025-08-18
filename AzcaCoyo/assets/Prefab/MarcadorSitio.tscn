@@ -37,8 +37,8 @@ shader_parameter/gradient = ExtResource("3_xmxkr")
 shader_parameter/fresAmount = 1.0
 shader_parameter/fresIntensity = 1.0
 shader_parameter/noise = SubResource("NoiseTexture2D_fb5xc")
-shader_parameter/max_distance = 4.0
-shader_parameter/min_distance = 1.0
+shader_parameter/max_distance = 10.0
+shader_parameter/min_distance = 5.0
 shader_parameter/dither_scale = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ggxo0"]
@@ -61,8 +61,8 @@ shader_parameter/dither_scale = 1.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_emx6v"]
 render_priority = 0
 shader = ExtResource("9_fb5xc")
-shader_parameter/max_distance = 4.0
-shader_parameter/min_distance = 2.0
+shader_parameter/max_distance = 10.0
+shader_parameter/min_distance = 5.0
 shader_parameter/dither_scale = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fb5xc"]
@@ -74,8 +74,8 @@ shader_parameter/speed = 1.0
 shader_parameter/uvDirection = Vector2(1, 1)
 shader_parameter/fresAmount = 1.0
 shader_parameter/fresIntensity = 1.0
-shader_parameter/max_distance = 1.0
-shader_parameter/min_distance = 0.0
+shader_parameter/max_distance = 10.0
+shader_parameter/min_distance = 5.0
 shader_parameter/dither_scale = 1.0
 
 [node name="Node3D" type="Node3D"]
@@ -86,9 +86,11 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.817145, 0.576432, 0, -0.576432, 0.817145, 0, 1.94788, 4.40046)
 
 [node name="Etiqueta_Perfil_3D" parent="." instance=ExtResource("1_wrb0p")]
+unique_name_in_owner = true
 
 [node name="Sphere" parent="Etiqueta_Perfil_3D" index="0"]
-transform = Transform3D(0.999885, -0.0145046, 0.00435087, 0.0145047, 0.999895, 9.19299e-06, -0.00435055, 5.39161e-05, 0.999991, 0, 4.61042, 0)
+transform = Transform3D(0.999885, -0.0145046, 0.00435087, 0.0145047, 0.999895, 9.19299e-06, -0.00435055, 5.39161e-05, 0.999991, 0.0215747, 3.12314, -8.01969e-05)
+sorting_offset = -5.0
 surface_material_override/0 = SubResource("ShaderMaterial_ebafb")
 
 [node name="Area3D" type="Area3D" parent="Etiqueta_Perfil_3D/Sphere" index="0"]
@@ -98,12 +100,33 @@ shape = SubResource("SphereShape3D_ggxo0")
 
 [node name="lbl_id" type="Label3D" parent="Etiqueta_Perfil_3D/Sphere" index="1"]
 unique_name_in_owner = true
-transform = Transform3D(1.99977, 0.0290095, -0.00870111, -0.0290093, 1.99979, 0.000107833, 0.00870176, 1.83862e-05, 1.99998, 0.000514299, 0.0354538, 3.25963e-07)
+transform = Transform3D(1.99977, 0.0290095, -0.00870111, -0.0290093, 1.99979, 0.000107833, 0.00870176, 1.83862e-05, 1.99998, 0.000514299, 0.0354538, 3.25967e-07)
 billboard = 1
+double_sided = false
+no_depth_test = true
+alpha_cut = 1
+render_priority = -1
+outline_render_priority = -3
 modulate = Color(1, 0.768627, 0.196078, 1)
 text = "40"
 font = ExtResource("7_xmxkr")
 font_size = 150
+outline_size = 0
+
+[node name="lbl_id2" type="Label3D" parent="Etiqueta_Perfil_3D/Sphere" index="2"]
+unique_name_in_owner = true
+transform = Transform3D(2.19975, 0.0319104, -0.00957123, -0.0319102, 2.19977, 0.000118616, 0.00957194, 2.02249e-05, 2.19998, 0.001, 0.035, -0.1)
+billboard = 1
+double_sided = false
+no_depth_test = true
+alpha_cut = 1
+render_priority = -1
+outline_render_priority = -3
+modulate = Color(0, 0, 0, 1)
+text = "40"
+font = ExtResource("7_xmxkr")
+font_size = 150
+outline_size = 0
 
 [node name="Perfil_Poste" parent="Etiqueta_Perfil_3D" index="1"]
 transform = Transform3D(-0.125, 0, -1.09278e-08, 0, 0.125, 0, 1.09278e-08, 0, -0.125, 0, 0, 0)

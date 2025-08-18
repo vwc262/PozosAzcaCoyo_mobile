@@ -54,15 +54,17 @@ func get_unities() -> String:
 			_: return ""
 			
 func get_valor_string():
-	var valor_string = "---"
-	valor_string = str(valor);
+	var valor_string = str(valor);
 	
-	if tipo_signal == TIPO_SIGNAL.Tipo_Signal.Nivel:
+	if (tipo_signal == TIPO_SIGNAL.Tipo_Signal.Nivel ||
+		tipo_signal == TIPO_SIGNAL.Tipo_Signal.Presion ||
+		tipo_signal == TIPO_SIGNAL.Tipo_Signal.Gasto):
 		valor_string = (str(valor) if dentro_rango else "---")
-	valor_string += " " + get_unities()
+	#valor_string += " " + get_unities()
 	return valor_string;
 
 func update_signal(valorUpdate:float):
+	self.dentro_rango = valorUpdate == -0.9;
 	self.valor = valorUpdate
 	
 func get_color_bomba_string():

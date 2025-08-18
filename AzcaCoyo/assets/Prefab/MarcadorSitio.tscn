@@ -61,7 +61,6 @@ shader_parameter/dither_scale = 1.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_emx6v"]
 render_priority = 0
 shader = ExtResource("9_fb5xc")
-shader_parameter/albedo = Color(0.196078, 1, 1, 1)
 shader_parameter/max_distance = 10.0
 shader_parameter/min_distance = 5.0
 shader_parameter/dither_scale = 1.0

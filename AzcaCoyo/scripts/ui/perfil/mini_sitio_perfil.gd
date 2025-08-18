@@ -14,6 +14,7 @@ var id_estacion: int
 var estacion: Estacion;
 var id_proyecto: int;
 var initial_position: Vector3;
+var signal_bomba: Señal;
 
 var camera3D: Camera3D;
 var min_distance: float = 0.25
@@ -26,6 +27,7 @@ var rotate_speed: float = 1.0;
 var do_rotate:bool = false;
 
 @onready var pozo = preload("res://scenes/minis/pozo.tscn")
+@onready var bomba_azcacoyo: Material = %Bomba_Azcacoyo_01.get_child(0).material_override
 
 func initialize(_id_estacion: int, _id_proyecto: int):
 	id_estacion = _id_estacion
@@ -46,9 +48,12 @@ func _ready() -> void:
 	estacion = GlobalData.get_estacion(id_estacion, id_proyecto);
 	id_proyecto = estacion.id_proyecto;
 	
+	for _signal: Señal in estacion.signals.values():
+		if _signal.tipo_signal == TIPO_SIGNAL.Tipo_Signal.Bomba:
+			signal_bomba = _signal
+	
 	camera3D = get_viewport().get_camera_3d()
 	initial_position = camera3D.global_position;
-	#max_distance = initial_position.distance_to(global_position)
 	
 	var mini_instanced = pozo.instantiate()
 	
@@ -56,6 +61,9 @@ func _ready() -> void:
 	
 	GlobalSignals.on_agregar_poi_perfil.emit(id_estacion, id_proyecto, poi.global_transform);
 	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, true)
+	GlobalSignals.connect_on_update_app(_on_update_app, true)
+	
+	_on_update_app()
 	
 func _process(_delta: float) -> void:
 	var distance = initial_position.distance_to(camera3D.global_position)
@@ -69,6 +77,15 @@ func _process(_delta: float) -> void:
 
 func _exit_tree() -> void:
 	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, false)
+	GlobalSignals.connect_on_update_app(_on_update_app, false)
 
 func _on_mini_site_clicked(_id_estacion: int):
 	do_rotate = id_estacion == _id_estacion
+
+func _on_update_app():
+	estacion = GlobalData.get_estacion(id_estacion, id_proyecto);
+	signal_bomba = estacion.signals.get(signal_bomba.id_signal);
+	
+	var color = signal_bomba.get_color_bomba_vec4()
+	
+	bomba_azcacoyo.set_shader_parameter("albedo", color)

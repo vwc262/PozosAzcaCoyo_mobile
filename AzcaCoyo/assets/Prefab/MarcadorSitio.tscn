@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dt04pr11undsv"]
+[gd_scene load_steps=19 format=3 uid="uid://dt04pr11undsv"]
 
 [ext_resource type="PackedScene" uid="uid://6f5xnygytt85" path="res://assets/models/Props/Etiqueta_Perfil_3D.glb" id="1_wrb0p"]
 [ext_resource type="Shader" uid="uid://dsoh76iwnm2lm" path="res://assets/shaders/MarcadorPerfilEsfera.gdshader" id="2_ggxo0"]
@@ -69,7 +69,7 @@ shader_parameter/dither_scale = 1.0
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_tq1j1")
-shader_parameter/albedo = Color(0, 1, 0, 1)
+shader_parameter/albedo = Color(0.212305, 0.212305, 0.212305, 1)
 shader_parameter/speed = 1.0
 shader_parameter/uvDirection = Vector2(1, 1)
 shader_parameter/fresAmount = 1.0
@@ -77,9 +77,6 @@ shader_parameter/fresIntensity = 1.0
 shader_parameter/max_distance = 1.0
 shader_parameter/min_distance = 0.0
 shader_parameter/dither_scale = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebafb"]
-next_pass = SubResource("ShaderMaterial_fb5xc")
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("2_xmxkr")
@@ -135,10 +132,11 @@ unique_name_in_owner = true
 surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
 
 [node name="Bomba_Azcacoyo_01" parent="Etiqueta_Perfil_3D/mimico_container" instance=ExtResource("11_fb5xc")]
-transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 0, 0.728888, 0)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.728888, 0)
 
 [node name="Bomba_TBP_A" parent="Etiqueta_Perfil_3D/mimico_container/Bomba_Azcacoyo_01" index="0"]
-material_override = SubResource("StandardMaterial3D_ebafb")
+material_override = SubResource("ShaderMaterial_fb5xc")
 
 [connection signal="input_event" from="Etiqueta_Perfil_3D/Sphere/Area3D" to="." method="_on_area_3d_input_event"]
 

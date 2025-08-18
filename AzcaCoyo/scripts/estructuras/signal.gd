@@ -64,3 +64,10 @@ func get_valor_string():
 
 func update_signal(valorUpdate:float):
 	self.valor = valorUpdate
+	
+func get_color_bomba_string():
+	return Color.from_string("#808080", "gray") if valor == 0 else Color.from_string("#00ff00", "green") if valor == 1 else Color.from_string("#ff0000", "red") if valor == 2 else Color.from_string("#0000ff", "blue")
+
+func get_color_bomba_vec4():
+	print(valor)
+	return Vector4(0.22,0.22,0.22,1) if valor == 0 else Vector4(0,1,0,1) if valor == 1 else Vector4(1,0,0,1) if valor == 2 else Vector4(0,0,1,1)

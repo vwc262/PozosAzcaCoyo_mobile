@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://r0wqipvjl0o8"]
+[gd_scene load_steps=11 format=3 uid="uid://r0wqipvjl0o8"]
 
 [ext_resource type="PackedScene" uid="uid://blidfg1mh0ssf" path="res://assets/models/Perfil/cdmx_web.glb" id="1_bsxf1"]
 [ext_resource type="Texture2D" uid="uid://bnd5fid0m8s1x" path="res://assets/textures/Perfil/cdmx_Normal.jpg" id="2_440tp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bo0vexmf7m4xg" path="res://assets/textures/Perfil/Terreno_Normal.jpg" id="4_xl65y"]
 [ext_resource type="PackedScene" uid="uid://cy52y56xpfvt4" path="res://assets/models/Perfil/DecoradoresPerfil/Mini_Representativos.glb" id="5_440tp"]
 [ext_resource type="PackedScene" uid="uid://bfwukg77r6r4l" path="res://assets/models/Perfil/DecoradoresPerfil/Aeropuerto.glb" id="6_o8smc"]
+[ext_resource type="Material" uid="uid://c3m3mx1dnxai7" path="res://assets/Materials/standard_material_gray.tres" id="7_xu1cq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xu1cq"]
 albedo_texture = ExtResource("2_xl65y")
@@ -46,15 +47,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.592377, 1.36899)
 
 [node name="Angel_v03" parent="Mini_Representativos" index="0"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.157887, 0, -0.785472)
+material_override = ExtResource("7_xu1cq")
 
 [node name="BasilicaDeGuadalupe" parent="Mini_Representativos" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0874169, 0, -1.69713)
+material_override = ExtResource("7_xu1cq")
 
 [node name="Catedral" parent="Mini_Representativos" index="2"]
 transform = Transform3D(-0.999989, 0.00263929, 0.00380253, 0.00264186, 0.999996, 0.000667977, -0.00380074, 0.000678041, -0.999993, 0.326602, -5.96046e-08, -1.01991)
+material_override = ExtResource("7_xu1cq")
 
 [node name="chapultepec" parent="Mini_Representativos" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.994666, 0, -0.929776)
+material_override = ExtResource("7_xu1cq")
 
 [node name="MiniFiestaInn" parent="Mini_Representativos" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.799757, 0, 0.330744)
@@ -67,12 +72,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44013, 1.19209e-07, 0.9111
 
 [node name="Mitikah" parent="Mini_Representativos" index="7"]
 transform = Transform3D(-2.48569e-08, 0, 0.568658, 0, 0.568658, 0, -0.568658, 0, -2.48569e-08, -0.94481, 0, 0.943769)
+material_override = ExtResource("7_xu1cq")
 
 [node name="TorreLatino_v3" parent="Mini_Representativos" index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.157586, 0, -1.13919)
+material_override = ExtResource("7_xu1cq")
 
 [node name="WTCmini_sinPlaza" parent="Mini_Representativos" index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.688982, 0, -0.257721)
+material_override = ExtResource("7_xu1cq")
 
 [node name="Aeropuerto" parent="." instance=ExtResource("6_o8smc")]
 transform = Transform3D(0.625168, 0, 0, 0, 0.625168, 0, 0, 0, 0.625168, 0.291193, 0.234451, 0.00303352)
@@ -90,6 +98,7 @@ transform = Transform3D(0.797831, 0, -1.42109e-14, 0, 0.797831, 0, 1.42109e-14, 
 
 [node name="Base_aeropuerto" parent="Aeropuerto" index="1"]
 transform = Transform3D(2.78919e-11, 0, -8.88512e-05, 0, 8.88512e-05, 0, 8.88512e-05, 0, 2.78919e-11, 1.30222, 0.57179, 0.419584)
+material_override = ExtResource("7_xu1cq")
 
 [editable path="cdmx_web"]
 [editable path="mapacdmx_web"]

@@ -1,6 +1,7 @@
 shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled;
 
+uniform vec4 albedo : source_color = vec4(1.0,1.0,1.0,1.0);
 // Parámetros ajustables
 uniform float max_distance = 10.0; // Distancia máxima a la que el objeto es completamente visible
 uniform float min_distance = 1.0;  // Distancia mínima a la que el objeto comienza a desvanecerse
@@ -42,7 +43,7 @@ void fragment() {
     }
 
     // Usar el vertex color en lugar de un color uniforme
-    ALBEDO = COLOR.rgb;
+    ALBEDO = COLOR.rgb * albedo.rgb;
     ALPHA = COLOR.a * alpha;
-	EMISSION = COLOR.rgb * 0.7;
+	EMISSION = COLOR.rgb * 0.99;
 }

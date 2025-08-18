@@ -61,6 +61,7 @@ shader_parameter/dither_scale = 1.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_emx6v"]
 render_priority = 0
 shader = ExtResource("9_fb5xc")
+shader_parameter/albedo = Color(0.196078, 1, 1, 1)
 shader_parameter/max_distance = 10.0
 shader_parameter/min_distance = 5.0
 shader_parameter/dither_scale = 1.0
@@ -89,7 +90,7 @@ transform = Transform3D(1, 0, 0, 0, 0.817145, 0.576432, 0, -0.576432, 0.817145, 
 unique_name_in_owner = true
 
 [node name="Sphere" parent="Etiqueta_Perfil_3D" index="0"]
-transform = Transform3D(0.999885, -0.0145046, 0.00435087, 0.0145047, 0.999895, 9.19299e-06, -0.00435055, 5.39161e-05, 0.999991, 0.0215747, 3.12314, -8.01969e-05)
+transform = Transform3D(0.649925, -0.00942799, 0.00282807, 0.00942806, 0.649932, 5.97551e-06, -0.00282786, 3.50455e-05, 0.649994, 0.0278828, 2.68828, -0.000103645)
 sorting_offset = -5.0
 surface_material_override/0 = SubResource("ShaderMaterial_ebafb")
 
@@ -138,11 +139,14 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018889, 0)
 
 [node name="Icono3D_Base_a" parent="Etiqueta_Perfil_3D/mimico_container" instance=ExtResource("8_78vog")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
 
 [node name="Cylinder_013" parent="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_a" index="0"]
+visible = false
 surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
 
 [node name="Cylinder_014" parent="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_a" index="1"]
+visible = false
 surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
 
 [node name="Cylinder_016" parent="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_a" index="2"]
@@ -150,13 +154,14 @@ surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
 
 [node name="Icono3D_Base_b" parent="Etiqueta_Perfil_3D/mimico_container" instance=ExtResource("10_ebafb")]
 unique_name_in_owner = true
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
 
 [node name="Cylinder_015" parent="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_b" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
 
 [node name="Bomba_Azcacoyo_01" parent="Etiqueta_Perfil_3D/mimico_container" instance=ExtResource("11_fb5xc")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.728888, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.353615, 0)
 
 [node name="Bomba_TBP_A" parent="Etiqueta_Perfil_3D/mimico_container/Bomba_Azcacoyo_01" index="0"]
 material_override = SubResource("ShaderMaterial_fb5xc")

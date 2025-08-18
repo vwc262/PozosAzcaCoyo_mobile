@@ -1,21 +1,20 @@
-[gd_scene load_steps=15 format=3 uid="uid://clnmqye7ns1ni"]
+[gd_scene load_steps=14 format=3 uid="uid://clnmqye7ns1ni"]
 
 [ext_resource type="PackedScene" uid="uid://ujssxlwvupla" path="res://scenes/ui/ui_mapa/ui_header_mapa.tscn" id="1_88x2m"]
 [ext_resource type="Script" uid="uid://didwhedxkgo3c" path="res://scripts/ui/mapa/ui_mapa.gd" id="1_otdg0"]
 [ext_resource type="PackedScene" uid="uid://dtdo0ib2qvk6d" path="res://scenes/ui/ui_mapa/ui_row_mapa.tscn" id="3_1os0f"]
-[ext_resource type="Texture2D" uid="uid://byebl4fsxd384" path="res://assets/textures/UI/Atlas/Atlas_Lumbreras.webp" id="5_0p2wn"]
-[ext_resource type="Texture2D" uid="uid://brqctps36yhrv" path="res://assets/textures/UI/Atlas/atlas_lumbreras.tres" id="6_0p2wn"]
+[ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="5_0p2wn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh1my"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0p2wn"]
-atlas = ExtResource("6_0p2wn")
+atlas = ExtResource("5_0p2wn")
 region = Rect2(10, 576, 876, 64)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ik3r0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1os0f"]
-atlas = ExtResource("6_0p2wn")
+atlas = ExtResource("5_0p2wn")
 region = Rect2(802, 502, 70, 70)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0p2wn"]

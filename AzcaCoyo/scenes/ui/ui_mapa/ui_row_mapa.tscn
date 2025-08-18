@@ -1,19 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://dtdo0ib2qvk6d"]
+[gd_scene load_steps=14 format=3 uid="uid://dtdo0ib2qvk6d"]
 
 [ext_resource type="Script" uid="uid://dnvqhofgnvws8" path="res://scripts/ui/mapa/ui_row_mapa.gd" id="1_yan8p"]
 [ext_resource type="PackedScene" uid="uid://bm34a4cfowx5o" path="res://scenes/ui/ui_mapa/Ui_row_mapa_estacion.tscn" id="2_4em0a"]
-[ext_resource type="Texture2D" uid="uid://brqctps36yhrv" path="res://assets/textures/UI/Atlas/atlas_lumbreras.tres" id="2_xgcp5"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="3_4em0a"]
-[ext_resource type="Texture2D" uid="uid://byebl4fsxd384" path="res://assets/textures/UI/Atlas/Atlas_Lumbreras.webp" id="4_e4f3b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_10s6v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mrqtx"]
-atlas = ExtResource("2_xgcp5")
 region = Rect2(12.0199, 10.9888, 877.967, 48.0032)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10s6v"]
-atlas = ExtResource("2_xgcp5")
 region = Rect2(547, 437, 200, 65)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mrqtx"]
@@ -23,17 +19,14 @@ region = Rect2(547, 437, 200, 65)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ni03p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_40ohl"]
-atlas = ExtResource("4_e4f3b")
 region = Rect2(236, 513, 40, 40)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_18uj3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xbf0e"]
-atlas = ExtResource("2_xgcp5")
 region = Rect2(236, 513, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yt8k0"]
-atlas = ExtResource("2_xgcp5")
 region = Rect2(9, 800, 462, 62)
 
 [node name="UiRowMapa" type="Panel"]
@@ -43,6 +36,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -356.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 1
@@ -51,9 +45,8 @@ scene_row_mapa_estacion = ExtResource("2_4em0a")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 clip_contents = true
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
+layout_mode = 2
+offset_right = 1080.0
 offset_bottom = 360.0
 grow_horizontal = 2
 
@@ -252,10 +245,9 @@ custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 2
+offset_right = 1080.0
+offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
 

@@ -9,6 +9,11 @@ extends Node
 @onready var lbl_total_online: Label = %lbl_total_online
 @onready var lbl_total_offline: Label = %lbl_total_offline
 @onready var tr_seleccion: TextureRect = %tr_seleccion
+@onready var container = $"."
+
+# Estado
+var esta_expandido: bool = false
+var tween_actual: Tween
 
 var id_estaciones: Array[int]
 var estaciones: Array[Estacion]
@@ -74,14 +79,29 @@ func _on_button_gui_input(event: InputEvent) -> void:
 func _manejar_click():
 	var tiempo_actual = Time.get_ticks_msec() / 1000.0
 	var intervalo = tiempo_actual - tiempo_click
+	esta_expandido = !esta_expandido
+	var nueva_altura = 356 if esta_expandido else 100
 	
-	if intervalo < UMBRAL_SINGLE_CLICK:
-		GlobalSignals.on_click_interceptor.emit(proyecto_name);
+	#if intervalo < UMBRAL_SINGLE_CLICK:
+		#GlobalSignals.on_click_interceptor.emit(proyecto_name);
+	GlobalSignals.on_click_interceptor.emit(proyecto_name);
+		#tr_seleccion.visible = true;
 		
-		tr_seleccion.visible = true;
+	if tween_actual and tween_actual.is_running():
+		tween_actual.kill()
+
+	tween_actual = create_tween()
+	tween_actual.set_ease(Tween.EASE_IN_OUT)
+	tween_actual.set_trans(Tween.TRANS_SINE)
+	tween_actual.tween_property(container, "custom_minimum_size:y", nueva_altura, 0.3)
+
+	await tween_actual.finished
+	tween_actual.kill()
+	tween_actual = null
 
 func _on_click_interceptor(_proyecto_name: String):
 	#if _proyecto_name == "NA":
 		#return;
-		
+	if _proyecto_name == proyecto_name:
+		pass
 	tr_seleccion.visible = false;

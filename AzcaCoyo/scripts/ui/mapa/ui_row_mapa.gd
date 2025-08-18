@@ -1,19 +1,12 @@
 extends Node
 
 @export var scene_row_mapa_estacion: PackedScene
-
 @onready var sites_container = %SitesContainer
-
 @onready var color_interceptor: TextureRect = %color_interceptor
 @onready var lbl_nombre_interceptor: Label = %lbl_nombre_interceptor
 @onready var lbl_total_online: Label = %lbl_total_online
 @onready var lbl_total_offline: Label = %lbl_total_offline
 @onready var tr_seleccion: TextureRect = %tr_seleccion
-@onready var container = $"."
-
-# Estado
-var esta_expandido: bool = false
-var tween_actual: Tween
 
 var id_estaciones: Array[int]
 var estaciones: Array[Estacion]
@@ -45,16 +38,14 @@ func _ready() -> void:
 	if id_estaciones.size() == 0:
 		self.queue_free();
 	else:
-		proyecto_name = proyecto_name;
-
 		GlobalSignals.connect_on_update_app(_on_update_app, true)
-		GlobalSignals.connect_on_click_interceptor(_on_click_interceptor, true)
+		GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, true)
 
 		_on_update_app()
 
 func _exit_tree() -> void:
 	GlobalSignals.connect_on_update_app(_on_update_app, false)
-	GlobalSignals.connect_on_click_interceptor(_on_click_interceptor, false)
+	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, false)
 
 func _on_update_app():
 	online_count = 0;
@@ -79,29 +70,12 @@ func _on_button_gui_input(event: InputEvent) -> void:
 func _manejar_click():
 	var tiempo_actual = Time.get_ticks_msec() / 1000.0
 	var intervalo = tiempo_actual - tiempo_click
-	esta_expandido = !esta_expandido
-	var nueva_altura = 356 if esta_expandido else 100
 	
-	#if intervalo < UMBRAL_SINGLE_CLICK:
-		#GlobalSignals.on_click_interceptor.emit(proyecto_name);
-	GlobalSignals.on_click_interceptor.emit(proyecto_name);
-		#tr_seleccion.visible = true;
-		
-	if tween_actual and tween_actual.is_running():
-		tween_actual.kill()
+	if intervalo < UMBRAL_SINGLE_CLICK:
+		GlobalSignals.on_mini_site_clicked.emit(0, id_proyecto)
 
-	tween_actual = create_tween()
-	tween_actual.set_ease(Tween.EASE_IN_OUT)
-	tween_actual.set_trans(Tween.TRANS_SINE)
-	tween_actual.tween_property(container, "custom_minimum_size:y", nueva_altura, 0.3)
-
-	await tween_actual.finished
-	tween_actual.kill()
-	tween_actual = null
-
-func _on_click_interceptor(_proyecto_name: String):
-	#if _proyecto_name == "NA":
+func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):
+	#if _id == 0:
 		#return;
-	if _proyecto_name == proyecto_name:
-		pass
-	tr_seleccion.visible = false;
+		
+	tr_seleccion.visible = _id_proyecto == id_proyecto;

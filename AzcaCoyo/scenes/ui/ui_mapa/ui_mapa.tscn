@@ -1,23 +1,22 @@
-[gd_scene load_steps=14 format=3 uid="uid://clnmqye7ns1ni"]
+[gd_scene load_steps=15 format=3 uid="uid://clnmqye7ns1ni"]
 
 [ext_resource type="PackedScene" uid="uid://ujssxlwvupla" path="res://scenes/ui/ui_mapa/ui_header_mapa.tscn" id="1_88x2m"]
 [ext_resource type="Script" uid="uid://didwhedxkgo3c" path="res://scripts/ui/mapa/ui_mapa.gd" id="1_otdg0"]
 [ext_resource type="PackedScene" uid="uid://dtdo0ib2qvk6d" path="res://scenes/ui/ui_mapa/ui_row_mapa.tscn" id="3_1os0f"]
+[ext_resource type="Texture2D" uid="uid://byebl4fsxd384" path="res://assets/textures/UI/Atlas/Atlas_Lumbreras.webp" id="5_0p2wn"]
+[ext_resource type="Texture2D" uid="uid://brqctps36yhrv" path="res://assets/textures/UI/Atlas/atlas_lumbreras.tres" id="6_0p2wn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh1my"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0p2wn"]
+atlas = ExtResource("6_0p2wn")
 region = Rect2(10, 576, 876, 64)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ik3r0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1os0f"]
+atlas = ExtResource("6_0p2wn")
 region = Rect2(802, 502, 70, 70)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3b2s8"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3b2s8"]
-region = Rect2(725, 502, 70, 70)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0p2wn"]
 
@@ -25,7 +24,12 @@ region = Rect2(725, 502, 70, 70)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dpn2k"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpn2k"]
+atlas = ExtResource("5_0p2wn")
+region = Rect2(677, 513, 40, 40)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_kh1my"]
+atlas = SubResource("AtlasTexture_dpn2k")
 
 [node name="UiMapa" type="Control"]
 custom_minimum_size = Vector2(1080, 1720)
@@ -86,23 +90,6 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_1os0f")
 expand_mode = 1
 
-[node name="ResetPines" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -130.0
-offset_top = 200.0
-offset_right = -60.0
-offset_bottom = 270.0
-grow_horizontal = 0
-scale = Vector2(1.5, 1.5)
-theme_override_styles/panel = SubResource("StyleBoxEmpty_3b2s8")
-
-[node name="TextureRect" type="TextureRect" parent="ResetPines"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_3b2s8")
-
 [node name="panel_lista_mapa" type="Panel" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 800)
@@ -110,7 +97,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 980.0
-offset_bottom = 1780.0
+offset_bottom = 1920.0
 grow_horizontal = 2
 
 [node name="PanelContainer" type="Panel" parent="panel_lista_mapa"]
@@ -164,13 +151,16 @@ size_flags_vertical = 3
 
 [node name="btn_esconder_lista" type="Button" parent="panel_lista_mapa"]
 z_index = 2
-layout_mode = 2
-offset_left = 520.0
-offset_top = -40.0
-offset_right = 560.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2, 2)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -75.0
+offset_top = 12.0
+offset_right = -35.0
+offset_bottom = 52.0
+grow_horizontal = 0
+scale = Vector2(1.5, 1.5)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dpn2k")
 flat = true
 
@@ -194,5 +184,4 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_kh1my")
 
 [connection signal="pressed" from="ResetCamara/Button" to="." method="_on_button_pressed"]
-[connection signal="gui_input" from="ResetPines/TextureRect" to="." method="_on_texture_rect_gui_input"]
 [connection signal="gui_input" from="panel_lista_mapa/btn_esconder_lista" to="." method="_on_button_header_gui_input"]

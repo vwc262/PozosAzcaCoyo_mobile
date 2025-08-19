@@ -91,6 +91,7 @@ metadata/_custom_type_script = "uid://cermyieoqtc7q"
 
 [node name="SinHistoricos" type="Label" parent="Panel3/VBoxContainer/Panel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 offset_left = 103.0
 offset_top = 114.0

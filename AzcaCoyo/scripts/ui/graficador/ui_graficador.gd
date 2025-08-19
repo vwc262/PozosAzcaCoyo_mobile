@@ -37,6 +37,20 @@ var y_max: float = 10
 
 var indice: int = 0
 
+func _ready():
+	GlobalSignals.connect_on_site_row_clicked(_onsiteclic, true)
+
+func _onsiteclic(_id_proyecto: int, _id_estacion: int): 
+	estacion = GlobalData.get_estacion(_id_estacion, _id_proyecto)
+	signals = []
+	var id_proyecto = estacion.id_proyecto
+	
+	for _signal: Señal in estacion.signals.values():
+		if _signal.tipo_signal == TIPO_SIGNAL.Tipo_Signal.Presion || _signal.tipo_signal == TIPO_SIGNAL.Tipo_Signal.Gasto:
+			signals.append(_signal);
+	
+	init_graficador(id_proyecto, estacion, signals)
+
 func init_graficador(_idProyecto:int, _estacion: Estacion, _signals: Array[Señal]):
 	uri_reportes = "https://virtualwavecontrol.com.mx/api24/VWC/APP2024/GetReportes/?idProyecto=" + str(_idProyecto)
 
@@ -73,11 +87,13 @@ func _on_datos_24h_recibidos(result, _response_code, _headers, body):
 		if response and response.has("Reporte"):
 			var reportes: Array = response["Reporte"]
 			if reportes.size() > 0:
+				print("con historicos")
 				process_data(reportes)
 				conHistoricos = true
 
 	indice += 1
 	if indice < signals.size():
+		print("faltan mas signlas por graficar ", indice)
 		iniciar_series(signals[indice])
 	else:
 		graph_2d.visible = conHistoricos
@@ -99,20 +115,50 @@ func process_data(reportes: Array) -> void:
 	if ordinal == 1 else line_n3
 	if ordinal == 2 else line_n4)
 
+	#for dato: Reporte in reportes as Array[Reporte]:
+		#var tiempo = Time.get_datetime_dict_from_datetime_string(dato.Tiempo, false)
+		#var valor = float(dato.Valor)
+		#line.add_point(tiempo["hour"] if tiempo["day"] >= _ahora["day"] else -tiempo["hour"], valor)
+		#if valor > y_max:
+			#y_max = valor
+
+	var promedios_por_hora = {}
 	for dato: Reporte in reportes as Array[Reporte]:
 		var tiempo = Time.get_datetime_dict_from_datetime_string(dato.Tiempo, false)
 		var valor = float(dato.Valor)
-		line.add_point(tiempo["hour"] if tiempo["day"] >= _ahora["day"] else -tiempo["hour"], valor)
+
+		var hora = tiempo["hour"]
+		var dia = tiempo["day"]
+
+		# Crear clave única que incluya hora y día
+		var clave = str(dia) + "_" + str(hora)
+
+		if not promedios_por_hora.has(clave):
+			promedios_por_hora[clave] = {
+				"suma": 0.0,
+				"contador": 0,
+				"hora": hora,
+				"dia": dia
+			}
+
+		promedios_por_hora[clave]["suma"] += valor
+		promedios_por_hora[clave]["contador"] += 1
+
 		if valor > y_max:
 			y_max = valor
+
+	# Agregar puntos promediados
+	for clave in promedios_por_hora:
+		var datos = promedios_por_hora[clave]
+		var promedio = datos["suma"] / datos["contador"]
+		var pos_x = datos["hora"] if datos["dia"] >= _ahora["day"] else -datos["hora"]
+		line.add_point(pos_x, promedio)
 
 	graph_2d.y_max = y_max * 1.1
 
 func iniciar_series(nivel: Señal) -> void:
 	var line: LineSeries = (line_n1 
-	if nivel.ordinal == 0 else line_n2 
-	if nivel.ordinal == 1 else line_n3
-	if nivel.ordinal == 2 else line_n4)
+	if indice == 0 else line_n2)
 	graph_2d.add_series(line)
 	line_indexes.append(nivel.id_signal)
 	fetch_data(nivel)

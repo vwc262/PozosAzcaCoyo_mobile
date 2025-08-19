@@ -14,7 +14,7 @@ signal on_desactivar_eventos(_desactivar: bool)
 #region UI <-> escenas
 signal on_unload_perfil()
 signal on_unload_particular()
-signal on_site_row_clicked(_id_estacion:int)
+signal on_site_row_clicked(_id_estacion:int, _id_proyecto: int)
 signal on_ui_change(tipo_modulo: TIPO_MODULO.UI)
 signal on_particular_loaded(id_estacion: int)
 #region

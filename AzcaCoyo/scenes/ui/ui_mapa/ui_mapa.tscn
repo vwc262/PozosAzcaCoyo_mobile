@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ujssxlwvupla" path="res://scenes/ui/ui_mapa/ui_header_mapa.tscn" id="1_88x2m"]
 [ext_resource type="Script" uid="uid://didwhedxkgo3c" path="res://scripts/ui/mapa/ui_mapa.gd" id="1_otdg0"]
 [ext_resource type="PackedScene" uid="uid://dtdo0ib2qvk6d" path="res://scenes/ui/ui_mapa/ui_row_mapa.tscn" id="3_1os0f"]
-[ext_resource type="Texture2D" uid="uid://bd7hjon2e2kyv" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_3b2s8"]
+[ext_resource type="Texture2D" uid="uid://r7083jq2xqqe" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_3b2s8"]
 [ext_resource type="PackedScene" uid="uid://0op1dh0r0bxv" path="res://scenes/ui/graficador/ui_graficador.tscn" id="6_0p2wn"]
 [ext_resource type="PackedScene" uid="uid://c028k4c1iuku2" path="res://scenes/ui/arranque_paro/arranque_paro.tscn" id="6_1os0f"]
 
@@ -12,13 +12,13 @@
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_58qqc"]
 load_path = "res://.godot/imported/Atlas_AzcaCoyo.png-6919e367031edd0e3a9c3f590c9fd6df.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3b2s8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wtrw"]
 resource_local_to_scene = true
 atlas = SubResource("CompressedTexture2D_58qqc")
-region = Rect2(22, 33, 1920, 75)
+region = Rect2(22, 33, 1080, 57)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0p2wn"]
-atlas = SubResource("AtlasTexture_3b2s8")
+atlas = SubResource("AtlasTexture_2wtrw")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1os0f"]
 

@@ -1,0 +1,206 @@
+[gd_scene load_steps=15 format=3 uid="uid://c028k4c1iuku2"]
+
+[ext_resource type="Texture2D" uid="uid://bd7hjon2e2kyv" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_0svon"]
+[ext_resource type="Script" uid="uid://tyywvwlcqnkp" path="res://scripts/arranque_paro/arranque_paro.gd" id="1_vewdl"]
+[ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_inokt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6f0xq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inokt"]
+atlas = ExtResource("1_0svon")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0svon"]
+atlas = SubResource("AtlasTexture_inokt")
+region = Rect2(1015, 2125, 860, 544)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vewdl"]
+atlas = ExtResource("1_0svon")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h13cj"]
+resource_local_to_scene = true
+atlas = SubResource("AtlasTexture_vewdl")
+region = Rect2(454.685, 2186.16, 205.948, 457.623)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnpb4"]
+atlas = ExtResource("1_0svon")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0xos"]
+resource_local_to_scene = true
+atlas = SubResource("AtlasTexture_mnpb4")
+region = Rect2(1480, 1513, 107, 251)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lkig"]
+atlas = ExtResource("1_0svon")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee4wf"]
+resource_local_to_scene = true
+atlas = SubResource("AtlasTexture_2lkig")
+region = Rect2(1606, 1625, 208, 103)
+
+[sub_resource type="LabelSettings" id="LabelSettings_inokt"]
+line_spacing = -12.0
+font = ExtResource("2_inokt")
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_vewdl"]
+line_spacing = -5.0
+font_size = 32
+
+[node name="ArranqueParo" type="Control"]
+custom_minimum_size = Vector2(875, 564)
+layout_mode = 3
+anchor_right = 0.81
+anchor_bottom = 0.294
+offset_right = 0.199951
+offset_bottom = -0.47998
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vewdl")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6f0xq")
+
+[node name="ttr_fondo" type="TextureRect" parent="Panel"]
+layout_mode = 1
+offset_right = 871.0
+offset_bottom = 562.0
+texture = SubResource("AtlasTexture_0svon")
+
+[node name="tr_bomba" type="TextureRect" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 23.0
+offset_top = 60.0
+offset_right = 228.0
+offset_bottom = 517.0
+texture = SubResource("AtlasTexture_h13cj")
+
+[node name="Button_accion" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 367.0
+offset_top = 144.0
+offset_right = 468.0
+offset_bottom = 389.0
+flat = true
+
+[node name="tr_accion" type="TextureRect" parent="Panel/Button_accion"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 101.0
+offset_bottom = 245.0
+texture = SubResource("AtlasTexture_h0xos")
+
+[node name="Button_ejecutar" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 644.0
+offset_top = 212.0
+offset_right = 847.0
+offset_bottom = 309.0
+flat = true
+
+[node name="tr_ejecutar" type="TextureRect" parent="Panel/Button_ejecutar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 203.0
+offset_bottom = 97.0
+texture = SubResource("AtlasTexture_ee4wf")
+
+[node name="lbl_perilla_bomba" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 90.0
+offset_top = 507.0
+offset_right = 154.87
+offset_bottom = 538.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_inokt")
+theme_override_font_sizes/font_size = 25
+text = "OFF"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="encender" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 103.0
+offset_right = 475.0
+offset_bottom = 134.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_inokt")
+theme_override_font_sizes/font_size = 25
+text = "ENCENDER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="apagar" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 404.0
+offset_right = 467.0
+offset_bottom = 435.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_inokt")
+theme_override_font_sizes/font_size = 25
+text = "APAGAR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ejecutar" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 714.0
+offset_top = 319.0
+offset_right = 790.0
+offset_bottom = 350.0
+theme_override_colors/font_color = Color(0, 0.435294, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_inokt")
+theme_override_font_sizes/font_size = 25
+text = "ENVIAR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="control_de_bombas" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 665.0
+offset_top = 37.0
+offset_right = 839.0
+offset_bottom = 111.0
+theme_override_fonts/font = ExtResource("2_inokt")
+theme_override_font_sizes/font_size = 36
+text = "CONTROL
+DE BOMBAS"
+label_settings = SubResource("LabelSettings_inokt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lbl_ejecutando" type="Label" parent="Panel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 680.0
+offset_top = 452.0
+offset_right = 856.0
+offset_bottom = 523.0
+theme_override_fonts/font = ExtResource("2_inokt")
+theme_override_font_sizes/font_size = 31
+text = "EJECUTANDO
+EL COMANDO"
+label_settings = SubResource("LabelSettings_vewdl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Panel/Button_accion" to="." method="_on_button_accion_pressed"]
+[connection signal="pressed" from="Panel/Button_ejecutar" to="." method="_on_button_ejecutar_pressed"]

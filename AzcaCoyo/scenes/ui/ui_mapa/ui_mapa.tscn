@@ -280,10 +280,10 @@ grow_vertical = 1
 
 [node name="ArranqueParo" parent="." instance=ExtResource("6_1os0f")]
 layout_mode = 1
-offset_left = 1140.0
-offset_top = 455.0
-offset_right = 1140.2
-offset_bottom = 454.52
+offset_left = 88.0
+offset_top = 378.0
+offset_right = 88.2
+offset_bottom = 377.52
 
 [connection signal="pressed" from="PanelContainer/TextureRect/button_reset" to="." method="_on_button_reset_pressed"]
 [connection signal="pressed" from="arranque_paro_container/TextureRect/button_arranque_paro" to="." method="_on_button_arranque_paro_pressed"]

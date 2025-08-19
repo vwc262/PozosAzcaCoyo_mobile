@@ -1,23 +1,63 @@
-[gd_scene load_steps=16 format=3 uid="uid://clnmqye7ns1ni"]
+[gd_scene load_steps=28 format=3 uid="uid://clnmqye7ns1ni"]
 
 [ext_resource type="PackedScene" uid="uid://ujssxlwvupla" path="res://scenes/ui/ui_mapa/ui_header_mapa.tscn" id="1_88x2m"]
 [ext_resource type="Script" uid="uid://didwhedxkgo3c" path="res://scripts/ui/mapa/ui_mapa.gd" id="1_otdg0"]
 [ext_resource type="PackedScene" uid="uid://dtdo0ib2qvk6d" path="res://scenes/ui/ui_mapa/ui_row_mapa.tscn" id="3_1os0f"]
-[ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="5_0p2wn"]
-[ext_resource type="Texture2D" uid="uid://cvofwq7ca56lw" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_3b2s8"]
+[ext_resource type="Texture2D" uid="uid://bd7hjon2e2kyv" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_3b2s8"]
 [ext_resource type="PackedScene" uid="uid://0op1dh0r0bxv" path="res://scenes/ui/graficador/ui_graficador.tscn" id="6_0p2wn"]
+[ext_resource type="PackedScene" uid="uid://c028k4c1iuku2" path="res://scenes/ui/arranque_paro/arranque_paro.tscn" id="6_1os0f"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh1my"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_58qqc"]
+load_path = "res://.godot/imported/Atlas_AzcaCoyo.png-6919e367031edd0e3a9c3f590c9fd6df.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b2s8"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_58qqc")
+region = Rect2(22, 33, 1920, 75)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0p2wn"]
-atlas = ExtResource("5_0p2wn")
-region = Rect2(10, 576, 876, 64)
+atlas = SubResource("AtlasTexture_3b2s8")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1os0f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dmoo"]
+resource_local_to_scene = true
+atlas = ExtResource("5_3b2s8")
+region = Rect2(835.711, 1017.98, 90.9795, 339.373)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykm6e"]
+atlas = SubResource("AtlasTexture_2dmoo")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ik3r0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1os0f"]
-atlas = ExtResource("5_0p2wn")
-region = Rect2(802, 502, 70, 70)
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_58qqc")
+region = Rect2(1429, 1057, 95, 94)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlgnv"]
+atlas = SubResource("AtlasTexture_1os0f")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oiiik"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik3r0"]
+atlas = ExtResource("5_3b2s8")
+region = Rect2(1429, 1177, 95, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiiik"]
+resource_local_to_scene = true
+atlas = SubResource("AtlasTexture_ik3r0")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2dmoo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fnhl"]
+atlas = ExtResource("5_3b2s8")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnit6"]
+atlas = SubResource("AtlasTexture_4fnhl")
+region = Rect2(1589, 1336, 95, 94)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lrvv6"]
 
@@ -27,6 +67,7 @@ region = Rect2(802, 502, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpn2k"]
 atlas = ExtResource("5_3b2s8")
+region = Rect2(677, 513, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kh1my"]
 atlas = SubResource("AtlasTexture_dpn2k")
@@ -44,7 +85,7 @@ mouse_filter = 1
 script = ExtResource("1_otdg0")
 scene_row_mapa = ExtResource("3_1os0f")
 
-[node name="header_container" type="Panel" parent="."]
+[node name="header_container" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 1
 anchors_preset = 10
@@ -53,43 +94,84 @@ grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kh1my")
 
 [node name="TextureRect" type="TextureRect" parent="header_container"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 texture = SubResource("AtlasTexture_0p2wn")
-expand_mode = 1
 
-[node name="ResetCamara" type="PanelContainer" parent="."]
+[node name="panel_container" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -130.0
-offset_top = 90.0
-offset_right = -60.0
-offset_bottom = 160.0
+offset_left = -100.0
+offset_top = 80.0
+offset_bottom = 419.0
 grow_horizontal = 0
-scale = Vector2(1.5, 1.5)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1os0f")
+
+[node name="TextureRect" type="TextureRect" parent="panel_container"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ykm6e")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 985.0
+offset_top = 84.71
+offset_right = 1080.0
+offset_bottom = 178.71
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ik3r0")
 
-[node name="Button" type="Button" parent="ResetCamara"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
 layout_mode = 2
+texture = SubResource("AtlasTexture_vlgnv")
+
+[node name="button_reset" type="Button" parent="PanelContainer/TextureRect"]
+layout_mode = 2
+offset_right = 95.0
+offset_bottom = 94.0
 focus_mode = 0
 flat = true
 
-[node name="TextureRect" type="TextureRect" parent="ResetCamara/Button"]
-custom_minimum_size = Vector2(70, 70)
+[node name="arranque_paro_container" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_1os0f")
-expand_mode = 1
+offset_left = -95.0
+offset_top = 186.575
+offset_bottom = 313.575
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_oiiik")
+
+[node name="TextureRect" type="TextureRect" parent="arranque_paro_container"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_oiiik")
+
+[node name="button_arranque_paro" type="Button" parent="arranque_paro_container/TextureRect"]
+layout_mode = 1
+offset_right = 95.0
+offset_bottom = 127.0
+flat = true
+
+[node name="graficador_container" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -95.0
+offset_top = 311.1
+offset_bottom = 405.1
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2dmoo")
+
+[node name="TextureRect" type="TextureRect" parent="graficador_container"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_vnit6")
+
+[node name="button_graficador" type="Button" parent="graficador_container/TextureRect"]
+layout_mode = 2
+offset_right = 95.0
+offset_bottom = 94.0
+flat = true
 
 [node name="panel_lista_mapa" type="Panel" parent="."]
 unique_name_in_owner = true
@@ -187,8 +269,23 @@ expand_mode = 1
 [node name="UiGraficador" parent="." instance=ExtResource("6_0p2wn")]
 layout_mode = 0
 anchors_preset = 0
-offset_top = 218.0
-offset_bottom = -1052.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -1126.0
+offset_top = 400.0
+offset_right = -46.0
+offset_bottom = 1050.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[connection signal="pressed" from="ResetCamara/Button" to="." method="_on_button_pressed"]
+[node name="ArranqueParo" parent="." instance=ExtResource("6_1os0f")]
+layout_mode = 1
+offset_left = 1140.0
+offset_top = 455.0
+offset_right = 1140.2
+offset_bottom = 454.52
+
+[connection signal="pressed" from="PanelContainer/TextureRect/button_reset" to="." method="_on_button_reset_pressed"]
+[connection signal="pressed" from="arranque_paro_container/TextureRect/button_arranque_paro" to="." method="_on_button_arranque_paro_pressed"]
+[connection signal="pressed" from="graficador_container/TextureRect/button_graficador" to="." method="_on_button_graficador_pressed"]
 [connection signal="gui_input" from="panel_lista_mapa/btn_esconder_lista" to="." method="_on_button_header_gui_input"]

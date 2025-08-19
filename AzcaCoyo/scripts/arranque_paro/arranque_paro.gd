@@ -3,20 +3,27 @@ extends Node
 @onready var tr_bomba: TextureRect = %tr_bomba
 @onready var ejecutando: Label = %lbl_ejecutando
 @onready var lbl_perilla_bomba: Label = %lbl_perilla_bomba
-@onready var button_accion: Button = $Panel/Button_accion
+@onready var tr_accion: TextureRect = %tr_accion
+@onready var tr_ejecutar: TextureRect = %tr_ejecutar
 
 var id_estacion: int = 0;
 var id_proyecto: int = 0;
 var id_bomba: int = 0;
 var id_perilla: int = 0;
 var arrancar: bool = false;
+var ejecutar: bool = false;
 var estacion: Estacion;
 var bomba: Señal;
 var perilla: Señal;
 
 const boton_accion := {
-	true: Rect2(1348, 1507, 101, 246),
-	false: Rect2(1348, 1507, 101, 246),
+	true: Rect2(1343, 1513, 107, 251),
+	false: Rect2(1480, 1513, 107, 251),
+}
+
+const boton_ejecucion := {
+	true: Rect2(1606, 1512, 208, 103),
+	false: Rect2(1606, 1625, 208, 103),
 }
 
 func initialize(_id_estacion: int, _id_proyecto: int, _id_bomba: int) -> void:
@@ -49,8 +56,10 @@ func _on_update_app() -> void:
 func _on_button_accion_pressed() -> void:
 	arrancar != arrancar
 	
-	button_accion.texture.set("region", boton_accion[arrancar])
+	tr_accion.texture.set("region", boton_accion[arrancar])
 
 
 func _on_button_ejecutar_pressed() -> void:
-	pass # Replace with function body.
+	ejecutar != ejecutar
+	
+	tr_ejecutar.texture.set("region", boton_ejecucion[ejecutar])

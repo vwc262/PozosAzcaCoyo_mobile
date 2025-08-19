@@ -37,13 +37,14 @@ func get_tween():
 
 func _on_camera_leave_initial_position():
 	hiden_panel = true;
-	get_tween().tween_property(tr_btn_esconder, "rotation_degrees", 0, transition_time)
-	get_tween().tween_property(panel_lista_mapa, "position", Vector2(0, 980 + get_container_size(panel_lista_mapa) + 10), transition_time)
+	get_tween().tween_property(tr_btn_esconder, "rotation_degrees", -90, transition_time)
+	#get_tween().tween_property(panel_lista_mapa, "position", Vector2(0, 980 + get_container_size(panel_lista_mapa) + 10), transition_time)
+	get_tween().tween_property(panel_lista_mapa, "position", Vector2(0, 1854.0), transition_time)
 	btn_esconder_lista.z_index = 2;
 
 func _on_camera_reset_position():
 	hiden_panel = false;
-	get_tween().tween_property(tr_btn_esconder, "rotation_degrees", 180, transition_time)
+	get_tween().tween_property(tr_btn_esconder, "rotation_degrees", 90, transition_time)
 	get_tween().tween_property(panel_lista_mapa, "position", Vector2(0, 980), transition_time)
 	btn_esconder_lista.z_index = 2;
 

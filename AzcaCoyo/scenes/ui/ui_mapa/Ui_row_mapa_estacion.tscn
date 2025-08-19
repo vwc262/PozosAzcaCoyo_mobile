@@ -1,11 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://bm34a4cfowx5o"]
+[gd_scene load_steps=10 format=3 uid="uid://bm34a4cfowx5o"]
 
 [ext_resource type="Script" uid="uid://byf5jnvk17gkv" path="res://scripts/ui/perfil/ui_row_mapa_estacion.gd" id="1_06db2"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_0n88w"]
+[ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="2_1xteu"]
+[ext_resource type="Texture2D" uid="uid://cvofwq7ca56lw" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="4_v1kke"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_soy30"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1kke"]
+atlas = ExtResource("2_1xteu")
+region = Rect2(507, 330, 1030, 65)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06db2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5q1v"]
+atlas = ExtResource("4_v1kke")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xteu"]
+resource_local_to_scene = true
+atlas = SubResource("AtlasTexture_f5q1v")
+region = Rect2(159, 190, 50, 50)
 
 [node name="UiRowMapaEstacion" type="Control"]
 custom_minimum_size = Vector2(1080, 60)
@@ -21,6 +35,16 @@ offset_right = 1080.0
 offset_bottom = 60.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_soy30")
 
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_v1kke")
+expand_mode = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
@@ -31,7 +55,7 @@ grow_vertical = 2
 
 [node name="ID" type="Label" parent="Panel/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(69, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_0n88w")
 theme_override_font_sizes/font_size = 24
@@ -59,8 +83,14 @@ theme_override_font_sizes/font_size = 24
 text = "11:39 hrs  13/08/2025"
 
 [node name="inLine" type="TextureRect" parent="Panel/HBoxContainer"]
-custom_minimum_size = Vector2(40, 40)
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_1xteu")
+expand_mode = 1
+stretch_mode = 2
 
 [node name="VSeparator2" type="VSeparator" parent="Panel/HBoxContainer"]
 layout_mode = 2
@@ -68,8 +98,13 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_06db2")
 
 [node name="Pressure" type="Label" parent="Panel/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(83, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_0n88w")
 theme_override_font_sizes/font_size = 24
 text = "999.00"
+
+[node name="VSeparator3" type="VSeparator" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_06db2")

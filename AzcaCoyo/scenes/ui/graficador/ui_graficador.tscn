@@ -12,12 +12,12 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ujgf"]
 
-[node name="UiGraficador" type="PanelContainer"]
+[node name="UiGraficador" type="Control"]
 custom_minimum_size = Vector2(1080, 650)
-anchors_preset = 15
+layout_mode = 3
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -1270.0
+anchor_bottom = 0.339
+offset_bottom = -0.880005
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h63pk")
@@ -27,6 +27,8 @@ unique_name_in_owner = true
 
 [node name="Panel3" type="Panel" parent="."]
 layout_mode = 2
+offset_right = 1080.0
+offset_bottom = 650.0
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h63pk")
 

@@ -83,12 +83,13 @@ func _manejar_click():
 	if intervalo < UMBRAL_SINGLE_CLICK:
 		GlobalSignals.on_mini_site_clicked.emit(0, id_proyecto)
 
-func _cambiarAlturaPanel(estado: bool):
+func _cambiarAlturaPanel(_nueva_altura: float):
 	#var nueva_altura = (100 
 	#if esta_expandido else 673
 	#if estado else 336.5)
 	
-	var nueva_altura = 773 if estado else 100
+	#var nueva_altura = 773 if estado else 100
+	var nueva_altura = _nueva_altura
 
 	if tween_actual and tween_actual.is_running():
 		tween_actual.kill()
@@ -104,7 +105,9 @@ func _cambiarAlturaPanel(estado: bool):
 
 func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):
 	if _id_proyecto == id_proyecto:
-		_cambiarAlturaPanel(true)
+		_cambiarAlturaPanel(773)
 	elif _id_proyecto == 0:
-		_cambiarAlturaPanel(false)
+		_cambiarAlturaPanel(436.5)
+	else:
+		_cambiarAlturaPanel(100)
 	tr_seleccion.visible = _id_proyecto == id_proyecto;

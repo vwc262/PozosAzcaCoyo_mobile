@@ -37,3 +37,7 @@ func _on_update_app() -> void:
 	pressure.text = str(estacion.signals.get(id_Pressure).get_valor_string())
 	date.text = GlobalUtils.formatear_fecha(estacion.tiempo)
 	in_line.texture.set('region', alarmado_coor[estacion.is_estacion_en_linea()])
+
+
+func _on_button_pressed(): pass
+	#GlobalSignals.on_site_row_clicked()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://clnmqye7ns1ni"]
+[gd_scene load_steps=16 format=3 uid="uid://clnmqye7ns1ni"]
 
 [ext_resource type="PackedScene" uid="uid://ujssxlwvupla" path="res://scenes/ui/ui_mapa/ui_header_mapa.tscn" id="1_88x2m"]
 [ext_resource type="Script" uid="uid://didwhedxkgo3c" path="res://scripts/ui/mapa/ui_mapa.gd" id="1_otdg0"]
 [ext_resource type="PackedScene" uid="uid://dtdo0ib2qvk6d" path="res://scenes/ui/ui_mapa/ui_row_mapa.tscn" id="3_1os0f"]
 [ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="5_0p2wn"]
 [ext_resource type="Texture2D" uid="uid://cvofwq7ca56lw" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_3b2s8"]
+[ext_resource type="PackedScene" uid="uid://0op1dh0r0bxv" path="res://scenes/ui/graficador/ui_graficador.tscn" id="6_0p2wn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh1my"]
 
@@ -12,35 +13,11 @@
 atlas = ExtResource("5_0p2wn")
 region = Rect2(10, 576, 876, 64)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3b2s8"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oiiik"]
-atlas = ExtResource("5_0p2wn")
-region = Rect2(835, 1012, 91, 348)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1os0f"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ik3r0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1os0f"]
 atlas = ExtResource("5_0p2wn")
-region = Rect2(840.559, 1025.44, 80.7071, 84.3055)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3b2s8"]
-atlas = ExtResource("5_3b2s8")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ik3r0"]
-resource_local_to_scene = true
-atlas = SubResource("AtlasTexture_3b2s8")
-region = Rect2(837.409, 1121.4, 87.397, 107.475)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ykm6e"]
-atlas = ExtResource("5_3b2s8")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2dmoo"]
-resource_local_to_scene = true
-atlas = SubResource("AtlasTexture_ykm6e")
-region = Rect2(838.569, 1242.57, 84.9682, 68.7469)
+region = Rect2(802, 502, 70, 70)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lrvv6"]
 
@@ -50,7 +27,6 @@ region = Rect2(838.569, 1242.57, 84.9682, 68.7469)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpn2k"]
 atlas = ExtResource("5_3b2s8")
-region = Rect2(677, 513, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kh1my"]
 atlas = SubResource("AtlasTexture_dpn2k")
@@ -86,47 +62,25 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_0p2wn")
 expand_mode = 1
 
-[node name="fondo" type="PanelContainer" parent="."]
+[node name="ResetCamara" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -91.0
-offset_bottom = 348.0
+offset_left = -130.0
+offset_top = 90.0
+offset_right = -60.0
+offset_bottom = 160.0
 grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_3b2s8")
-
-[node name="TextureRect" type="TextureRect" parent="fondo"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_oiiik")
-
-[node name="Panel" type="Panel" parent="fondo"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_1os0f")
-
-[node name="reset" type="PanelContainer" parent="fondo/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.275
-offset_top = -126.815
-offset_right = 3.725
-offset_bottom = -118.815
-grow_horizontal = 2
-grow_vertical = 2
 scale = Vector2(1.5, 1.5)
-mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ik3r0")
 
-[node name="Button_reset" type="Button" parent="fondo/Panel/reset"]
+[node name="Button" type="Button" parent="ResetCamara"]
 layout_mode = 2
 focus_mode = 0
 flat = true
 
-[node name="TextureRect" type="TextureRect" parent="fondo/Panel/reset/Button_reset"]
+[node name="TextureRect" type="TextureRect" parent="ResetCamara/Button"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 1
 anchors_preset = 15
@@ -136,56 +90,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_1os0f")
 expand_mode = 1
-
-[node name="arranque_paro" type="PanelContainer" parent="fondo/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -43.5
-offset_top = -63.49
-offset_right = 43.5
-offset_bottom = 43.51
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="Button_arranque_paro" type="Button" parent="fondo/Panel/arranque_paro"]
-layout_mode = 2
-flat = true
-
-[node name="TextureRect" type="TextureRect" parent="fondo/Panel/arranque_paro/Button_arranque_paro"]
-layout_mode = 2
-offset_right = 87.0
-offset_bottom = 107.0
-texture = SubResource("AtlasTexture_ik3r0")
-
-[node name="graficador" type="PanelContainer" parent="fondo/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -45.5
-offset_top = 57.25
-offset_right = -37.5
-offset_bottom = 65.25
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="Button_graficador" type="Button" parent="fondo/Panel/graficador"]
-layout_mode = 2
-flat = true
-
-[node name="TextureRect" type="TextureRect" parent="fondo/Panel/graficador/Button_graficador"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = SubResource("AtlasTexture_2dmoo")
 
 [node name="panel_lista_mapa" type="Panel" parent="."]
 unique_name_in_owner = true
@@ -205,7 +109,6 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0p2wn")
 
 [node name="UiHeaderMapa" parent="panel_lista_mapa/PanelContainer" instance=ExtResource("1_88x2m")]
-custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 anchors_preset = 0
 anchor_top = 0.0
@@ -281,7 +184,11 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_kh1my")
 expand_mode = 1
 
-[connection signal="pressed" from="fondo/Panel/reset/Button_reset" to="." method="_on_button_reset_pressed"]
-[connection signal="pressed" from="fondo/Panel/arranque_paro/Button_arranque_paro" to="." method="_on_button_arranque_paro_pressed"]
-[connection signal="pressed" from="fondo/Panel/graficador/Button_graficador" to="." method="_on_button_graficador_pressed"]
+[node name="UiGraficador" parent="." instance=ExtResource("6_0p2wn")]
+layout_mode = 0
+anchors_preset = 0
+offset_top = 218.0
+offset_bottom = -1052.0
+
+[connection signal="pressed" from="ResetCamara/Button" to="." method="_on_button_pressed"]
 [connection signal="gui_input" from="panel_lista_mapa/btn_esconder_lista" to="." method="_on_button_header_gui_input"]

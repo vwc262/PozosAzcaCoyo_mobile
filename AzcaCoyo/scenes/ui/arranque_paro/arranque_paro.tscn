@@ -57,6 +57,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vewdl")
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -188,7 +191,6 @@ vertical_alignment = 1
 
 [node name="lbl_ejecutando" type="Label" parent="Panel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
 offset_left = 680.0
 offset_top = 452.0
@@ -202,5 +204,6 @@ label_settings = SubResource("LabelSettings_vewdl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
 [connection signal="pressed" from="Panel/Button_accion" to="." method="_on_button_accion_pressed"]
 [connection signal="pressed" from="Panel/Button_ejecutar" to="." method="_on_button_ejecutar_pressed"]

@@ -2,14 +2,18 @@
 
 [ext_resource type="Script" uid="uid://byf5jnvk17gkv" path="res://scripts/ui/perfil/ui_row_mapa_estacion.gd" id="1_06db2"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_0n88w"]
-[ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="2_1xteu"]
-[ext_resource type="Texture2D" uid="uid://bd7hjon2e2kyv" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="4_v1kke"]
+[ext_resource type="Texture2D" uid="uid://r7083jq2xqqe" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="4_v1kke"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_soy30"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1kke"]
-atlas = ExtResource("2_1xteu")
-region = Rect2(507, 330, 1030, 65)
+resource_local_to_scene = true
+atlas = ExtResource("4_v1kke")
+region = Rect2(22, 33, 2633, 3983)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5n2k"]
+atlas = SubResource("AtlasTexture_v1kke")
+region = Rect2(485, 297, 1030, 65)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06db2"]
 
@@ -42,7 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_v1kke")
+texture = SubResource("AtlasTexture_h5n2k")
 expand_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]

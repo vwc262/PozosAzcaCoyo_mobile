@@ -6,13 +6,16 @@ extends Node
 @onready var panel_lista_mapa: Panel = %panel_lista_mapa
 @onready var tr_btn_esconder: TextureRect = %tr_btn_esconder
 @onready var btn_esconder_lista: Button = $panel_lista_mapa/btn_esconder_lista
+@onready var ui_graficador = %UiGraficador
+@onready var arranque_paro = %ArranqueParo
 
 const UMBRAL_SINGLE_CLICK := 0.25
 
 var transition_time: float = 0.75;
 var tiempo_click: float = 0.0
-
 var hiden_panel: bool = false;
+
+var tween_actual: Tween
 
 func _ready() -> void:
 	for proyecto in [23, 22]:
@@ -63,19 +66,38 @@ func _on_button_header_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
 		var tiempo_actual = Time.get_ticks_msec() / 1000.0
 		var intervalo = tiempo_actual - tiempo_click
-	
+
 		if intervalo < UMBRAL_SINGLE_CLICK:
 			if hiden_panel:
 				_on_camera_reset_position()
 			else:
 				_on_camera_leave_initial_position()
 
+func _moverPanel(canvaGraficador: Control, canvaCBomba: Control, _graficadorPosition: float, _cBombaPosition: float):
+	var graficadorPosition = Vector2(_graficadorPosition, canvaGraficador.position.y)
+	var cBombaPosition = Vector2(_cBombaPosition, canvaCBomba.position.y)
+
+	if tween_actual and tween_actual.is_running():
+		tween_actual.kill()
+
+	tween_actual = create_tween()
+	tween_actual.set_ease(Tween.EASE_IN_OUT)
+	tween_actual.set_trans(Tween.TRANS_SINE)
+	tween_actual.parallel().tween_property(canvaGraficador, "position", graficadorPosition, 0.3)
+	tween_actual.parallel().tween_property(canvaCBomba, "position", cBombaPosition, 0.3)
+
+	await tween_actual.finished
+	tween_actual.kill()
+	tween_actual = null
+
+
 func _on_button_reset_pressed() -> void:
 	GlobalSignals.on_mini_site_clicked.emit(0, 0)
 	_on_camera_reset_position()
+	_moverPanel(arranque_paro, ui_graficador, 1105.0, -1100.0)
 
 func _on_button_arranque_paro_pressed() -> void:
-	pass # Replace with function body.
+	_moverPanel(arranque_paro, ui_graficador, 104.0, -1100.0)
 
 func _on_button_graficador_pressed() -> void:
-	pass # Replace with function body.
+	_moverPanel(arranque_paro, ui_graficador, 1105.0, 0.0)

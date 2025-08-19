@@ -1,16 +1,22 @@
-[gd_scene load_steps=14 format=3 uid="uid://dtdo0ib2qvk6d"]
+[gd_scene load_steps=18 format=3 uid="uid://dtdo0ib2qvk6d"]
 
 [ext_resource type="Script" uid="uid://dnvqhofgnvws8" path="res://scripts/ui/mapa/ui_row_mapa.gd" id="1_yan8p"]
 [ext_resource type="PackedScene" uid="uid://bm34a4cfowx5o" path="res://scenes/ui/ui_mapa/Ui_row_mapa_estacion.tscn" id="2_4em0a"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="3_4em0a"]
+[ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="3_10s6v"]
+[ext_resource type="Texture2D" uid="uid://cvofwq7ca56lw" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_mrqtx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yt8k0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_10s6v"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mrqtx"]
-region = Rect2(12.0199, 10.9888, 877.967, 48.0032)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4em0a"]
+atlas = ExtResource("5_mrqtx")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10s6v"]
-region = Rect2(547, 437, 200, 65)
+resource_local_to_scene = true
+atlas = SubResource("AtlasTexture_4em0a")
+region = Rect2(1575, 486, 1030, 68)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mrqtx"]
 
@@ -18,37 +24,47 @@ region = Rect2(547, 437, 200, 65)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ni03p"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsqub"]
+atlas = ExtResource("5_mrqtx")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_40ohl"]
-region = Rect2(236, 513, 40, 40)
+atlas = SubResource("AtlasTexture_hsqub")
+region = Rect2(213, 190, 50, 50)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_18uj3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xbf0e"]
-region = Rect2(236, 513, 40, 40)
+atlas = ExtResource("3_10s6v")
+region = Rect2(160, 190, 50, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yt8k0"]
-region = Rect2(9, 800, 462, 62)
+atlas = ExtResource("3_10s6v")
+region = Rect2(1576, 235, 1009, 63)
 
 [node name="UiRowMapa" type="Panel"]
 clip_contents = true
-custom_minimum_size = Vector2(0, 356)
+custom_minimum_size = Vector2(0, 436)
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -356.0
+offset_top = -436.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yt8k0")
 script = ExtResource("1_yan8p")
 scene_row_mapa_estacion = ExtResource("2_4em0a")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 clip_contents = true
-layout_mode = 2
-offset_right = 1080.0
-offset_bottom = 360.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
 
 [node name="Panel" type="Panel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
@@ -67,24 +83,14 @@ focus_mode = 0
 mouse_filter = 1
 flat = true
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Panel/Button"]
-modulate = Color(0.0885599, 0.0885599, 0.0885599, 1)
+[node name="Fondo" type="TextureRect" parent="VBoxContainer/Panel/Button"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_mrqtx")
-
-[node name="color_interceptor" type="TextureRect" parent="VBoxContainer/Panel"]
-unique_name_in_owner = true
-modulate = Color(0.364706, 0.713726, 0.396078, 1)
-custom_minimum_size = Vector2(307, 100)
-layout_mode = 1
-offset_right = 307.0
-offset_bottom = 100.0
-mouse_filter = 2
 texture = SubResource("AtlasTexture_10s6v")
 expand_mode = 1
 
@@ -231,6 +237,7 @@ vertical_alignment = 1
 [node name="tr_seleccion" type="TextureRect" parent="VBoxContainer/Panel"]
 unique_name_in_owner = true
 visible = false
+modulate = Color(1, 1, 1, 0.4)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -241,13 +248,15 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_yt8k0")
 
 [node name="PanelContainer" type="Panel" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 256)
+clip_contents = true
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer"]
-layout_mode = 2
-offset_right = 1080.0
-offset_bottom = 256.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -256,5 +265,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 
 [connection signal="gui_input" from="VBoxContainer/Panel/Button" to="." method="_on_button_gui_input"]

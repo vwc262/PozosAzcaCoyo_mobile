@@ -14,7 +14,7 @@ signal on_desactivar_eventos(_desactivar: bool)
 #region UI <-> escenas
 signal on_unload_perfil()
 signal on_unload_particular()
-signal on_tarjeta_mosaico_clicked(_id_estacion:int)
+signal on_site_row_clicked(_id_estacion:int)
 signal on_ui_change(tipo_modulo: TIPO_MODULO.UI)
 signal on_particular_loaded(id_estacion: int)
 #region
@@ -73,11 +73,11 @@ func connect_on_unload_particular(callback:Callable,do_connect:bool) -> void:
 	elif on_unload_particular.is_connected(callback):
 		on_unload_particular.disconnect(callback)
 		
-func connect_on_tarjeta_mosaico_clicked(callback:Callable,do_connect:bool) -> void:
+func connect_on_site_row_clicked(callback:Callable,do_connect:bool) -> void:
 	if do_connect :
-		on_tarjeta_mosaico_clicked.connect(callback)
-	elif on_tarjeta_mosaico_clicked.is_connected(callback):
-		on_tarjeta_mosaico_clicked.disconnect(callback)
+		on_site_row_clicked.connect(callback)
+	elif on_site_row_clicked.is_connected(callback):
+		on_site_row_clicked.disconnect(callback)
 
 func connect_on_ui_change(callback:Callable,do_connect:bool) -> void:
 	if do_connect :

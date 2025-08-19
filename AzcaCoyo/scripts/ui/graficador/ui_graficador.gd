@@ -13,10 +13,11 @@ var data_to_send: Dictionary = {
 }
 
 const HEADERS = ["Content-Type: application/json"]
-const uri_reportes: String = "https://virtualwavecontrol.com.mx/api24/VWC/APP2024/GetReportes/?idProyecto=25"
+#const uri_reportes: String = "https://virtualwavecontrol.com.mx/api24/VWC/APP2024/GetReportes/?idProyecto=25"
+var uri_reportes: String
 
 var estacion: Estacion;
-var niveles: Array[Señal];
+var signals: Array[Señal];
 var diccionario_historicos = {}
 var line_indexes: Array[int]
 
@@ -36,8 +37,9 @@ var y_max: float = 10
 
 var indice: int = 0
 
-func init_graficador(_estacion: Estacion, _niveles: Array[Señal]):
-	
+func init_graficador(_idProyecto:int, _estacion: Estacion, _signals: Array[Señal]):
+	uri_reportes = "https://virtualwavecontrol.com.mx/api24/VWC/APP2024/GetReportes/?idProyecto=" + str(_idProyecto)
+
 	_ahora = Time.get_datetime_dict_from_system()
 	var ayer_unix = Time.get_unix_time_from_datetime_dict(_ahora) - (24 * 60 * 60)  # Restar 86400 segundos (1 día)
 	_ayer = Time.get_datetime_dict_from_unix_time(ayer_unix)
@@ -49,10 +51,10 @@ func init_graficador(_estacion: Estacion, _niveles: Array[Señal]):
 
 	lbl_titulo.text = "{0}".format([_estacion.nombre])
 	estacion = _estacion;
-	niveles = _niveles;
+	signals = _signals;
 
 	limpiar_graph()
-	iniciar_series(niveles[indice])
+	iniciar_series(signals[indice])
 
 func limpiar_graph() -> void:
 	line_indexes = []
@@ -75,8 +77,8 @@ func _on_datos_24h_recibidos(result, _response_code, _headers, body):
 				conHistoricos = true
 
 	indice += 1
-	if indice < niveles.size():
-		iniciar_series(niveles[indice])
+	if indice < signals.size():
+		iniciar_series(signals[indice])
 	else:
 		graph_2d.visible = conHistoricos
 		sin_historicos.visible = !conHistoricos

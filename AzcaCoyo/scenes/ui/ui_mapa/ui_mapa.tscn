@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://clnmqye7ns1ni"]
+[gd_scene load_steps=16 format=3 uid="uid://clnmqye7ns1ni"]
 
 [ext_resource type="PackedScene" uid="uid://ujssxlwvupla" path="res://scenes/ui/ui_mapa/ui_header_mapa.tscn" id="1_88x2m"]
 [ext_resource type="Script" uid="uid://didwhedxkgo3c" path="res://scripts/ui/mapa/ui_mapa.gd" id="1_otdg0"]
 [ext_resource type="PackedScene" uid="uid://dtdo0ib2qvk6d" path="res://scenes/ui/ui_mapa/ui_row_mapa.tscn" id="3_1os0f"]
 [ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="5_0p2wn"]
 [ext_resource type="Texture2D" uid="uid://cvofwq7ca56lw" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_3b2s8"]
+[ext_resource type="PackedScene" uid="uid://0op1dh0r0bxv" path="res://scenes/ui/graficador/ui_graficador.tscn" id="6_0p2wn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh1my"]
 
@@ -182,6 +183,12 @@ pivot_offset = Vector2(20, 20)
 mouse_filter = 2
 texture = SubResource("AtlasTexture_kh1my")
 expand_mode = 1
+
+[node name="UiGraficador" parent="." instance=ExtResource("6_0p2wn")]
+layout_mode = 0
+anchors_preset = 0
+offset_top = 218.0
+offset_bottom = -1052.0
 
 [connection signal="pressed" from="ResetCamara/Button" to="." method="_on_button_pressed"]
 [connection signal="gui_input" from="panel_lista_mapa/btn_esconder_lista" to="." method="_on_button_header_gui_input"]

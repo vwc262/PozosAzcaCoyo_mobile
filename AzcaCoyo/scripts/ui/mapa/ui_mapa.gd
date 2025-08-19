@@ -57,10 +57,6 @@ func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):pass
 		#btn_esconder_lista.z_index = 0;
 		#get_tween().tween_property(panel_lista_mapa, "position", Vector2(0, 1960), transition_time)
 
-func _on_button_pressed():
-	GlobalSignals.on_mini_site_clicked.emit(0, 0)
-	_on_camera_reset_position()
-
 func _on_button_header_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		tiempo_click = Time.get_ticks_msec() / 1000.0
@@ -73,3 +69,13 @@ func _on_button_header_gui_input(event: InputEvent) -> void:
 				_on_camera_reset_position()
 			else:
 				_on_camera_leave_initial_position()
+
+func _on_button_reset_pressed() -> void:
+	GlobalSignals.on_mini_site_clicked.emit(0, 0)
+	_on_camera_reset_position()
+
+func _on_button_arranque_paro_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_button_graficador_pressed() -> void:
+	pass # Replace with function body.

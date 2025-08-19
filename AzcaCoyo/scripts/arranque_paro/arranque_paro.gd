@@ -93,7 +93,7 @@ func send_command():
 func armar_codigo() -> int:
 	return ((id_estacion << 8) | (bomba.ordinal << 4) | ( 1 if arrancar else 2));
 
-func _on_http_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+func _on_http_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, _body: PackedByteArray) -> void:
 	if _result == http_request.RESULT_SUCCESS:
 		lbl_ejecutando.text = "COMANDO\r\nEJECUTADO"
 	

@@ -39,5 +39,5 @@ func _on_update_app() -> void:
 	in_line.texture.set('region', alarmado_coor[estacion.is_estacion_en_linea()])
 
 
-func _on_button_pressed(): pass
-	#GlobalSignals.on_site_row_clicked()
+func _on_button_pressed():
+	GlobalSignals.on_site_row_clicked.emit(id_Proyecto, id_Estacion)

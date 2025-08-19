@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c028k4c1iuku2"]
+[gd_scene load_steps=17 format=3 uid="uid://c028k4c1iuku2"]
 
 [ext_resource type="Texture2D" uid="uid://bd7hjon2e2kyv" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_0svon"]
 [ext_resource type="Script" uid="uid://tyywvwlcqnkp" path="res://scripts/arranque_paro/arranque_paro.gd" id="1_vewdl"]
@@ -21,6 +21,8 @@ resource_local_to_scene = true
 atlas = SubResource("AtlasTexture_vewdl")
 region = Rect2(454.685, 2186.16, 205.948, 457.623)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vewdl"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_mnpb4"]
 atlas = ExtResource("1_0svon")
 
@@ -28,6 +30,8 @@ atlas = ExtResource("1_0svon")
 resource_local_to_scene = true
 atlas = SubResource("AtlasTexture_mnpb4")
 region = Rect2(1480, 1513, 107, 251)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h13cj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2lkig"]
 atlas = ExtResource("1_0svon")
@@ -90,6 +94,7 @@ offset_left = 367.0
 offset_top = 144.0
 offset_right = 468.0
 offset_bottom = 389.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vewdl")
 flat = true
 
 [node name="tr_accion" type="TextureRect" parent="Panel/Button_accion"]
@@ -105,6 +110,7 @@ offset_left = 644.0
 offset_top = 212.0
 offset_right = 847.0
 offset_bottom = 309.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h13cj")
 flat = true
 
 [node name="tr_ejecutar" type="TextureRect" parent="Panel/Button_ejecutar"]

@@ -13,8 +13,8 @@ const UMBRAL_SINGLE_CLICK := 0.25
 
 var transition_time: float = 0.75;
 var tiempo_click: float = 0.0
-var hiden_panel: bool = false;
-
+var hiden_panel: bool = false
+var canHidden: bool = true
 var tween_actual: Tween
 
 func _ready() -> void:
@@ -26,7 +26,7 @@ func _ready() -> void:
 	GlobalSignals.connect_on_camera_leave_initial_position(_on_camera_leave_initial_position, true)
 	GlobalSignals.connect_on_camera_reset_position(_on_camera_reset_position, true)
 	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, true)
-	
+
 func _exit_tree() -> void:
 	GlobalSignals.connect_on_camera_leave_initial_position(_on_camera_leave_initial_position, false)
 	GlobalSignals.connect_on_camera_reset_position(_on_camera_reset_position, false)
@@ -61,17 +61,18 @@ func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):pass
 		#get_tween().tween_property(panel_lista_mapa, "position", Vector2(0, 1960), transition_time)
 
 func _on_button_header_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
-		tiempo_click = Time.get_ticks_msec() / 1000.0
-	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
-		var tiempo_actual = Time.get_ticks_msec() / 1000.0
-		var intervalo = tiempo_actual - tiempo_click
+	if canHidden:
+		if event is InputEventMouseButton and event.is_pressed():
+			tiempo_click = Time.get_ticks_msec() / 1000.0
+		if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
+			var tiempo_actual = Time.get_ticks_msec() / 1000.0
+			var intervalo = tiempo_actual - tiempo_click
 
-		if intervalo < UMBRAL_SINGLE_CLICK:
-			if hiden_panel:
-				_on_camera_reset_position()
-			else:
-				_on_camera_leave_initial_position()
+			if intervalo < UMBRAL_SINGLE_CLICK:
+				if hiden_panel && canHidden:
+					_on_camera_reset_position()
+				else:
+					_on_camera_leave_initial_position()
 
 func _moverPanel(canvaGraficador: Control, canvaCBomba: Control, _graficadorPosition: float, _cBombaPosition: float):
 	var graficadorPosition = Vector2(_graficadorPosition, canvaGraficador.position.y)
@@ -90,14 +91,18 @@ func _moverPanel(canvaGraficador: Control, canvaCBomba: Control, _graficadorPosi
 	tween_actual.kill()
 	tween_actual = null
 
-
 func _on_button_reset_pressed() -> void:
+	canHidden = true
 	GlobalSignals.on_mini_site_clicked.emit(0, 0)
 	_on_camera_reset_position()
 	_moverPanel(arranque_paro, ui_graficador, 1105.0, -1100.0)
 
 func _on_button_arranque_paro_pressed() -> void:
+	canHidden = false
+	_on_camera_reset_position()
 	_moverPanel(arranque_paro, ui_graficador, 104.0, -1100.0)
 
 func _on_button_graficador_pressed() -> void:
+	canHidden = false
+	_on_camera_reset_position()
 	_moverPanel(arranque_paro, ui_graficador, 1105.0, 0.0)

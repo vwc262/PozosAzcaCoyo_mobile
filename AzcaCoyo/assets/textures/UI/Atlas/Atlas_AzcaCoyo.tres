@@ -5,4 +5,3 @@
 [resource]
 resource_local_to_scene = true
 atlas = ExtResource("1_8lpm1")
-region = Rect2(22, 33, 2633, 3983)

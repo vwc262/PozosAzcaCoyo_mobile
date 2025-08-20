@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bm34a4cfowx5o"]
+[gd_scene load_steps=11 format=3 uid="uid://bm34a4cfowx5o"]
 
 [ext_resource type="Script" uid="uid://byf5jnvk17gkv" path="res://scripts/ui/perfil/ui_row_mapa_estacion.gd" id="1_06db2"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_0n88w"]
-[ext_resource type="Texture2D" uid="uid://r7083jq2xqqe" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="4_v1kke"]
+[ext_resource type="Texture2D" uid="uid://8ns5dwox47go" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="4_v1kke"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_soy30"]
 
@@ -14,6 +14,8 @@ region = Rect2(22, 33, 2633, 3983)
 [sub_resource type="AtlasTexture" id="AtlasTexture_h5n2k"]
 atlas = SubResource("AtlasTexture_v1kke")
 region = Rect2(485, 297, 1030, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7qpm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06db2"]
 
@@ -47,6 +49,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_h5n2k")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_x7qpm")
 expand_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
@@ -120,6 +132,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
 flat = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

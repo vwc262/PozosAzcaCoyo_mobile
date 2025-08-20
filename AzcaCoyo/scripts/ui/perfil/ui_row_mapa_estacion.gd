@@ -38,6 +38,6 @@ func _on_update_app() -> void:
 	date.text = GlobalUtils.formatear_fecha(estacion.tiempo)
 	in_line.texture.set('region', alarmado_coor[estacion.is_estacion_en_linea()])
 
-
 func _on_button_pressed():
 	GlobalSignals.on_site_row_clicked.emit(id_Proyecto, id_Estacion)
+	GlobalSignals.on_mini_site_clicked.emit(id_Estacion, id_Proyecto)

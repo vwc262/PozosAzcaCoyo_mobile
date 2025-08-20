@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ujssxlwvupla"]
 
-[ext_resource type="Texture2D" uid="uid://r7083jq2xqqe" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_uqjo5"]
+[ext_resource type="Texture2D" uid="uid://8ns5dwox47go" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_uqjo5"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_eidji"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eidji"]

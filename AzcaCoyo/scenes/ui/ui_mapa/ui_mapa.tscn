@@ -289,6 +289,8 @@ offset_left = 1105.0
 offset_top = 420.0
 offset_right = 1980.0
 offset_bottom = 984.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="pressed" from="PanelContainer/TextureRect/button_reset" to="." method="_on_button_reset_pressed"]
 [connection signal="pressed" from="arranque_paro_container/TextureRect/button_arranque_paro" to="." method="_on_button_arranque_paro_pressed"]

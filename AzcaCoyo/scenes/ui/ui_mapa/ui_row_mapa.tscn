@@ -239,7 +239,6 @@ vertical_alignment = 1
 
 [node name="tr_seleccion" type="TextureRect" parent="VBoxContainer/Panel"]
 unique_name_in_owner = true
-visible = false
 modulate = Color(1, 1, 1, 0.4)
 layout_mode = 1
 anchors_preset = 15

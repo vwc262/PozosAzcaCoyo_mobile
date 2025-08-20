@@ -1,19 +1,19 @@
 [gd_scene load_steps=11 format=3 uid="uid://r0wqipvjl0o8"]
 
 [ext_resource type="PackedScene" uid="uid://blidfg1mh0ssf" path="res://assets/models/Perfil/cdmx_web.glb" id="1_bsxf1"]
-[ext_resource type="Texture2D" uid="uid://bnd5fid0m8s1x" path="res://assets/textures/Perfil/cdmx_Normal.jpg" id="2_440tp"]
-[ext_resource type="Texture2D" uid="uid://c5ff5qdfjwydd" path="res://assets/textures/Perfil/mapacdmxTEO3_Bake1024.png" id="2_xl65y"]
+[ext_resource type="Texture2D" uid="uid://c5ff5qdfjwydd" path="res://assets/textures/Perfil/mapacdmxTEO3_Bake1024.png" id="2_xu1cq"]
+[ext_resource type="Texture2D" uid="uid://bnd5fid0m8s1x" path="res://assets/textures/Perfil/cdmx_Normal.jpg" id="3_8s3ku"]
 [ext_resource type="PackedScene" uid="uid://clu5lk7wrk4ds" path="res://assets/models/Perfil/mapacdmx_web.glb" id="3_o8smc"]
 [ext_resource type="Texture2D" uid="uid://bo0vexmf7m4xg" path="res://assets/textures/Perfil/Terreno_Normal.jpg" id="4_xl65y"]
 [ext_resource type="PackedScene" uid="uid://cy52y56xpfvt4" path="res://assets/models/Perfil/DecoradoresPerfil/Mini_Representativos.glb" id="5_440tp"]
 [ext_resource type="PackedScene" uid="uid://bfwukg77r6r4l" path="res://assets/models/Perfil/DecoradoresPerfil/Aeropuerto.glb" id="6_o8smc"]
 [ext_resource type="Material" uid="uid://c3m3mx1dnxai7" path="res://assets/Materials/standard_material_gray.tres" id="7_xu1cq"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xu1cq"]
-albedo_texture = ExtResource("2_xl65y")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hnqru"]
+albedo_texture = ExtResource("2_xu1cq")
 normal_enabled = true
 normal_scale = 5.0
-normal_texture = ExtResource("2_440tp")
+normal_texture = ExtResource("3_8s3ku")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8s3ku"]
 albedo_color = Color(0.178524, 0.225136, 0.471674, 1)
@@ -25,7 +25,7 @@ normal_texture = ExtResource("4_xl65y")
 [node name="cdmx_web" parent="." instance=ExtResource("1_bsxf1")]
 
 [node name="CrystalCDMX" parent="cdmx_web" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_xu1cq")
+surface_material_override/0 = SubResource("StandardMaterial3D_hnqru")
 
 [node name="mapacdmx_web" parent="." instance=ExtResource("3_o8smc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19278, 0, 0.851069)
@@ -65,7 +65,8 @@ material_override = ExtResource("7_xu1cq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.799757, 0, 0.330744)
 
 [node name="FuenteDePetroleos" parent="Mini_Representativos" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51825, -1.19209e-07, -0.577429)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51825, 0.0213932, -0.577429)
+material_override = ExtResource("7_xu1cq")
 
 [node name="Manacar" parent="Mini_Representativos" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44013, 1.19209e-07, 0.911159)
@@ -84,14 +85,6 @@ material_override = ExtResource("7_xu1cq")
 
 [node name="Aeropuerto" parent="." instance=ExtResource("6_o8smc")]
 transform = Transform3D(0.625168, 0, 0, 0, 0.625168, 0, 0, 0, 0.625168, 0.291193, 0.234451, 0.00303352)
-
-[node name="Skeleton3D" parent="Aeropuerto/Rig_Avion" index="0"]
-bones/1/rotation = Quaternion(0, 0.707107, 0, 0.707107)
-bones/2/rotation = Quaternion(0.0699289, -0.45149, 0.888822, 0.0355215)
-bones/3/position = Vector3(2.86829e-06, 117.194, -4.86089e-06)
-bones/3/rotation = Quaternion(-0.0745646, 0.947744, -0.30924, -0.0243296)
-bones/4/position = Vector3(-1.45828e-07, 81.4418, 1.32325e-06)
-bones/4/rotation = Quaternion(1.05367e-08, 7.3757e-08, -0.707107, 0.707107)
 
 [node name="Avion" parent="Aeropuerto/Rig_Avion/Skeleton3D" index="0"]
 transform = Transform3D(0.797831, 0, -1.42109e-14, 0, 0.797831, 0, 1.42109e-14, 0, 0.797831, -3.8147e-06, 0, 1.52588e-05)

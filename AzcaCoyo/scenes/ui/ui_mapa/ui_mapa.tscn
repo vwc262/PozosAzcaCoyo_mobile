@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ujssxlwvupla" path="res://scenes/ui/ui_mapa/ui_header_mapa.tscn" id="1_88x2m"]
 [ext_resource type="Script" uid="uid://didwhedxkgo3c" path="res://scripts/ui/mapa/ui_mapa.gd" id="1_otdg0"]
 [ext_resource type="PackedScene" uid="uid://dtdo0ib2qvk6d" path="res://scenes/ui/ui_mapa/ui_row_mapa.tscn" id="3_1os0f"]
-[ext_resource type="Texture2D" uid="uid://r7083jq2xqqe" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_3b2s8"]
+[ext_resource type="Texture2D" uid="uid://8ns5dwox47go" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_3b2s8"]
 [ext_resource type="PackedScene" uid="uid://0op1dh0r0bxv" path="res://scenes/ui/graficador/ui_graficador.tscn" id="6_0p2wn"]
 [ext_resource type="PackedScene" uid="uid://c028k4c1iuku2" path="res://scenes/ui/arranque_paro/arranque_paro.tscn" id="6_1os0f"]
 

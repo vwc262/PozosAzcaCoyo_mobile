@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://dtdo0ib2qvk6d"]
+[gd_scene load_steps=19 format=3 uid="uid://dtdo0ib2qvk6d"]
 
 [ext_resource type="Script" uid="uid://dnvqhofgnvws8" path="res://scripts/ui/mapa/ui_row_mapa.gd" id="1_yan8p"]
 [ext_resource type="PackedScene" uid="uid://bm34a4cfowx5o" path="res://scenes/ui/ui_mapa/Ui_row_mapa_estacion.tscn" id="2_4em0a"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="3_4em0a"]
 [ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="3_10s6v"]
-[ext_resource type="Texture2D" uid="uid://bd7hjon2e2kyv" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_mrqtx"]
+[ext_resource type="Texture2D" uid="uid://8ns5dwox47go" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_mrqtx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yt8k0"]
 
@@ -33,9 +33,13 @@ region = Rect2(213, 190, 50, 50)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_18uj3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xbf0e"]
-atlas = ExtResource("3_10s6v")
-region = Rect2(160, 190, 50, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrqtx"]
+resource_local_to_scene = true
+atlas = ExtResource("5_mrqtx")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni03p"]
+atlas = SubResource("AtlasTexture_mrqtx")
+region = Rect2(159, 190, 50, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yt8k0"]
 atlas = ExtResource("3_10s6v")
@@ -199,7 +203,6 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_18uj3")
 
 [node name="offline" type="TextureRect" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer/offline_contenedor"]
-modulate = Color(1, 0.282935, 0.221296, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -212,7 +215,7 @@ offset_right = 20.0
 offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_xbf0e")
+texture = SubResource("AtlasTexture_ni03p")
 
 [node name="lbl_total_offline" type="Label" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer/offline_contenedor"]
 unique_name_in_owner = true

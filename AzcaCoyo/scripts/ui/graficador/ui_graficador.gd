@@ -16,6 +16,7 @@ const HEADERS = ["Content-Type: application/json"]
 #const uri_reportes: String = "https://virtualwavecontrol.com.mx/api24/VWC/APP2024/GetReportes/?idProyecto=25"
 var uri_reportes: String
 
+var id_proyecto = 22
 var estacion: Estacion;
 var signals: Array[Señal];
 var diccionario_historicos = {}
@@ -38,17 +39,18 @@ var y_max: float = 10
 var indice: int = 0
 
 func _ready():
-	GlobalSignals.connect_on_site_row_clicked(_onsiteclic, true)
+	GlobalSignals.connect_on_site_row_clicked(_on_Site_Click, true)
+	_on_Site_Click(23,1)
 
-func _onsiteclic(_id_proyecto: int, _id_estacion: int): 
-	estacion = GlobalData.get_estacion(_id_estacion, _id_proyecto)
+func _on_Site_Click(_id_proyecto: int, _id_estacion: int): 
+	id_proyecto = _id_proyecto
+	estacion = GlobalData.get_estacion(_id_estacion, id_proyecto)
 	signals = []
-	var id_proyecto = estacion.id_proyecto
-	
+
 	for _signal: Señal in estacion.signals.values():
 		if _signal.tipo_signal == TIPO_SIGNAL.Tipo_Signal.Presion || _signal.tipo_signal == TIPO_SIGNAL.Tipo_Signal.Gasto:
 			signals.append(_signal);
-	
+
 	init_graficador(id_proyecto, estacion, signals)
 
 func init_graficador(_idProyecto:int, _estacion: Estacion, _signals: Array[Señal]):
@@ -87,13 +89,11 @@ func _on_datos_24h_recibidos(result, _response_code, _headers, body):
 		if response and response.has("Reporte"):
 			var reportes: Array = response["Reporte"]
 			if reportes.size() > 0:
-				print("con historicos")
 				process_data(reportes)
 				conHistoricos = true
 
 	indice += 1
 	if indice < signals.size():
-		print("faltan mas signlas por graficar ", indice)
 		iniciar_series(signals[indice])
 	else:
 		graph_2d.visible = conHistoricos

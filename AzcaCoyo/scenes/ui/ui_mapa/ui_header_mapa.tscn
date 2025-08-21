@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://ujssxlwvupla"]
+[gd_scene load_steps=5 format=3 uid="uid://ujssxlwvupla"]
 
+[ext_resource type="Texture2D" uid="uid://8ns5dwox47go" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_uqjo5"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_eidji"]
-[ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="2_uqjo5"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rgmkh"]
-atlas = ExtResource("2_uqjo5")
-region = Rect2(507, 138, 1038, 67)
+[sub_resource type="AtlasTexture" id="AtlasTexture_eidji"]
+resource_local_to_scene = true
+atlas = ExtResource("1_uqjo5")
+region = Rect2(22, 33, 2633, 3983)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g0nb"]
+atlas = SubResource("AtlasTexture_eidji")
+region = Rect2(485, 105, 1038, 67)
 
 [node name="UiHeaderMapa" type="Control"]
 custom_minimum_size = Vector2(0, 67)
@@ -23,7 +28,7 @@ custom_minimum_size = Vector2(0, 67)
 layout_mode = 2
 offset_right = 1080.0
 offset_bottom = 67.0
-texture = SubResource("AtlasTexture_rgmkh")
+texture = SubResource("AtlasTexture_5g0nb")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="."]

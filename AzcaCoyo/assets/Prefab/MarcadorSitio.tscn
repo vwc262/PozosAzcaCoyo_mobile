@@ -64,8 +64,6 @@ shader_parameter/dither_scale = 1.0
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("2_xmxkr")
-min_scale = null
-max_scale = null
 
 [node name="POI" type="Camera3D" parent="."]
 unique_name_in_owner = true
@@ -83,6 +81,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_qhgc1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Etiqueta_Perfil_3D/Sphere/Area3D"]
 shape = SubResource("SphereShape3D_ggxo0")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="lbl_id" type="Label3D" parent="Etiqueta_Perfil_3D/Sphere" index="1"]
 unique_name_in_owner = true

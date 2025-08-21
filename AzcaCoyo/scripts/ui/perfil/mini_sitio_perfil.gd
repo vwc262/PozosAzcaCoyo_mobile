@@ -12,23 +12,23 @@ extends Node3D
 @export var min_scale: float = 0.1;
 @export var max_scale: float = 0.45;
 
+const UMBRAL_SINGLE_CLICK := 0.25
+
 var id_estacion: int
 var estacion: Estacion;
 var id_proyecto: int;
 var initial_position: Vector3;
 var signal_bomba: Señal;
-
 var camera3D: Camera3D;
 var min_distance: float = 0.25
 var max_distance: float = 20.0
-
-const UMBRAL_SINGLE_CLICK := 0.25
 var tiempo_click: float = 0.0
 var rotate_speed: float = 1.0;
-
 var do_rotate:bool = false;
 
+const ETIQUETA_PERFIL_3D = preload("res://assets/models/Props/Etiqueta_Perfil_3D.glb")
 const BOMBA_AZCACOYO_01 = preload("res://assets/models/Perfil/iconos/Bomba_Azcacoyo_01.glb")
+
 @onready var pozo = preload("res://scenes/minis/pozo.tscn")
 @onready var etiqueta_perfil_mat: Material = %Etiqueta_Perfil_3D.get_node("Sphere").get_surface_override_material(0)
 @onready var bomba_azcacoyo_mat: Material = %Bomba_Azcacoyo_01.get_child(0).material_override
@@ -47,33 +47,33 @@ func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: 
 		if intervalo < UMBRAL_SINGLE_CLICK:
 			GlobalSignals.on_mini_site_clicked.emit(id_estacion, id_proyecto)
 
-func _ready() -> void:
-	lbl_id.text = str(id_estacion)
-	lbl_id2.text = str(id_estacion)
-	estacion = GlobalData.get_estacion(id_estacion, id_proyecto);
-	id_proyecto = estacion.id_proyecto;
-	
-	for _signal: Señal in estacion.signals.values():
-		if _signal.tipo_signal == TIPO_SIGNAL.Tipo_Signal.Bomba:
-			signal_bomba = _signal
-	
-	camera3D = get_viewport().get_camera_3d()
-	initial_position = camera3D.global_position;
-	
-	var mini_instanced = BOMBA_AZCACOYO_01.instantiate()
-	var instanced_mesh: Mesh = mini_instanced.get_child(0).mesh;
-	multi_mesh_instance_3d.multimesh.mesh = instanced_mesh;
-	multi_mesh_instance_3d.multimesh.use_colors = true;
-	
-	multi_mesh_instance_3d.multimesh.set_instance_transform()
-	
-	#mimico_container.add_child(mini_instanced);
-	
-	GlobalSignals.on_agregar_poi_perfil.emit(id_estacion, id_proyecto, poi.global_transform);
-	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, true)
-	GlobalSignals.connect_on_update_app(_on_update_app, true)
-	
-	_on_update_app()
+func _ready() -> void: pass
+	#lbl_id.text = str(id_estacion)
+	#lbl_id2.text = str(id_estacion)
+	#estacion = GlobalData.get_estacion(id_estacion, id_proyecto);
+	#id_proyecto = estacion.id_proyecto;
+	#
+	#for _signal: Señal in estacion.signals.values():
+		#if _signal.tipo_signal == TIPO_SIGNAL.Tipo_Signal.Bomba:
+			#signal_bomba = _signal
+	#
+	#camera3D = get_viewport().get_camera_3d()
+	#initial_position = camera3D.global_position;
+	#
+	#var mini_instanced = BOMBA_AZCACOYO_01.instantiate()
+	#var instanced_mesh: Mesh = mini_instanced.get_child(0).mesh;
+	#multi_mesh_instance_3d.multimesh.mesh = instanced_mesh;
+	#multi_mesh_instance_3d.multimesh.use_colors = true;
+	#
+	#multi_mesh_instance_3d.multimesh.set_instance_transform()
+	#
+	##mimico_container.add_child(mini_instanced);
+	#
+	#GlobalSignals.on_agregar_poi_perfil.emit(id_estacion, id_proyecto, poi.global_transform);
+	#GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, true)
+	#GlobalSignals.connect_on_update_app(_on_update_app, true)
+	#
+	#_on_update_app()
 	
 func _process(_delta: float) -> void:
 	var distance = initial_position.distance_to(camera3D.global_position)

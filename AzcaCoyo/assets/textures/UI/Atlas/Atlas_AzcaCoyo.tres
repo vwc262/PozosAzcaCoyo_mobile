@@ -1,6 +1,6 @@
 [gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://d0lytqha875sm"]
 
-[ext_resource type="Texture2D" uid="uid://r7083jq2xqqe" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_8lpm1"]
+[ext_resource type="Texture2D" uid="uid://8ns5dwox47go" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_8lpm1"]
 
 [resource]
 resource_local_to_scene = true

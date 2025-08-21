@@ -11,6 +11,7 @@ extends Node
 var id_estaciones: Array[int]
 var estaciones: Array[Estacion]
 var id_proyecto: int
+var id_proyectoAux: int
 var proyecto_name: String;
 var online_count: int;
 
@@ -27,7 +28,7 @@ const proyecto_coor := {
 
 func inicializar_row(_id_proyecto: int):
 	id_proyecto = _id_proyecto
-	
+
 func _ready() -> void:
 	proyecto_name = GlobalData.get_name_interceptor(id_proyecto)
 	lbl_nombre_interceptor.text = proyecto_name;
@@ -66,7 +67,6 @@ func _on_update_app():
 	lbl_total_online.text = str(online_count);
 	lbl_total_offline.text = str(id_estaciones.size() - online_count);
 
-
 func _on_button_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		tiempo_click = Time.get_ticks_msec() / 1000.0
@@ -79,16 +79,12 @@ func _manejar_click():
 	var tiempo_actual = Time.get_ticks_msec() / 1000.0
 	var intervalo = tiempo_actual - tiempo_click
 	esta_expandido = !esta_expandido
+	id_proyectoAux = id_proyecto if esta_expandido else 0
 
 	if intervalo < UMBRAL_SINGLE_CLICK:
-		GlobalSignals.on_mini_site_clicked.emit(0, id_proyecto)
+		GlobalSignals.on_mini_site_clicked.emit(0, id_proyectoAux)
 
 func _cambiarAlturaPanel(_nueva_altura: float):
-	#var nueva_altura = (100 
-	#if esta_expandido else 673
-	#if estado else 336.5)
-	
-	#var nueva_altura = 773 if estado else 100
 	var nueva_altura = _nueva_altura
 
 	if tween_actual and tween_actual.is_running():
@@ -111,3 +107,4 @@ func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):
 	else:
 		_cambiarAlturaPanel(100)
 	tr_seleccion.visible = _id_proyecto == id_proyecto;
+	id_proyectoAux = id_proyecto if esta_expandido else 0

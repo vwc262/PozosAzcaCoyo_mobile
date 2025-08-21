@@ -1,46 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dt04pr11undsv"]
+[gd_scene load_steps=10 format=3 uid="uid://dt04pr11undsv"]
 
 [ext_resource type="PackedScene" uid="uid://6f5xnygytt85" path="res://assets/models/Props/Etiqueta_Perfil_3D.glb" id="1_wrb0p"]
-[ext_resource type="Script" uid="uid://cob4dby7f28by" path="res://scripts/ui/perfil/mini_sitio_perfil.gd" id="2_xmxkr"]
-[ext_resource type="Shader" uid="uid://dsoh76iwnm2lm" path="res://assets/shaders/MarcadorPerfilEsfera.gdshader" id="3_78vog"]
-[ext_resource type="Texture2D" uid="uid://cpn46myokymt8" path="res://assets/textures/FX/linea2.png" id="4_fb5xc"]
 [ext_resource type="Shader" uid="uid://byy7n1g8y7iv3" path="res://assets/shaders/MarcadorPerfil.gdshader" id="4_tq1j1"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="7_xmxkr"]
-[ext_resource type="PackedScene" uid="uid://daxjysw6xnd2j" path="res://assets/models/Perfil/iconos/Icono3D_Base_a.fbx" id="8_78vog"]
 [ext_resource type="Shader" uid="uid://m7mwmxqf35s3" path="res://assets/shaders/dither_base.gdshader" id="9_fb5xc"]
 [ext_resource type="PackedScene" uid="uid://3jf6mkwgylwb" path="res://assets/models/Perfil/iconos/Icono3D_Base_b.fbx" id="10_ebafb"]
 [ext_resource type="PackedScene" uid="uid://nm0kjj68ao3t" path="res://assets/models/Perfil/iconos/Bomba_Azcacoyo_01.glb" id="11_fb5xc"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ebafb"]
-noise_type = 0
-frequency = 0.018
-offset = Vector3(192.75, 0, 0)
-fractal_type = 2
-fractal_octaves = 10
-fractal_lacunarity = 1.585
-fractal_gain = 0.565
-fractal_weighted_strength = 1.0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lr4la"]
-noise = SubResource("FastNoiseLite_ebafb")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qhgc1"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("3_78vog")
-shader_parameter/albedo = Color(0.0941176, 0.435294, 1, 1)
-shader_parameter/speed = 0.5
-shader_parameter/uvDirection = Vector2(2.68, 1)
-shader_parameter/gradient = ExtResource("4_fb5xc")
-shader_parameter/fresAmount = 1.0
-shader_parameter/fresIntensity = 1.0
-shader_parameter/noise = SubResource("NoiseTexture2D_lr4la")
-shader_parameter/max_distance = 10.0
-shader_parameter/min_distance = 5.0
-shader_parameter/dither_scale = 1.0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_ggxo0"]
-radius = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_emx6v"]
 render_priority = 0
@@ -62,26 +27,40 @@ shader_parameter/max_distance = 10.0
 shader_parameter/min_distance = 5.0
 shader_parameter/dither_scale = 1.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ggxo0"]
+radius = 1.0
+
 [node name="Node3D" type="Node3D"]
-script = ExtResource("2_xmxkr")
 
 [node name="POI" type="Camera3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.817145, 0.576432, 0, -0.576432, 0.817145, 0, 1.94788, 4.40046)
 
+[node name="Icono3D_Base_b" parent="." instance=ExtResource("10_ebafb")]
+unique_name_in_owner = true
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0.018889, 0)
+
+[node name="Cylinder_015" parent="Icono3D_Base_b" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
+
+[node name="Bomba_Azcacoyo_01" parent="." instance=ExtResource("11_fb5xc")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018889, 0)
+
+[node name="Cube" parent="Bomba_Azcacoyo_01" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_fb5xc")
+
 [node name="Etiqueta_Perfil_3D" parent="." instance=ExtResource("1_wrb0p")]
 unique_name_in_owner = true
 
 [node name="Sphere" parent="Etiqueta_Perfil_3D" index="0"]
-transform = Transform3D(0.649925, -0.00942799, 0.00282807, 0.00942806, 0.649932, 5.97551e-06, -0.00282786, 3.50455e-05, 0.649994, 0.0278828, 2.68828, -0.000103645)
 sorting_offset = -5.0
-surface_material_override/0 = SubResource("ShaderMaterial_qhgc1")
 
 [node name="Area3D" type="Area3D" parent="Etiqueta_Perfil_3D/Sphere" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Etiqueta_Perfil_3D/Sphere/Area3D"]
 shape = SubResource("SphereShape3D_ggxo0")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="lbl_id" type="Label3D" parent="Etiqueta_Perfil_3D/Sphere" index="1"]
 unique_name_in_owner = true
@@ -113,42 +92,8 @@ font = ExtResource("7_xmxkr")
 font_size = 150
 outline_size = 0
 
-[node name="mimico_container" type="Node3D" parent="Etiqueta_Perfil_3D"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018889, 0)
-
-[node name="Icono3D_Base_a" parent="Etiqueta_Perfil_3D/mimico_container" instance=ExtResource("8_78vog")]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
-
-[node name="Cylinder_013" parent="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_a" index="0"]
-visible = false
-surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
-
-[node name="Cylinder_014" parent="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_a" index="1"]
-visible = false
-surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
-
-[node name="Cylinder_016" parent="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_a" index="2"]
-surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
-
-[node name="Icono3D_Base_b" parent="Etiqueta_Perfil_3D/mimico_container" instance=ExtResource("10_ebafb")]
-unique_name_in_owner = true
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
-
-[node name="Cylinder_015" parent="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_b" index="0"]
-surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
-
-[node name="Bomba_Azcacoyo_01" parent="Etiqueta_Perfil_3D/mimico_container" instance=ExtResource("11_fb5xc")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.353615, 0)
-
-[node name="Cube" parent="Etiqueta_Perfil_3D/mimico_container/Bomba_Azcacoyo_01" index="0"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_fb5xc")
-
 [connection signal="input_event" from="Etiqueta_Perfil_3D/Sphere/Area3D" to="." method="_on_area_3d_input_event"]
 
+[editable path="Icono3D_Base_b"]
+[editable path="Bomba_Azcacoyo_01"]
 [editable path="Etiqueta_Perfil_3D"]
-[editable path="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_a"]
-[editable path="Etiqueta_Perfil_3D/mimico_container/Icono3D_Base_b"]
-[editable path="Etiqueta_Perfil_3D/mimico_container/Bomba_Azcacoyo_01"]

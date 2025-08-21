@@ -16,8 +16,6 @@ var id_Pressure: int
 const alarmado_coor := {
 	false: Rect2(159, 190, 50, 50),  # rojo
 	true: Rect2(213, 190, 50, 50),  # verde
-	#2: Rect2(213, 190, 50, 50),  # verde
-	#3: Rect2(213, 190, 50, 50),  # verde
 }
 
 func _ready():

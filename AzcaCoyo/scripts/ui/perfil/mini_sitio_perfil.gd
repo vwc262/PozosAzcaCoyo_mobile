@@ -7,6 +7,7 @@ extends Node3D
 @onready var lbl_id2: Label3D = %lbl_id2
 @onready var mimico_container: Node3D = %mimico_container
 @onready var icono_3d_base_b: Node3D = %Icono3D_Base_b
+@onready var multi_mesh_instance_3d: MultiMeshInstance3D = %MultiMeshInstance3D
 
 @export var min_scale: float = 0.1;
 @export var max_scale: float = 0.45;
@@ -27,6 +28,7 @@ var rotate_speed: float = 1.0;
 
 var do_rotate:bool = false;
 
+const BOMBA_AZCACOYO_01 = preload("res://assets/models/Perfil/iconos/Bomba_Azcacoyo_01.glb")
 @onready var pozo = preload("res://scenes/minis/pozo.tscn")
 @onready var etiqueta_perfil_mat: Material = %Etiqueta_Perfil_3D.get_node("Sphere").get_surface_override_material(0)
 @onready var bomba_azcacoyo_mat: Material = %Bomba_Azcacoyo_01.get_child(0).material_override
@@ -58,9 +60,14 @@ func _ready() -> void:
 	camera3D = get_viewport().get_camera_3d()
 	initial_position = camera3D.global_position;
 	
-	var mini_instanced = pozo.instantiate()
+	var mini_instanced = BOMBA_AZCACOYO_01.instantiate()
+	var instanced_mesh: Mesh = mini_instanced.get_child(0).mesh;
+	multi_mesh_instance_3d.multimesh.mesh = instanced_mesh;
+	multi_mesh_instance_3d.multimesh.use_colors = true;
 	
-	mimico_container.add_child(mini_instanced);
+	multi_mesh_instance_3d.multimesh.set_instance_transform()
+	
+	#mimico_container.add_child(mini_instanced);
 	
 	GlobalSignals.on_agregar_poi_perfil.emit(id_estacion, id_proyecto, poi.global_transform);
 	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, true)

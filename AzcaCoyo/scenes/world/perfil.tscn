@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxb8htp2e36gn"]
+[gd_scene load_steps=10 format=3 uid="uid://dxb8htp2e36gn"]
 
 [ext_resource type="Script" uid="uid://bwu6lc6dcuoxe" path="res://scripts/perfil/perfil_manager.gd" id="1_4vis5"]
 [ext_resource type="Script" uid="uid://bx0ayjha5j45m" path="res://scripts/Navigation/perfil_camera.gd" id="1_x21ip"]
@@ -31,6 +31,9 @@ fog_aerial_perspective = 0.015
 fog_sky_affect = 0.459
 fog_height_density = 16.0
 
+[sub_resource type="MultiMesh" id="MultiMesh_4vis5"]
+use_colors = true
+
 [node name="Perfil" type="Node3D"]
 script = ExtResource("1_4vis5")
 
@@ -53,6 +56,7 @@ max_pan_z = 3.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [node name="posiciones_coyoAzc" parent="." instance=ExtResource("4_c2o23")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26411, 0)
 script = ExtResource("5_4vis5")
 
@@ -65,3 +69,7 @@ visible = false
 [node name="Camera3D_coyo_22" type="Camera3D" parent="pois_alcaldias"]
 transform = Transform3D(1, 0, 0, 0, 0.14648, 0.989214, 0, -0.989214, 0.14648, -0.560681, 2.44416, 2.72375)
 visible = false
+
+[node name="MultiMeshInstance3D_coyoacan" type="MultiMeshInstance3D" parent="."]
+unique_name_in_owner = true
+multimesh = SubResource("MultiMesh_4vis5")

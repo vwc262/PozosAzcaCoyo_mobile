@@ -20,6 +20,7 @@ resource_local_to_scene = true
 atlas = ExtResource("4_v1kke")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7qpm"]
+resource_local_to_scene = true
 atlas = SubResource("AtlasTexture_6js2s")
 region = Rect2(508, 513, 1012, 63)
 

@@ -44,11 +44,11 @@ atlas = SubResource("AtlasTexture_1os0f")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ik3r0"]
 atlas = ExtResource("5_3b2s8")
-region = Rect2(1429, 1177, 95, 127)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oiiik"]
 resource_local_to_scene = true
 atlas = SubResource("AtlasTexture_ik3r0")
+region = Rect2(1429, 1177, 95, 127)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2dmoo"]
 
@@ -57,7 +57,7 @@ atlas = ExtResource("5_3b2s8")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vnit6"]
 atlas = SubResource("AtlasTexture_4fnhl")
-region = Rect2(1589, 1336, 95, 94)
+region = Rect2(1429, 1336, 95, 94)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lrvv6"]
 
@@ -142,14 +142,16 @@ offset_bottom = 313.575
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_oiiik")
 
-[node name="TextureRect" type="TextureRect" parent="arranque_paro_container"]
+[node name="ControlTexture" type="TextureRect" parent="arranque_paro_container"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_oiiik")
 
-[node name="button_arranque_paro" type="Button" parent="arranque_paro_container/TextureRect"]
+[node name="button_arranque_paro" type="Button" parent="arranque_paro_container/ControlTexture"]
 layout_mode = 1
 offset_right = 95.0
 offset_bottom = 127.0
+focus_mode = 0
 flat = true
 
 [node name="graficador_container" type="PanelContainer" parent="."]
@@ -163,14 +165,16 @@ offset_bottom = 405.1
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2dmoo")
 
-[node name="TextureRect" type="TextureRect" parent="graficador_container"]
+[node name="GraficadorTexture" type="TextureRect" parent="graficador_container"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_vnit6")
 
-[node name="button_graficador" type="Button" parent="graficador_container/TextureRect"]
+[node name="button_graficador" type="Button" parent="graficador_container/GraficadorTexture"]
 layout_mode = 2
 offset_right = 95.0
 offset_bottom = 94.0
+focus_mode = 0
 flat = true
 
 [node name="panel_lista_mapa" type="Panel" parent="."]
@@ -294,6 +298,6 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [connection signal="pressed" from="PanelContainer/TextureRect/button_reset" to="." method="_on_button_reset_pressed"]
-[connection signal="pressed" from="arranque_paro_container/TextureRect/button_arranque_paro" to="." method="_on_button_arranque_paro_pressed"]
-[connection signal="pressed" from="graficador_container/TextureRect/button_graficador" to="." method="_on_button_graficador_pressed"]
+[connection signal="pressed" from="arranque_paro_container/ControlTexture/button_arranque_paro" to="." method="_on_button_arranque_paro_pressed"]
+[connection signal="pressed" from="graficador_container/GraficadorTexture/button_graficador" to="." method="_on_button_graficador_pressed"]
 [connection signal="gui_input" from="panel_lista_mapa/btn_esconder_lista" to="." method="_on_button_header_gui_input"]

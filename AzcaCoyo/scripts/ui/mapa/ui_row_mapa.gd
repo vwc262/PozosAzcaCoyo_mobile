@@ -101,10 +101,12 @@ func _cambiarAlturaPanel(_nueva_altura: float):
 
 func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):
 	if _id_proyecto == id_proyecto:
+		esta_expandido = true
 		_cambiarAlturaPanel(773)
 	elif _id_proyecto == 0:
+		esta_expandido = false
 		_cambiarAlturaPanel(436.5)
 	else:
+		esta_expandido = false
 		_cambiarAlturaPanel(100)
 	tr_seleccion.visible = _id_proyecto == id_proyecto;
-	#id_proyectoAux = id_proyecto if esta_expandido else 0

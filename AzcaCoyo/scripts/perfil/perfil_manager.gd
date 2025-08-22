@@ -100,7 +100,7 @@ func _ready() -> void:
 				base_transform_sphere.basis = Basis.from_euler(Vector3(0,0,0))
 				
 				base_transform_labels = Transform3D.IDENTITY;
-				base_transform_labels.origin = child.position
+				base_transform_labels.origin = child.position + Vector3(0.0,0.0,-0.01)
 				base_transform_labels.basis = Basis.from_euler(Vector3(0,0,0))
 				
 				var area = Area3D.new()
@@ -181,10 +181,10 @@ func _process(_delta: float):
 		var look_dir = (camera_pos - world_pos).normalized()
 		_transform.basis = Basis.looking_at(-look_dir, Vector3.UP)
 		
-		var distance = world_pos.distance_to(camera_pos)
-		var distance_factor = clamp(distance / 10.0, 0.0, 1.0)
-		var offset_y = 0.1 * distance_factor
-		
-		_transform.origin.y = diccionario_sitios.get(i).position_label + offset_y
+		#var distance = world_pos.distance_to(camera_pos)
+		#var distance_factor = clamp(distance / 10.0, 0.0, 1.0)
+		#var offset_y = 0.1 * distance_factor
+		#
+		#_transform.origin.y = diccionario_sitios.get(i).position_label + offset_y
 		
 		multi_mesh_instance_3d_labels.multimesh.set_instance_transform(i, _transform)

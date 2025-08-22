@@ -60,6 +60,14 @@ func go_to_mini_site(_transform: Transform3D):
 		GlobalSignals.isTransitioning = true;
 		
 		_transform.origin.y = clamp(_transform.origin.y, GlobalData.min_zoom, GlobalData.max_zoom)
+		var current_rotation = _transform.basis.get_euler()
+		
+		if current_rotation.y > GlobalData.min_zoom && current_rotation.y < GlobalData.max_zoom:
+			var t = remap(_transform.origin.y, GlobalData.min_zoom, GlobalData.max_zoom, 0, 1)
+			var w = exp(-4 * t)
+		
+			current_rotation.x = deg_to_rad(lerp(-90.0, 6.0 * 1.0, w))
+			_transform.basis = Basis.from_euler(current_rotation)
 		
 		var current_camera = get_viewport().get_camera_3d()
 		await get_tween().tween_property(current_camera,"global_transform",_transform,  transition_time).finished

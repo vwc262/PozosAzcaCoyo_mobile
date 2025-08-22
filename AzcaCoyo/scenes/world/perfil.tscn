@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxb8htp2e36gn"]
+[gd_scene load_steps=14 format=3 uid="uid://dxb8htp2e36gn"]
 
 [ext_resource type="Script" uid="uid://bwu6lc6dcuoxe" path="res://scripts/perfil/perfil_manager.gd" id="1_4vis5"]
 [ext_resource type="Script" uid="uid://bx0ayjha5j45m" path="res://scripts/Navigation/perfil_camera.gd" id="1_x21ip"]
 [ext_resource type="PackedScene" uid="uid://r0wqipvjl0o8" path="res://scenes/world/MeshVisible.tscn" id="2_2faqt"]
 [ext_resource type="Material" uid="uid://01dtb5ujsrtk" path="res://assets/Materials/material_esfera.tres" id="2_4vis5"]
 [ext_resource type="Material" uid="uid://1p7dlaxn8rlb" path="res://assets/Materials/material_bomba.tres" id="2_ab143"]
+[ext_resource type="Material" uid="uid://b5nqhg5cldb2k" path="res://assets/Materials/material_label.tres" id="4_5fpvp"]
 [ext_resource type="PackedScene" uid="uid://lb2wls855gbe" path="res://assets/models/Perfil/posiciones_coyoAzc.glb" id="4_c2o23"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qxfni"]
@@ -36,16 +37,25 @@ fog_height_density = 16.0
 resource_local_to_scene = true
 transform_format = 1
 use_colors = true
+use_custom_data = true
 
 [sub_resource type="MultiMesh" id="MultiMesh_ab143"]
 resource_local_to_scene = true
 transform_format = 1
 use_colors = true
+use_custom_data = true
+
+[sub_resource type="MultiMesh" id="MultiMesh_5fpvp"]
+resource_local_to_scene = true
+transform_format = 1
+use_colors = true
+use_custom_data = true
 
 [node name="Perfil" type="Node3D"]
 script = ExtResource("1_4vis5")
 material_bomba = ExtResource("2_ab143")
 material_sphere = ExtResource("2_4vis5")
+material_label = ExtResource("4_5fpvp")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2faqt")
@@ -56,6 +66,7 @@ light_energy = 0.5
 shadow_enabled = true
 
 [node name="Camera3D_Perfil" type="Camera3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, 2.565)
 script = ExtResource("1_x21ip")
 min_pan_x = -1.5
@@ -87,5 +98,10 @@ multimesh = SubResource("MultiMesh_4vis5")
 
 [node name="MultiMeshInstance3D_esferas" type="MultiMeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.245, 0)
 multimesh = SubResource("MultiMesh_ab143")
+
+[node name="MultiMeshInstance3D_labels" type="MultiMeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, 0)
+multimesh = SubResource("MultiMesh_5fpvp")

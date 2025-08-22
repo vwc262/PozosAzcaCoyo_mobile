@@ -55,7 +55,7 @@ anchor_bottom = 1.0
 offset_top = -436.0
 grow_horizontal = 2
 grow_vertical = 0
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_yt8k0")
 script = ExtResource("1_yan8p")
 scene_row_mapa_estacion = ExtResource("2_4em0a")
@@ -68,12 +68,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="Panel" type="Panel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_10s6v")
 
 [node name="Button" type="Button" parent="VBoxContainer/Panel"]
@@ -95,6 +96,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("AtlasTexture_10s6v")
 expand_mode = 1
 
@@ -254,6 +256,7 @@ texture = SubResource("AtlasTexture_yt8k0")
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 1
@@ -268,6 +271,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [connection signal="gui_input" from="VBoxContainer/Panel/Button" to="." method="_on_button_gui_input"]

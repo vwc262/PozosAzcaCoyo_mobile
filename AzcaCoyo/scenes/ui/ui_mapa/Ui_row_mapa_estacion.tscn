@@ -20,6 +20,7 @@ resource_local_to_scene = true
 atlas = ExtResource("4_v1kke")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7qpm"]
+resource_local_to_scene = true
 atlas = SubResource("AtlasTexture_6js2s")
 region = Rect2(508, 513, 1012, 63)
 
@@ -39,12 +40,14 @@ layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
+mouse_filter = 2
 script = ExtResource("1_06db2")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 1080.0
 offset_bottom = 60.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_soy30")
 
 [node name="TextureRect" type="TextureRect" parent="Panel"]
@@ -54,6 +57,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("AtlasTexture_h5n2k")
 expand_mode = 1
 
@@ -66,6 +70,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("AtlasTexture_x7qpm")
 expand_mode = 1
 
@@ -76,6 +81,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ID" type="Label" parent="Panel/HBoxContainer"]
 unique_name_in_owner = true
@@ -88,6 +94,7 @@ horizontal_alignment = 1
 
 [node name="VSeparator" type="VSeparator" parent="Panel/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_06db2")
 
 [node name="Name_site" type="Label" parent="Panel/HBoxContainer"]
@@ -112,12 +119,14 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 texture = SubResource("AtlasTexture_1xteu")
 expand_mode = 1
 stretch_mode = 2
 
 [node name="VSeparator2" type="VSeparator" parent="Panel/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_06db2")
 
 [node name="Pressure" type="Label" parent="Panel/HBoxContainer"]
@@ -131,6 +140,7 @@ text = "999.00"
 [node name="VSeparator3" type="VSeparator" parent="Panel/HBoxContainer"]
 custom_minimum_size = Vector2(14, 0)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_06db2")
 
 [node name="Button" type="Button" parent="."]
@@ -141,6 +151,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
+mouse_filter = 1
 flat = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

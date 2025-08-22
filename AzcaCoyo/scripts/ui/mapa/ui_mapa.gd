@@ -9,6 +9,9 @@ extends Node
 @onready var ui_graficador = %UiGraficador
 @onready var arranque_paro = %ArranqueParo
 
+@onready var control_texture = %ControlTexture
+@onready var graficador_texture = %GraficadorTexture
+
 const UMBRAL_SINGLE_CLICK := 0.25
 
 var transition_time: float = 0.75;
@@ -16,6 +19,16 @@ var tiempo_click: float = 0.0
 var hiden_panel: bool = false
 var canHidden: bool = true
 var tween_actual: Tween
+
+const bombas_coor := {
+	true: Rect2(1589, 1177, 95, 127),
+	false: Rect2(1429, 1177, 95, 127)
+}
+
+const graficador_coor := {
+	true: Rect2(1589, 1336, 95, 94),
+	false: Rect2(1429, 1336, 95, 94)
+}
 
 func _ready() -> void:
 	for proyecto in [23, 22]:
@@ -91,18 +104,25 @@ func _moverPanel(canvaGraficador: Control, canvaCBomba: Control, _graficadorPosi
 	tween_actual.kill()
 	tween_actual = null
 
+func _set_texture_buttons(control: bool, graficador: bool):
+	control_texture.texture.set('region', bombas_coor[control])
+	graficador_texture.texture.set('region', graficador_coor[graficador])
+
 func _on_button_reset_pressed() -> void:
 	canHidden = true
 	GlobalSignals.on_mini_site_clicked.emit(0, 0)
 	_on_camera_reset_position()
+	_set_texture_buttons(false, false)
 	_moverPanel(arranque_paro, ui_graficador, 1105.0, -1100.0)
 
 func _on_button_arranque_paro_pressed() -> void:
 	canHidden = false
 	_on_camera_reset_position()
+	_set_texture_buttons(true, false)
 	_moverPanel(arranque_paro, ui_graficador, 104.0, -1100.0)
 
 func _on_button_graficador_pressed() -> void:
 	canHidden = false
 	_on_camera_reset_position()
+	_set_texture_buttons(false, true)
 	_moverPanel(arranque_paro, ui_graficador, 1105.0, 0.0)

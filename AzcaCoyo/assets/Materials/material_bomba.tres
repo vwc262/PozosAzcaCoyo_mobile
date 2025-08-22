@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://1p7dlaxn8rlb"]
+
+[ext_resource type="Shader" uid="uid://dsoh76iwnm2lm" path="res://assets/shaders/MarcadorPerfilEsfera.gdshader" id="1_2b0ul"]
+[ext_resource type="Texture2D" uid="uid://cpn46myokymt8" path="res://assets/textures/FX/linea2.png" id="2_07tev"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_2b0ul")
+shader_parameter/speed = 0.5
+shader_parameter/uvDirection = Vector2(2.68, 1)
+shader_parameter/gradient = ExtResource("2_07tev")
+shader_parameter/max_distance = 6.0
+shader_parameter/min_distance = 4.0
+shader_parameter/dither_scale = 1.0
+shader_parameter/inverse_dither = true
+shader_parameter/escala_relativa = 1.0
+shader_parameter/escala_minima = 0.001
+shader_parameter/escala_maxima = 0.5
+shader_parameter/distancia_minima = 3.0
+shader_parameter/distancia_maxima = 10.0

@@ -65,9 +65,32 @@ float dither8x8(vec2 position, float brightness) {
 }
 
 void fragment() {
-    float alpha = smoothstep(min_distance, max_distance, distancia_camara);
+    // Calcular alpha con distancia ajustada
+    float distancia_ajustada = distancia_camara / escala_relativa;
+    float alpha = 1.0;
 
-    ALBEDO = vec3(alpha); // Escala de grises: negro (0) a blanco (1)
-    EMISSION = vec3(0.0);
+    if (inverse_dither) {
+        alpha = 1.0 - smoothstep(min_distance, max_distance, distancia_ajustada);
+    } else {
+        alpha = smoothstep(min_distance, max_distance, distancia_ajustada);
+    }
+    //alpha = pow(alpha, 1.0);
+
+    vec2 screen_pos = FRAGCOORD.xy * dither_scale;
+    float dithered_alpha = dither8x8(screen_pos, alpha);
+
+    if (dithered_alpha < 0.0) {
+        discard;
+    }
+
+    // Solo calcular colores si es visible
+    vec3 normal = normalize(TANGENT);
+    vec3 view = normalize(VIEW);
+    float fresnel = fresnel(3.0, NORMAL, VIEW);
+
+    //ALBEDO = mix(instance_custom_data.rgb, (instance_custom_data.rgb * texture(gradient, UV + (uvDirection * speed * TIME)).rgb), 1.0 - texture(noise, UV + vec2(.1 * TIME, 1.0)).r);
+	ALBEDO = instance_custom_data.rgb;
+    //EMISSION = fresnel * instance_custom_data.rgb * 0.85;
+	EMISSION = vec3(0.0);
     ALPHA = alpha;
 }

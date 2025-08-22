@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxb8htp2e36gn"]
+[gd_scene load_steps=13 format=3 uid="uid://dxb8htp2e36gn"]
 
 [ext_resource type="Script" uid="uid://bwu6lc6dcuoxe" path="res://scripts/perfil/perfil_manager.gd" id="1_4vis5"]
 [ext_resource type="Script" uid="uid://bx0ayjha5j45m" path="res://scripts/Navigation/perfil_camera.gd" id="1_x21ip"]
 [ext_resource type="PackedScene" uid="uid://r0wqipvjl0o8" path="res://scenes/world/MeshVisible.tscn" id="2_2faqt"]
+[ext_resource type="Material" uid="uid://01dtb5ujsrtk" path="res://assets/Materials/material_esfera.tres" id="2_4vis5"]
+[ext_resource type="Material" uid="uid://1p7dlaxn8rlb" path="res://assets/Materials/material_bomba.tres" id="2_ab143"]
 [ext_resource type="PackedScene" uid="uid://lb2wls855gbe" path="res://assets/models/Perfil/posiciones_coyoAzc.glb" id="4_c2o23"]
-[ext_resource type="Script" uid="uid://bbnu135w6qpdb" path="res://scripts/ui/perfil/sitios_manager_perfil.gd" id="5_4vis5"]
+[ext_resource type="PackedScene" uid="uid://dx5hila00417a" path="res://assets/models/Props/Etiqueta_Perfil_3D.glb" id="7_5fpvp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qxfni"]
 sky_top_color = Color(0.0852801, 0.110747, 0.146163, 1)
@@ -32,19 +34,26 @@ fog_sky_affect = 0.459
 fog_height_density = 16.0
 
 [sub_resource type="MultiMesh" id="MultiMesh_4vis5"]
+resource_local_to_scene = true
+transform_format = 1
 use_colors = true
 
 [sub_resource type="MultiMesh" id="MultiMesh_ab143"]
+resource_local_to_scene = true
+transform_format = 1
 use_colors = true
 
 [node name="Perfil" type="Node3D"]
 script = ExtResource("1_4vis5")
+material_bomba = ExtResource("2_ab143")
+material_sphere = ExtResource("2_4vis5")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2faqt")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_energy = 0.5
 shadow_enabled = true
 
 [node name="Camera3D_Perfil" type="Camera3D" parent="."]
@@ -61,7 +70,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 [node name="posiciones_coyoAzc" parent="." instance=ExtResource("4_c2o23")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26411, 0)
-script = ExtResource("5_4vis5")
 
 [node name="pois_alcaldias" type="Node3D" parent="."]
 
@@ -75,8 +83,23 @@ visible = false
 
 [node name="MultiMeshInstance3D_bombas" type="MultiMeshInstance3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27, 0)
 multimesh = SubResource("MultiMesh_4vis5")
 
 [node name="MultiMeshInstance3D_esferas" type="MultiMeshInstance3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.415, 0)
 multimesh = SubResource("MultiMesh_ab143")
+
+[node name="MultiMeshInstance3D_labels" type="MultiMeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.415, 0)
+multimesh = SubResource("MultiMesh_ab143")
+
+[node name="Etiqueta_Perfil_3D" parent="." instance=ExtResource("7_5fpvp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.418623, 0.45443, 1.05938)
+
+[node name="Sphere" parent="Etiqueta_Perfil_3D" index="0"]
+material_override = ExtResource("2_4vis5")
+
+[editable path="Etiqueta_Perfil_3D"]

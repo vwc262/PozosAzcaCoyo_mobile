@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://dt04pr11undsv"]
+[gd_scene load_steps=9 format=3 uid="uid://dt04pr11undsv"]
 
-[ext_resource type="PackedScene" uid="uid://6f5xnygytt85" path="res://assets/models/Props/Etiqueta_Perfil_3D.glb" id="1_wrb0p"]
-[ext_resource type="Shader" uid="uid://byy7n1g8y7iv3" path="res://assets/shaders/MarcadorPerfil.gdshader" id="4_tq1j1"]
+[ext_resource type="PackedScene" uid="uid://dx5hila00417a" path="res://assets/models/Props/Etiqueta_Perfil_3D.glb" id="1_wrb0p"]
+[ext_resource type="Material" uid="uid://b7q7lhsg2b6hn" path="res://assets/Materials/test.tres" id="5_xmxkr"]
+[ext_resource type="Material" uid="uid://01dtb5ujsrtk" path="res://assets/Materials/material_esfera.tres" id="7_tq1j1"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="7_xmxkr"]
 [ext_resource type="Shader" uid="uid://m7mwmxqf35s3" path="res://assets/shaders/dither_base.gdshader" id="9_fb5xc"]
 [ext_resource type="PackedScene" uid="uid://3jf6mkwgylwb" path="res://assets/models/Perfil/iconos/Icono3D_Base_b.fbx" id="10_ebafb"]
-[ext_resource type="PackedScene" uid="uid://nm0kjj68ao3t" path="res://assets/models/Perfil/iconos/Bomba_Azcacoyo_01.glb" id="11_fb5xc"]
+[ext_resource type="PackedScene" uid="uid://lslyjhuyyhq2" path="res://assets/models/Perfil/iconos/Bomba_Azcacoyo_01.glb" id="11_fb5xc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_emx6v"]
 render_priority = 0
@@ -14,57 +15,16 @@ shader_parameter/max_distance = 10.0
 shader_parameter/min_distance = 5.0
 shader_parameter/dither_scale = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fb5xc"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("4_tq1j1")
-shader_parameter/albedo = Color(0.211765, 0.211765, 0.211765, 1)
-shader_parameter/speed = 1.0
-shader_parameter/uvDirection = Vector2(1, 1)
-shader_parameter/fresAmount = 1.0
-shader_parameter/fresIntensity = 1.0
-shader_parameter/max_distance = 10.0
-shader_parameter/min_distance = 5.0
-shader_parameter/dither_scale = 1.0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_ggxo0"]
-radius = 1.0
-
 [node name="Node3D" type="Node3D"]
 
 [node name="POI" type="Camera3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.817145, 0.576432, 0, -0.576432, 0.817145, 0, 1.94788, 4.40046)
 
-[node name="Icono3D_Base_b" parent="." instance=ExtResource("10_ebafb")]
+[node name="lbl_id" type="Label3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0.018889, 0)
-
-[node name="Cylinder_015" parent="Icono3D_Base_b" index="0"]
-surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
-
-[node name="Bomba_Azcacoyo_01" parent="." instance=ExtResource("11_fb5xc")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018889, 0)
-
-[node name="Cube" parent="Bomba_Azcacoyo_01" index="0"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_fb5xc")
-
-[node name="Etiqueta_Perfil_3D" parent="." instance=ExtResource("1_wrb0p")]
-unique_name_in_owner = true
-
-[node name="Sphere" parent="Etiqueta_Perfil_3D" index="0"]
-sorting_offset = -5.0
-
-[node name="Area3D" type="Area3D" parent="Etiqueta_Perfil_3D/Sphere" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Etiqueta_Perfil_3D/Sphere/Area3D"]
-shape = SubResource("SphereShape3D_ggxo0")
-
-[node name="lbl_id" type="Label3D" parent="Etiqueta_Perfil_3D/Sphere" index="1"]
-unique_name_in_owner = true
-transform = Transform3D(1.99977, 0.0290095, -0.00870111, -0.0290093, 1.99979, 0.000107833, 0.00870176, 1.83862e-05, 1.99998, 0.000514299, 0.0354538, 3.25967e-07)
+transform = Transform3D(1.99977, 0.0290095, -0.00870111, -0.0290093, 1.99979, 0.000107833, 0.00870176, 1.83862e-05, 1.99998, 0.000514299, 0.549889, 3.25967e-07)
+visible = false
 billboard = 1
 double_sided = false
 no_depth_test = true
@@ -77,9 +37,10 @@ font = ExtResource("7_xmxkr")
 font_size = 150
 outline_size = 0
 
-[node name="lbl_id2" type="Label3D" parent="Etiqueta_Perfil_3D/Sphere" index="2"]
+[node name="lbl_id2" type="Label3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(2.19975, 0.0319104, -0.00957123, -0.0319102, 2.19977, 0.000118616, 0.00957194, 2.02249e-05, 2.19998, 0.001, 0.035, -0.1)
+transform = Transform3D(2.19975, 0.0319104, -0.00957123, -0.0319102, 2.19977, 0.000118616, 0.00957194, 2.02249e-05, 2.19998, 0.001, 0.549435, -0.1)
+visible = false
 billboard = 1
 double_sided = false
 no_depth_test = true
@@ -92,7 +53,23 @@ font = ExtResource("7_xmxkr")
 font_size = 150
 outline_size = 0
 
-[connection signal="input_event" from="Etiqueta_Perfil_3D/Sphere/Area3D" to="." method="_on_area_3d_input_event"]
+[node name="Icono3D_Base_b" parent="." instance=ExtResource("10_ebafb")]
+unique_name_in_owner = true
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0.018889, 0)
+
+[node name="Cylinder_015" parent="Icono3D_Base_b" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_emx6v")
+
+[node name="Bomba_Azcacoyo_01" parent="." instance=ExtResource("11_fb5xc")]
+visible = false
+
+[node name="Cube" parent="Bomba_Azcacoyo_01" index="0"]
+material_override = ExtResource("5_xmxkr")
+
+[node name="Etiqueta_Perfil_3D" parent="." instance=ExtResource("1_wrb0p")]
+
+[node name="Sphere" parent="Etiqueta_Perfil_3D" index="0"]
+material_override = ExtResource("7_tq1j1")
 
 [editable path="Icono3D_Base_b"]
 [editable path="Bomba_Azcacoyo_01"]

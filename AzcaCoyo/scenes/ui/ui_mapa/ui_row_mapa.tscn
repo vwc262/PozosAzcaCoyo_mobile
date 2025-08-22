@@ -265,6 +265,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
 
 [node name="SitesContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/ScrollContainer"]
 unique_name_in_owner = true

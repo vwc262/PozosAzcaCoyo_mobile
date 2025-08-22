@@ -38,7 +38,7 @@ void vertex() {
     factor_escala = 1.0 - smoothstep(distancia_minima, distancia_maxima, distancia_ajustada);
     factor_escala = escala_minima + factor_escala * (escala_maxima - escala_minima);
 
-    //VERTEX = VERTEX * factor_escala;
+    VERTEX = VERTEX * factor_escala;
     NORMAL = normalize(NORMAL / factor_escala);
     instance_custom_data = INSTANCE_CUSTOM;
 }

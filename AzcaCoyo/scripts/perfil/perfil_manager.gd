@@ -4,7 +4,7 @@ extends Node3D
 @onready var mesh_mapa: Node3D = $MeshMapa
 @onready var multi_mesh_instance_3d_bombas: MultiMeshInstance3D = %MultiMeshInstance3D_bombas
 @onready var multi_mesh_instance_3d_esferas: MultiMeshInstance3D = %MultiMeshInstance3D_esferas
-@onready var multi_mesh_instance_3d_labels: MultiMeshInstance3D = %MultiMeshInstance3D_labels
+
 @onready var posiciones_coyo_azc: Node3D = %posiciones_coyoAzc
 
 @export var material_bomba: Material;
@@ -39,10 +39,6 @@ func _ready() -> void:
 	multi_mesh_instance_3d_esferas.multimesh.use_custom_data = true;
 	multi_mesh_instance_3d_esferas.multimesh.transform_format = MultiMesh.TRANSFORM_3D;
 	
-	multi_mesh_instance_3d_labels.multimesh.instance_count = 0;
-	multi_mesh_instance_3d_labels.multimesh.use_colors = true;
-	multi_mesh_instance_3d_labels.multimesh.transform_format = MultiMesh.TRANSFORM_3D;
-	
 	var instanced_bomba: MeshInstance3D = BOMBA_AZCACOYO_01.instantiate().get_child(0);
 	instanced_bomba.material_override = material_bomba
 	instanced_bomba.set_surface_override_material(0, material_bomba)
@@ -50,13 +46,6 @@ func _ready() -> void:
 	var instanced_sphere: MeshInstance3D = ETIQUETA_PERFIL_3D.instantiate().get_child(0);
 	instanced_sphere.material_override = material_sphere
 	instanced_sphere.set_surface_override_material(0, material_sphere)
-	
-	#var instanced_label: Label3D = Label3D.new();
-	#var label_mesh: Mesh = null
-	#for child in instanced_label.get_children():
-		#if child is MeshInstance3D:
-			#label_mesh = child.mesh
-			#break
 	
 	var i = 0;
 	var estacion: Estacion;
@@ -74,10 +63,6 @@ func _ready() -> void:
 	multi_mesh_instance_3d_esferas.multimesh.mesh = instanced_sphere.mesh;
 	multi_mesh_instance_3d_esferas.material_override = material_sphere
 	
-	#multi_mesh_instance_3d_labels.multimesh.instance_count = meshes.size();
-	#multi_mesh_instance_3d_labels.multimesh.mesh = label_mesh;
-	#multi_mesh_instance_3d_labels.material_override = material_sphere
-	
 	for child in meshes:
 		if child is MeshInstance3D:
 			if child.name.contains('_'):
@@ -94,7 +79,7 @@ func _ready() -> void:
 
 				base_transform_bomba = Transform3D.IDENTITY;
 				base_transform_bomba.origin = child.position
-				base_transform_bomba.basis = Basis.from_euler(Vector3(0,deg_to_rad(90),0))
+				base_transform_bomba.basis = Basis.from_euler(Vector3(0,0,0))
 				
 				base_transform_sphere = Transform3D.IDENTITY;
 				base_transform_sphere.origin = child.position
@@ -112,17 +97,15 @@ func _ready() -> void:
 				
 				var static_body : StaticBody3D = StaticBody3D.new()
 				static_body.transform = base_transform_sphere
+				static_body.visible = false;
 
 				area.add_child(collision_shape);
 				static_body.add_child(area);
 				multi_mesh_instance_3d_esferas.add_child(static_body)
 				area.input_event.connect(_on_area_3d_input_event.bind(i))
 				
-				#instanced_label.text = str(id_estacion)
-				
 				multi_mesh_instance_3d_bombas.multimesh.set_instance_transform(i, base_transform_bomba)
 				multi_mesh_instance_3d_esferas.multimesh.set_instance_transform(i, base_transform_sphere)
-				#multi_mesh_instance_3d_labels.multimesh.set_instance_transform(i, base_transform_labels)
 				
 				diccionario_sitios[i] = {
 					"id_proyecto": id_proyecto,

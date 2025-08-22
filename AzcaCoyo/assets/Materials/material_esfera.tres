@@ -32,5 +32,5 @@ shader_parameter/inverse_dither = false
 shader_parameter/escala_relativa = 1.0
 shader_parameter/escala_minima = 0.5
 shader_parameter/escala_maxima = 1.0
-shader_parameter/distancia_minima = 3.0
-shader_parameter/distancia_maxima = 15.0
+shader_parameter/distancia_minima = 1.0
+shader_parameter/distancia_maxima = 10.0

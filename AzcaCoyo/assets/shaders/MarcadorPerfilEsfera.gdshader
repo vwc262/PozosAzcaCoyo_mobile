@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, depth_prepass_alpha;
 
 uniform float speed = 0.0;
 uniform vec2 uvDirection = vec2(1.0,1.0);
@@ -65,9 +65,55 @@ float dither8x8(vec2 position, float brightness) {
 }
 
 void fragment() {
-    float alpha = smoothstep(min_distance, max_distance, distancia_camara);
+    // 1. Calcular alpha PRIMERO
+    float distancia_ajustada = distancia_camara / escala_relativa;
+    float alpha = 0.0;
+    
+    if (inverse_dither) {
+        alpha = 1.0 - smoothstep(min_distance, max_distance, distancia_ajustada);
+    } else {
+        alpha = smoothstep(min_distance, max_distance, distancia_ajustada);
+    }
 
-    ALBEDO = vec3(alpha); // Escala de grises: negro (0) a blanco (1)
-    EMISSION = vec3(0.0);
+    // 2. DEBUG: Forzar comportamiento consistente
+    // Remover temporalmente para diagnóstico
+    alpha = clamp(alpha, 0.0, 1.0);
+
+    // 3. Manejo EXPLÍCITO de transparencia completa
+    if (alpha < 0.001) {
+        discard;
+        ALBEDO = vec3(0.0);
+        EMISSION = vec3(0.0);
+        ALPHA = 0.0;
+        
+    } else {
+
+    // 4. Dithering
+    vec2 screen_pos = FRAGCOORD.xy * dither_scale;
+    float dithered_alpha = dither8x8(screen_pos, alpha);
+    
+    if (dithered_alpha < 0.0) {
+	        discard;
+        	ALBEDO = vec3(0.0);
+        	EMISSION = vec3(0.0);
+        	ALPHA = 0.0;
+    	}
+	}
+
+    // 5. SOLO si pasa todo lo anterior, calcular colores
+    // Pero APLICAR el alpha para prevenir blanco
+    vec3 normal = normalize(TANGENT);
+    vec3 view = normalize(VIEW);
+    float fresnel = fresnel(3.0, NORMAL, VIEW);
+    
+    vec3 albedo_color = mix(
+        instance_custom_data.rgb,
+        (instance_custom_data.rgb * texture(gradient, UV + (uvDirection * speed * TIME)).rgb),
+        1.0 - texture(noise, UV + vec2(.1 * TIME, 1.0)).r
+    );
+    
+    // APLICAR ALPHA a todos los componentes
+    ALBEDO = albedo_color * alpha;  // ← Multiplicar por alpha
+    EMISSION = (fresnel * instance_custom_data.rgb * 0.65) * alpha;  // ← Multiplicar por alpha
     ALPHA = alpha;
 }

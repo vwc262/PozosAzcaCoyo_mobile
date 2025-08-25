@@ -109,4 +109,4 @@ func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):
 	else:
 		esta_expandido = false
 		_cambiarAlturaPanel(100)
-	tr_seleccion.visible = _id_proyecto == id_proyecto;
+	tr_seleccion.visible = _id_proyecto == id_proyecto

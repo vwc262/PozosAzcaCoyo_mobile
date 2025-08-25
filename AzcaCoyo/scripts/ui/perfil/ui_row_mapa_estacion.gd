@@ -18,6 +18,9 @@ const alarmado_coor := {
 	true: Rect2(213, 190, 50, 50),  # verde
 }
 
+const UMBRAL_SINGLE_CLICK := 0.25
+var tiempo_click: float = 0.0
+
 func _ready():
 	id.text = str(estacion.id_estacion)
 	name_site.text = estacion.nombre
@@ -43,5 +46,17 @@ func _on_Site_Click(_id_estacion: int, _id_proyecto: int):
 	var select: bool = _id_estacion == id_Estacion && _id_proyecto == id_Proyecto
 	site_selected.visible = select
 
-func _on_button_pressed():
-	GlobalSignals.on_mini_site_clicked.emit(id_Estacion, id_Proyecto)
+func _on_button_gui_input(event):
+	if event is InputEventMouseButton and event.is_pressed():
+		tiempo_click = Time.get_ticks_msec() / 1000.0
+		GlobalSignals.on_desactivar_eventos.emit(true)
+	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
+		_manejar_click()
+		GlobalSignals.on_desactivar_eventos.emit(false)
+
+func _manejar_click():
+	var tiempo_actual = Time.get_ticks_msec() / 1000.0
+	var intervalo = tiempo_actual - tiempo_click
+
+	if intervalo < UMBRAL_SINGLE_CLICK:
+		GlobalSignals.on_mini_site_clicked.emit(id_Estacion, id_Proyecto)

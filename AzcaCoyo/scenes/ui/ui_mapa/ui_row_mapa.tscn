@@ -138,28 +138,31 @@ theme_override_font_sizes/font_size = 32
 text = "nombre_del_interceptor"
 
 [node name="contador_contenedor" type="Panel" parent="VBoxContainer/Panel/HBoxContainer"]
-custom_minimum_size = Vector2(155, 0)
+custom_minimum_size = Vector2(257, 0)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hsqub")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer2"]
+layout_mode = 2
 mouse_filter = 2
 
-[node name="online_contenedor" type="Panel" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer"]
+[node name="online_contenedor" type="Panel" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ni03p")
 
-[node name="enLinea" type="TextureRect" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer/online_contenedor"]
+[node name="enLinea" type="TextureRect" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer2/HBoxContainer/online_contenedor"]
 modulate = Color(0, 1, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -177,7 +180,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_40ohl")
 
-[node name="lbl_total_online" type="Label" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer/online_contenedor"]
+[node name="lbl_total_online" type="Label" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer2/HBoxContainer/online_contenedor"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -197,14 +200,14 @@ text = "00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="offline_contenedor" type="Panel" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer"]
+[node name="offline_contenedor" type="Panel" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_18uj3")
 
-[node name="offline" type="TextureRect" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer/offline_contenedor"]
+[node name="offline" type="TextureRect" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer2/HBoxContainer/offline_contenedor"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -219,7 +222,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_ni03p")
 
-[node name="lbl_total_offline" type="Label" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer/offline_contenedor"]
+[node name="lbl_total_offline" type="Label" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer2/HBoxContainer/offline_contenedor"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -238,6 +241,22 @@ theme_override_font_sizes/font_size = 28
 text = "00"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Presion"
+
+[node name="Label2" type="Label" parent="VBoxContainer/Panel/HBoxContainer/contador_contenedor/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "[kg/cm²]"
+horizontal_alignment = 1
 
 [node name="tr_seleccion" type="TextureRect" parent="VBoxContainer/Panel"]
 unique_name_in_owner = true

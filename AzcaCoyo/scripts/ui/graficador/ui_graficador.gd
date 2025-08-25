@@ -43,15 +43,15 @@ func _ready():
 	_on_Site_Click(1, 23)
 
 func _on_Site_Click(_id_estacion: int, _id_proyecto: int):
-	if _id_estacion != 0 || _id_proyecto != 0:
+	if _id_estacion != 0 && _id_proyecto != 0:
 		id_proyecto = _id_proyecto
 		estacion = GlobalData.get_estacion(_id_estacion, id_proyecto)
 		signals = []
-	
+
 		for _signal: Señal in estacion.signals.values():
 			if _signal.tipo_signal == TIPO_SIGNAL.Tipo_Signal.Presion || _signal.tipo_signal == TIPO_SIGNAL.Tipo_Signal.Gasto:
 				signals.append(_signal);
-	
+
 		init_graficador(id_proyecto, estacion, signals)
 
 func init_graficador(_idProyecto:int, _estacion: Estacion, _signals: Array[Señal]):

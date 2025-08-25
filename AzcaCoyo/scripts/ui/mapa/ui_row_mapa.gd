@@ -80,7 +80,6 @@ func _manejar_click():
 	var intervalo = tiempo_actual - tiempo_click
 	esta_expandido = !esta_expandido
 	id_proyectoAux = id_proyecto if esta_expandido else 0
-
 	if intervalo < UMBRAL_SINGLE_CLICK:
 		GlobalSignals.on_mini_site_clicked.emit(0, id_proyectoAux)
 

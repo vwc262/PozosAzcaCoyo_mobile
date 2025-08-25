@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://c028k4c1iuku2"]
 
-[ext_resource type="Texture2D" uid="uid://bd7hjon2e2kyv" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_0svon"]
+[ext_resource type="Texture2D" uid="uid://8ns5dwox47go" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_0svon"]
 [ext_resource type="Script" uid="uid://tyywvwlcqnkp" path="res://scripts/arranque_paro/arranque_paro.gd" id="1_vewdl"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_inokt"]
 
@@ -209,6 +209,17 @@ EL COMANDO"
 label_settings = SubResource("LabelSettings_vewdl")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="name_site" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 249.0
+offset_top = 20.0
+offset_right = 605.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 31
+text = "Nombre del sitio"
+horizontal_alignment = 1
 
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
 [connection signal="pressed" from="Panel/Button_accion" to="." method="_on_button_accion_pressed"]

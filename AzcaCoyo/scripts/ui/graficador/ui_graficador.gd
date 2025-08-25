@@ -39,19 +39,20 @@ var y_max: float = 10
 var indice: int = 0
 
 func _ready():
-	GlobalSignals.connect_on_site_row_clicked(_on_Site_Click, true)
-	_on_Site_Click(23,1)
+	GlobalSignals.connect_on_mini_site_clicked(_on_Site_Click, true)
+	_on_Site_Click(1, 23)
 
-func _on_Site_Click(_id_proyecto: int, _id_estacion: int): 
-	id_proyecto = _id_proyecto
-	estacion = GlobalData.get_estacion(_id_estacion, id_proyecto)
-	signals = []
-
-	for _signal: Señal in estacion.signals.values():
-		if _signal.tipo_signal == TIPO_SIGNAL.Tipo_Signal.Presion || _signal.tipo_signal == TIPO_SIGNAL.Tipo_Signal.Gasto:
-			signals.append(_signal);
-
-	init_graficador(id_proyecto, estacion, signals)
+func _on_Site_Click(_id_estacion: int, _id_proyecto: int):
+	if _id_estacion != 0 || _id_proyecto != 0:
+		id_proyecto = _id_proyecto
+		estacion = GlobalData.get_estacion(_id_estacion, id_proyecto)
+		signals = []
+	
+		for _signal: Señal in estacion.signals.values():
+			if _signal.tipo_signal == TIPO_SIGNAL.Tipo_Signal.Presion || _signal.tipo_signal == TIPO_SIGNAL.Tipo_Signal.Gasto:
+				signals.append(_signal);
+	
+		init_graficador(id_proyecto, estacion, signals)
 
 func init_graficador(_idProyecto:int, _estacion: Estacion, _signals: Array[Señal]):
 	uri_reportes = "https://virtualwavecontrol.com.mx/api24/VWC/APP2024/GetReportes/?idProyecto=" + str(_idProyecto)

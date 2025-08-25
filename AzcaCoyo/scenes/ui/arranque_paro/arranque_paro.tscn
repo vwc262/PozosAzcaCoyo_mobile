@@ -1,8 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://c028k4c1iuku2"]
+[gd_scene load_steps=22 format=3 uid="uid://c028k4c1iuku2"]
 
 [ext_resource type="Texture2D" uid="uid://8ns5dwox47go" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_0svon"]
 [ext_resource type="Script" uid="uid://tyywvwlcqnkp" path="res://scripts/arranque_paro/arranque_paro.gd" id="1_vewdl"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_inokt"]
+[ext_resource type="Shader" uid="uid://pbeq6fihqq3t" path="res://assets/shaders/destello_panel.gdshader" id="4_h0xos"]
+[ext_resource type="Texture2D" uid="uid://br8dny3imjknp" path="res://assets/textures/UI/corchete1.webp" id="5_2lkig"]
+[ext_resource type="Shader" uid="uid://cd0clrnh5jl61" path="res://scenes/ui/arranque_paro/barra_degradado.gdshader" id="6_2lkig"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6f0xq"]
 
@@ -50,6 +53,20 @@ font_size = 36
 line_spacing = -5.0
 font_size = 32
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ee4wf"]
+resource_local_to_scene = true
+shader = ExtResource("4_h0xos")
+shader_parameter/texture_input = ExtResource("5_2lkig")
+shader_parameter/speed = 0.1
+shader_parameter/smoothness = 0.931
+shader_parameter/albedo = Color(0, 0.821854, 0.999667, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mnpb4"]
+shader = ExtResource("6_2lkig")
+shader_parameter/fill_amount = 0.0
+shader_parameter/fill_color = Color(0, 0.639216, 0.45098, 0.733333)
+shader_parameter/edge_smoothness = 0.018
+
 [node name="ArranqueParo" type="Control"]
 custom_minimum_size = Vector2(875, 564)
 layout_mode = 3
@@ -75,6 +92,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_6f0xq")
 
 [node name="ttr_fondo" type="TextureRect" parent="Panel"]
 layout_mode = 1
+offset_left = 3.05176e-05
 offset_right = 871.0
 offset_bottom = 562.0
 texture = SubResource("AtlasTexture_0svon")
@@ -219,6 +237,70 @@ offset_right = 605.0
 offset_bottom = 64.0
 theme_override_font_sizes/font_size = 31
 text = "Nombre del sitio"
+horizontal_alignment = 1
+
+[node name="ejecutar_background" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_ee4wf")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(128, 64)
+texture = ExtResource("5_2lkig")
+expand_mode = 1
+
+[node name="ColorRect_background" type="ColorRect" parent="ejecutar_background"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -16.0
+offset_right = -14.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.752941, 0.494118, 0.266667)
+
+[node name="ColorRect_loading" type="ColorRect" parent="ejecutar_background/ColorRect_background"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_mnpb4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Label" type="Label" parent="ejecutar_background/ColorRect_background/ColorRect_loading"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -9.5
+offset_right = -10.0
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_inokt")
+text = "HOLA MUNDO"
 horizontal_alignment = 1
 
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

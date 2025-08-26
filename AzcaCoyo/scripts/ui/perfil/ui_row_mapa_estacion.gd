@@ -60,4 +60,16 @@ func _manejar_click():
 
 	if intervalo < UMBRAL_SINGLE_CLICK:
 		GlobalSignals.on_mini_site_clicked.emit(id_Estacion, id_Proyecto)
-		#GlobalSceneManager.load_particular("ParticularParent") -- ir a
+
+
+func _on_button_go_ToParticular(event):
+	if event is InputEventMouseButton and event.is_pressed():
+		tiempo_click = Time.get_ticks_msec() / 1000.0
+		GlobalSignals.on_desactivar_eventos.emit(true)
+	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
+		_go_to_particular()
+		GlobalSignals.on_desactivar_eventos.emit(false)
+
+func _go_to_particular():
+	print("ir a ", estacion.nombre)
+	#GlobalSceneManager.load_particular("ParticularParent") -- ir a

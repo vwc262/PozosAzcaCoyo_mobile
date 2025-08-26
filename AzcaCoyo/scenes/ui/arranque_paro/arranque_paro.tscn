@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://c028k4c1iuku2"]
 
-[ext_resource type="Texture2D" uid="uid://c7aecllamrnaj" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_0svon"]
+[ext_resource type="Texture2D" uid="uid://bpwkyhf0kmket" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_0svon"]
 [ext_resource type="Script" uid="uid://tyywvwlcqnkp" path="res://scripts/arranque_paro/arranque_paro.gd" id="1_vewdl"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_inokt"]
 [ext_resource type="Shader" uid="uid://pbeq6fihqq3t" path="res://assets/shaders/destello_panel.gdshader" id="4_h0xos"]

@@ -6,15 +6,15 @@ extends Node3D
 @export var rotation_speed: float = 5.0
 
 # Límites de rotación en grados
-@export var min_x_rotation: float = -80.0
-@export var max_x_rotation: float = 80.0
-@export var min_y_rotation: float = -360.0
-@export var max_y_rotation: float = 360.0
+@export var min_x_rotation: float = -45.0
+@export var max_x_rotation: float = -10.0
+@export var min_y_rotation: float = 55.0
+@export var max_y_rotation: float = 125.0
 
 # Distancia de la cámara al pivote
 @export var camera_distance: float = 5.0
-@export var min_distance: float = 2.0
-@export var max_distance: float = 20.0
+@export var min_distance: float = 55.0
+@export var max_distance: float = 75.0
 
 # Variables internas
 var rotation_x: float = 0.0

@@ -1,7 +1,4 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://d0lytqha875sm"]
-
-[ext_resource type="Texture2D" uid="uid://c7aecllamrnaj" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_8lpm1"]
+[gd_resource type="AtlasTexture" format=3 uid="uid://d0lytqha875sm"]
 
 [resource]
 resource_local_to_scene = true
-atlas = ExtResource("1_8lpm1")

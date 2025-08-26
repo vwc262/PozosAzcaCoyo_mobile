@@ -16,7 +16,6 @@ var diccionario_sitios: Dictionary = {};
 @onready var camera_3d_perfil: TouchCameraController = %Camera3D_Perfil
 
 const BOMBA_AZCACOYO_01 = preload("res://assets/models/Perfil/iconos/Bomba_Azcacoyo_01.glb")
-const ETIQUETA_PERFIL_3D = preload("res://assets/models/Props/Etiqueta_Perfil_3D.glb")
 
 #region input
 const UMBRAL_SINGLE_CLICK := 0.25
@@ -48,14 +47,20 @@ func _ready() -> void:
 	multi_mesh_instance_3d_labels.multimesh.transform_format = MultiMesh.TRANSFORM_3D;
 	
 	var instanced_bomba: MeshInstance3D = BOMBA_AZCACOYO_01.instantiate().get_child(0);
-	var instanced_sphere: MeshInstance3D = ETIQUETA_PERFIL_3D.instantiate().get_child(0);
 	
-	var quad_mesh: Mesh = QuadMesh.new();
-	quad_mesh.size = Vector2(0.075, 0.075)  # Tamaño del quad
-	quad_mesh.orientation = PlaneMesh.FACE_Z  # Orientación frontal
-	quad_mesh.center_offset = Vector3(0, 0, 0)
-	quad_mesh.flip_faces = false
-	quad_mesh.material = material_label;
+	var quad_mesh_esfera: Mesh = QuadMesh.new();
+	quad_mesh_esfera.size = Vector2(0.075, 0.075)  # Tamaño del quad
+	quad_mesh_esfera.orientation = PlaneMesh.FACE_Z  # Orientación frontal
+	quad_mesh_esfera.center_offset = Vector3(0, 0, 0)
+	quad_mesh_esfera.flip_faces = false
+	quad_mesh_esfera.material = material_sphere;
+	
+	var quad_mesh_numero: Mesh = QuadMesh.new();
+	quad_mesh_numero.size = Vector2(0.075, 0.075)  # Tamaño del quad
+	quad_mesh_numero.orientation = PlaneMesh.FACE_Z  # Orientación frontal
+	quad_mesh_numero.center_offset = Vector3(0, 0, 0)
+	quad_mesh_numero.flip_faces = false
+	quad_mesh_numero.material = material_label;
 		
 	var i = 0;
 	var estacion: Estacion;
@@ -70,11 +75,11 @@ func _ready() -> void:
 	multi_mesh_instance_3d_bombas.material_override = material_bomba
 	
 	multi_mesh_instance_3d_esferas.multimesh.instance_count = meshes.size();
-	multi_mesh_instance_3d_esferas.multimesh.mesh = instanced_sphere.mesh;
+	multi_mesh_instance_3d_esferas.multimesh.mesh = quad_mesh_esfera;
 	multi_mesh_instance_3d_esferas.material_override = material_sphere
 	
 	multi_mesh_instance_3d_labels.multimesh.instance_count = meshes.size();
-	multi_mesh_instance_3d_labels.multimesh.mesh = quad_mesh;
+	multi_mesh_instance_3d_labels.multimesh.mesh = quad_mesh_numero;
 	multi_mesh_instance_3d_labels.material_override = material_label;
 	
 	for child in meshes:
@@ -107,7 +112,7 @@ func _ready() -> void:
 				area.input_ray_pickable = true 
 
 				var collision_shape : CollisionShape3D = CollisionShape3D.new()
-				collision_shape.shape = instanced_sphere.mesh.create_convex_shape()
+				collision_shape.shape = quad_mesh_esfera.create_convex_shape()
 				
 				var static_body : StaticBody3D = StaticBody3D.new()
 				static_body.transform = base_transform_sphere

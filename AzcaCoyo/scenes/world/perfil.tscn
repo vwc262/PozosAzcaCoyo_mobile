@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxb8htp2e36gn"]
+[gd_scene load_steps=15 format=3 uid="uid://dxb8htp2e36gn"]
 
 [ext_resource type="Script" uid="uid://bwu6lc6dcuoxe" path="res://scripts/perfil/perfil_manager.gd" id="1_4vis5"]
 [ext_resource type="Script" uid="uid://bx0ayjha5j45m" path="res://scripts/Navigation/perfil_camera.gd" id="1_x21ip"]
@@ -50,6 +50,8 @@ resource_local_to_scene = true
 transform_format = 1
 use_colors = true
 use_custom_data = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_k1wh0"]
 
 [node name="Perfil" type="Node3D"]
 script = ExtResource("1_4vis5")
@@ -106,3 +108,8 @@ multimesh = SubResource("MultiMesh_ab143")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, 0)
 multimesh = SubResource("MultiMesh_5fpvp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82394, 2.07784)
+material_override = ExtResource("2_4vis5")
+mesh = SubResource("QuadMesh_k1wh0")

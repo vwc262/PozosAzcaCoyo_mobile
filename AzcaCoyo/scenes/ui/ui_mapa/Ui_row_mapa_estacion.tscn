@@ -50,6 +50,17 @@ offset_bottom = 60.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_soy30")
 
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+mouse_filter = 1
+flat = true
+
 [node name="TextureRect" type="TextureRect" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
@@ -143,15 +154,4 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_06db2")
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-mouse_filter = 1
-flat = true
-
-[connection signal="gui_input" from="Button" to="." method="_on_button_gui_input"]
+[connection signal="gui_input" from="Panel/Button" to="." method="_on_button_gui_input"]

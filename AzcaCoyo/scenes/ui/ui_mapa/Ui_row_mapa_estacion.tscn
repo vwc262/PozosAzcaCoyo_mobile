@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bm34a4cfowx5o"]
+[gd_scene load_steps=14 format=3 uid="uid://bm34a4cfowx5o"]
 
 [ext_resource type="Script" uid="uid://byf5jnvk17gkv" path="res://scripts/ui/perfil/ui_row_mapa_estacion.gd" id="1_06db2"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_0n88w"]
-[ext_resource type="Texture2D" uid="uid://c7aecllamrnaj" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="4_v1kke"]
+[ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="4_f5q1v"]
+[ext_resource type="Texture2D" uid="uid://bpwkyhf0kmket" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="4_v1kke"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_soy30"]
 
@@ -25,6 +26,10 @@ atlas = SubResource("AtlasTexture_6js2s")
 region = Rect2(508, 513, 1012, 63)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06db2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg6k0"]
+atlas = ExtResource("4_f5q1v")
+region = Rect2(1600, 1070, 60, 60)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5q1v"]
 atlas = ExtResource("4_v1kke")
@@ -116,6 +121,35 @@ theme_override_fonts/font = ExtResource("2_0n88w")
 theme_override_font_sizes/font_size = 24
 text = "Nombre del sitio"
 
+[node name="Button" type="Button" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_xg6k0")
+expand_mode = 1
+
+[node name="VSeparator4" type="VSeparator" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(53, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_06db2")
+
 [node name="Date" type="Label" parent="Panel/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -155,3 +189,4 @@ mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_06db2")
 
 [connection signal="gui_input" from="Panel/Button" to="." method="_on_button_gui_input"]
+[connection signal="gui_input" from="Panel/HBoxContainer/Button" to="." method="_on_button_go_ToParticular"]

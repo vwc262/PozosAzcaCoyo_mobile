@@ -3,8 +3,9 @@ extends Node
 @onready var http_request: HTTPRequest = %HTTPRequest
 @onready var name_site = %name_site
 @onready var tr_bomba: TextureRect = %tr_bomba
-@onready var lbl_ejecutando: Label = %lbl_ejecutando
+@onready var lbl_accion: Label = %lbl_accion
 @onready var lbl_perilla_bomba: Label = %lbl_perilla_bomba
+@onready var lbl_edo_bomba: Label = %lbl_edo_bomba
 @onready var tr_accion: TextureRect = %tr_accion
 @onready var tr_ejecutar: TextureRect = %tr_ejecutar
 @onready var ejecutar_background: TextureRect = %ejecutar_background
@@ -23,13 +24,8 @@ var bomba: Señal;
 var perilla: Señal;
 
 const boton_accion := {
-	true: Rect2(1343, 1513, 107, 251),
-	false: Rect2(1480, 1513, 107, 251),
-}
-
-const boton_ejecucion := {
-	true: Rect2(1606, 1512, 208, 103),
-	false: Rect2(1606, 1625, 208, 103),
+	true: Rect2(760, 2065, 179, 182),
+	false: Rect2(760, 2265, 179, 182),
 }
 
 #region Datos API
@@ -60,21 +56,25 @@ func _on_update_app() -> void:
 
 		tr_bomba.modulate = bomba.get_color_bomba_string();
 		lbl_perilla_bomba.text = "REM" if perilla.valor == 1 else "LOC" if perilla.valor == 2 else "OFF"
-		
-	#anim_ejecutar();
+		lbl_edo_bomba.text = "ENCENDIDA" if bomba.valor == 1 else "APAGADA" if perilla.valor == 2 else "EN FALLA" if perilla.valor == 3 else "NO DISPONIBLE"
+		lbl_edo_bomba.add_theme_color_override("font_color", Color.GREEN if bomba.valor == 1 else Color.RED if perilla.valor == 2 else Color.BLUE if perilla.valor == 3 else Color.DIM_GRAY)
 
 func _on_button_accion_pressed() -> void:
 	arrancar = !arrancar
 	tr_accion.texture.set("region", boton_accion[arrancar])
 
 	ejecutar = false
-	tr_ejecutar.texture.set("region", boton_ejecucion[ejecutar])
+	tr_ejecutar.visible = true;
 
-	lbl_ejecutando.text = "ARRANCAR" if arrancar else "PARAR"
-
+	lbl_accion.text = "ENCENDER" if arrancar else "APAGAR"
+	lbl_accion.label_settings.font_color = Color.GREEN if arrancar else Color.RED
+	show = true;
+	ejecutar_background.visible = false;
+	color_rect_background.visible = false;
+	
 func _on_button_ejecutar_pressed() -> void:
 	ejecutar = !ejecutar
-	tr_ejecutar.texture.set("region", boton_ejecucion[ejecutar])
+	tr_ejecutar.visible = false;
 
 	send_command();
 
@@ -93,25 +93,26 @@ func _on_site_row_clicked(_id_estacion: int, _id_proyecto: int):
 		_on_update_app()
 
 func send_command():
-	lbl_ejecutando.text = "EJECUTANDO\r\nEL COMANDO";
+	anim_ejecutar("COMANDO ENVIADO");
 	data_to_send.Codigo = armar_codigo();
 	data_to_send.idEstacion = id_estacion
 
 	http_request.request(uri_reportes + str(id_proyecto), HEADERS, HTTPClient.METHOD_POST, JSON.stringify(data_to_send))
+	
 
 func armar_codigo() -> int:
 	return ((id_estacion << 8) | (bomba.ordinal << 4) | ( 1 if arrancar else 2));
 
 func _on_http_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, _body: PackedByteArray) -> void:
 	if _result == http_request.RESULT_SUCCESS:
-		lbl_ejecutando.text = "COMANDO\r\nEJECUTADO"
+		anim_ejecutar("COMANDO EJECUTADO");
 
 	ejecutar = false
-	tr_ejecutar.texture.set("region", boton_ejecucion[ejecutar])
 	
 var show = true;
 	
-func anim_ejecutar():
+func anim_ejecutar(text: String):
+	text_to_display = text;
 	
 	print("anim_ejecutar: ", show)
 	
@@ -161,13 +162,15 @@ func _process(delta):
 			# Cuando termina la escritura, mostrar texto final
 			display_text = current_text
 			is_writing = false
+			
+			#tr_ejecutar.visible = true;
 		
 		label.text = display_text
 		
-@export var text_to_display: String = "ENVIANDO COMANDO"
-@export var character_delay: float = 0.085  # Delay entre caracteres
-@export var matrix_change_speed: float = 0.02  # Velocidad del cambio de caracteres Matrix
-@export var matrix_characters: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*+-/="
+var text_to_display: String = "ENVIANDO COMANDO"
+var character_delay: float = 0.085  # Delay entre caracteres
+var matrix_change_speed: float = 0.02  # Velocidad del cambio de caracteres Matrix
+var matrix_characters: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*+-/="
 
 var current_text: String = ""
 var current_index: int = 0

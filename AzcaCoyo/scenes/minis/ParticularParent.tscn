@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://scvkvydl7flx"]
+
+[ext_resource type="PackedScene" uid="uid://yhjs6feyhh6n" path="res://scenes/minis/Vis1Sitio.tscn" id="1_uii36"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Node3D" parent="." instance=ExtResource("1_uii36")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-3.84499e-08, -0.475655, 0.879632, -2.07915e-08, 0.879632, 0.475655, -1, -1.43521e-15, -4.37114e-08, 51.2435, 21.2187, -1.43891)
+current = true

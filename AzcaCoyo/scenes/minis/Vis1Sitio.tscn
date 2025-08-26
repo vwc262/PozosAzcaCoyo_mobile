@@ -1,10 +1,10 @@
-[gd_scene load_steps=32 format=4 uid="uid://yhjs6feyhh6n"]
+[gd_scene load_steps=32 format=4 uid="uid://clau2t3o727nr"]
 
 [ext_resource type="PackedScene" uid="uid://ebl2i7a2l1m3" path="res://assets/models/Sitios/PozoPart_01_Azcp.glb" id="1_b5sf2"]
 [ext_resource type="PackedScene" uid="uid://b76w1ats4g8sq" path="res://assets/models/Sitios/Ciclorama_Part.glb" id="2_runaa"]
 [ext_resource type="Texture2D" uid="uid://dvho0vt0lsjxp" path="res://assets/textures/Tiles/Scratched_Painted_Metal_D.jpg" id="2_v2fqj"]
 [ext_resource type="Texture2D" uid="uid://8nieyfk44hq7" path="res://assets/textures/Tiles/StainedConcrete_2K_D.jpg" id="3_ecxm5"]
-[ext_resource type="Shader" uid="uid://crr80b68oyeeu" path="res://assets/shaders/HoloWallCiclorama.gdshader" id="3_rukll"]
+[ext_resource type="Shader" path="res://assets/shaders/HoloWallCiclorama.gdshader" id="3_rukll"]
 [ext_resource type="Texture2D" uid="uid://1ggsutixoeb1" path="res://assets/textures/FX/Txt_dots_ciclorama.png" id="4_6c53l"]
 [ext_resource type="Texture2D" uid="uid://8tla7xu5r6s5" path="res://assets/textures/Tiles/Stucco_2K_Albedo.jpg" id="4_n2mcf"]
 [ext_resource type="Texture2D" uid="uid://bll734sbsfncg" path="res://assets/textures/Tiles/Cast_In_Situ_Concrete_2K_D.jpg" id="5_0q3yx"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://byf5jnvk17gkv" path="res://scripts/ui/perfil/ui_row_mapa_estacion.gd" id="1_06db2"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_0n88w"]
-[ext_resource type="Texture2D" uid="uid://8ns5dwox47go" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="4_v1kke"]
+[ext_resource type="Texture2D" uid="uid://c7aecllamrnaj" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="4_v1kke"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_soy30"]
 

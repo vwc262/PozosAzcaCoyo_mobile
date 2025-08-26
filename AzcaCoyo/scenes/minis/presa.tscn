@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dty3vyoo461ur"]
-
-[ext_resource type="Script" uid="uid://it644v7aonvp" path="res://scripts/perfil/mini_perfil_data.gd" id="1_ds3uc"]
-
-[node name="Presa" type="Node3D"]
-script = ExtResource("1_ds3uc")

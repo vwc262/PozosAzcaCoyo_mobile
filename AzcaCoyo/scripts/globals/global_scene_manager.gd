@@ -17,7 +17,7 @@ var last_sitename : String = ''
 
 #region Rutas Escenas
 var scene_perfil = "res://scenes/world/"
-var scene_particular = "res://scenes/sitios/"
+var scene_particular = "res://scenes/minis/"
 #endregion
 
 #region Modulo Actual

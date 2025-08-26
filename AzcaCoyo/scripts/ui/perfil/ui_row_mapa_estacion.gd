@@ -60,3 +60,4 @@ func _manejar_click():
 
 	if intervalo < UMBRAL_SINGLE_CLICK:
 		GlobalSignals.on_mini_site_clicked.emit(id_Estacion, id_Proyecto)
+		#GlobalSceneManager.load_particular("ParticularParent") -- ir a

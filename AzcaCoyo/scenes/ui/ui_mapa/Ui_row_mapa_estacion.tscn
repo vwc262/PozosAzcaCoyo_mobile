@@ -189,4 +189,4 @@ mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_06db2")
 
 [connection signal="gui_input" from="Panel/Button" to="." method="_on_button_gui_input"]
-[connection signal="gui_input" from="Panel/HBoxContainer/Button" to="." method="_on_button_go_ToParticular"]
+[connection signal="gui_input" from="Panel/HBoxContainer/Button" to="." method="_on_button_go_to_particular"]

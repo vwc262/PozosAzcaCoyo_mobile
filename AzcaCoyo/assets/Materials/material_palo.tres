@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c7i2k65dye21d"]
+
+[ext_resource type="Shader" uid="uid://dylfb6nt5cevo" path="res://assets/shaders/shader_palo.gdshader" id="1_y1bya"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_y1bya")
+shader_parameter/base_color = Color(0.113725, 0.607843, 0.941176, 0.447059)
+shader_parameter/stripe_color = Color(0.0784314, 0.741176, 0.941176, 0.945098)
+shader_parameter/stripe_width = 0.1
+shader_parameter/stripe_speed = 1.0
+shader_parameter/use_world_coords = false
+shader_parameter/escala_minima = 0.025
+shader_parameter/escala_maxima = 0.3
+shader_parameter/distancia_minima = 0.03
+shader_parameter/distancia_maxima = 10.0
+shader_parameter/altura_minima = 0.0
+shader_parameter/altura_maxima = 1.0

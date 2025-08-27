@@ -4,19 +4,21 @@ extends Node3D
 @onready var mesh_mapa: Node3D = $MeshMapa
 @onready var multi_mesh_instance_3d_bombas: MultiMeshInstance3D = %MultiMeshInstance3D_bombas
 @onready var multi_mesh_instance_3d_esferas: MultiMeshInstance3D = %MultiMeshInstance3D_esferas
+@onready var multi_mesh_instance_3d_palos: MultiMeshInstance3D = %MultiMeshInstance3D_palos
 @onready var multi_mesh_instance_3d_labels: MultiMeshInstance3D = %MultiMeshInstance3D_labels
 
 @onready var posiciones_coyo_azc: Node3D = %posiciones_coyoAzc
 
 @export var material_bomba: Material;
 @export var material_sphere: Material;
+@export var material_palos: Material;
 @export var material_label: Material;
 
 var diccionario_sitios: Dictionary = {};
 @onready var camera_3d_perfil: TouchCameraController = %Camera3D_Perfil
 
 const BOMBA_AZCACOYO_01 = preload("res://assets/models/Perfil/iconos/Bomba_Azcacoyo_01.glb")
-const ETIQUETA_PERFIL_3D = preload("res://assets/models/Props/Etiqueta_Perfil_3D.glb")
+const MARCADOR_SITIO = preload("res://assets/Prefab/MarcadorSitio.tscn")
 
 #region input
 const UMBRAL_SINGLE_CLICK := 0.25
@@ -42,26 +44,35 @@ func _ready() -> void:
 	multi_mesh_instance_3d_esferas.multimesh.use_custom_data = true;
 	multi_mesh_instance_3d_esferas.multimesh.transform_format = MultiMesh.TRANSFORM_3D;
 	
+	multi_mesh_instance_3d_palos.multimesh.instance_count = 0;
+	multi_mesh_instance_3d_palos.multimesh.use_colors = true;
+	multi_mesh_instance_3d_palos.multimesh.use_custom_data = true;
+	multi_mesh_instance_3d_palos.multimesh.transform_format = MultiMesh.TRANSFORM_3D;
+	
 	multi_mesh_instance_3d_labels.multimesh.instance_count = 0;
 	multi_mesh_instance_3d_labels.multimesh.use_colors = true;
 	multi_mesh_instance_3d_labels.multimesh.use_custom_data = true;
 	multi_mesh_instance_3d_labels.multimesh.transform_format = MultiMesh.TRANSFORM_3D;
 	
 	var instanced_bomba: MeshInstance3D = BOMBA_AZCACOYO_01.instantiate().get_child(0);
-	var instanced_sphere: MeshInstance3D = ETIQUETA_PERFIL_3D.instantiate().get_child(0);
+	var instanced_marker: Node3D = MARCADOR_SITIO.instantiate();
 	
-	var quad_mesh: Mesh = QuadMesh.new();
-	quad_mesh.size = Vector2(0.075, 0.075)  # Tamaño del quad
-	quad_mesh.orientation = PlaneMesh.FACE_Z  # Orientación frontal
-	quad_mesh.center_offset = Vector3(0, 0, 0)
-	quad_mesh.flip_faces = false
-	quad_mesh.material = material_label;
+	var instanced_sphere: MeshInstance3D = instanced_marker.get_node("bola");
+	var instanced_palo: MeshInstance3D = instanced_marker.get_node("palo");
+	
+	var quad_mesh_numero: Mesh = QuadMesh.new();
+	quad_mesh_numero.size = Vector2(0.075, 0.075)  # Tamaño del quad
+	quad_mesh_numero.orientation = PlaneMesh.FACE_Z  # Orientación frontal
+	quad_mesh_numero.center_offset = Vector3(0, 0, 0)
+	quad_mesh_numero.flip_faces = false
+	quad_mesh_numero.material = material_label;
 		
 	var i = 0;
 	var estacion: Estacion;
 	var meshes = posiciones_coyo_azc.get_children();
 	var base_transform_bomba = Transform3D.IDENTITY;
 	var base_transform_sphere = Transform3D.IDENTITY;
+	var base_transform_palos = Transform3D.IDENTITY;
 	var base_transform_labels = Transform3D.IDENTITY;
 	var base_transform_poi = Transform3D.IDENTITY;
 	
@@ -73,8 +84,12 @@ func _ready() -> void:
 	multi_mesh_instance_3d_esferas.multimesh.mesh = instanced_sphere.mesh;
 	multi_mesh_instance_3d_esferas.material_override = material_sphere
 	
+	multi_mesh_instance_3d_palos.multimesh.instance_count = meshes.size();
+	multi_mesh_instance_3d_palos.multimesh.mesh = instanced_palo.mesh;
+	multi_mesh_instance_3d_palos.material_override = material_palos
+	
 	multi_mesh_instance_3d_labels.multimesh.instance_count = meshes.size();
-	multi_mesh_instance_3d_labels.multimesh.mesh = quad_mesh;
+	multi_mesh_instance_3d_labels.multimesh.mesh = quad_mesh_numero;
 	multi_mesh_instance_3d_labels.material_override = material_label;
 	
 	for child in meshes:
@@ -92,34 +107,38 @@ func _ready() -> void:
 						break;
 
 				base_transform_bomba = Transform3D.IDENTITY;
-				base_transform_bomba.origin = child.position
+				base_transform_bomba.origin = child.position + Vector3(0.0,0.27,0.0)
 				base_transform_bomba.basis = Basis.from_euler(Vector3(0,0,0))
 				
 				base_transform_sphere = Transform3D.IDENTITY;
-				base_transform_sphere.origin = child.position
+				base_transform_sphere.origin = child.position + Vector3(0.0,0.379,0.0)
 				base_transform_sphere.basis = Basis.from_euler(Vector3(0,0,0))
 				
+				base_transform_palos = Transform3D.IDENTITY;
+				base_transform_palos.origin = child.position + Vector3(0.0,0.347,0.0)
+				base_transform_palos.basis = Basis.from_euler(Vector3(0,0,0))
+				
 				base_transform_labels = Transform3D.IDENTITY;
-				base_transform_labels.origin = child.position + Vector3(0.0,0.0,-0.01)
+				base_transform_labels.origin = child.position + Vector3(0.0,0.379,0.00)
 				base_transform_labels.basis = Basis.from_euler(Vector3(0,0,0))
 				
-				var area = Area3D.new()
-				area.input_ray_pickable = true 
+				#var area = Area3D.new()
+				#area.input_ray_pickable = true 
 
-				var collision_shape : CollisionShape3D = CollisionShape3D.new()
-				collision_shape.shape = instanced_sphere.mesh.create_convex_shape()
+				#var collision_shape : CollisionShape3D = CollisionShape3D.new()
+				#collision_shape.shape = instanced_sphere.mesh.create_convex_shape()
 				
-				var static_body : StaticBody3D = StaticBody3D.new()
-				static_body.transform = base_transform_sphere
-				#static_body.visible = false;
+				#var static_body : StaticBody3D = StaticBody3D.new()
+				#static_body.transform = base_transform_sphere
 
-				area.add_child(collision_shape);
-				static_body.add_child(area);
-				multi_mesh_instance_3d_esferas.add_child(static_body)
-				area.input_event.connect(_on_area_3d_input_event.bind(i))
+				#area.add_child(collision_shape);
+				#static_body.add_child(area);
+				#multi_mesh_instance_3d_esferas.add_child(static_body)
+				#area.input_event.connect(_on_area_3d_input_event.bind(i))
 				
 				multi_mesh_instance_3d_bombas.multimesh.set_instance_transform(i, base_transform_bomba)
 				multi_mesh_instance_3d_esferas.multimesh.set_instance_transform(i, base_transform_sphere)
+				multi_mesh_instance_3d_palos.multimesh.set_instance_transform(i, base_transform_palos)
 				multi_mesh_instance_3d_labels.multimesh.set_instance_transform(i, base_transform_labels)
 				
 				multi_mesh_instance_3d_labels.multimesh.set_instance_custom_data(i, Color(id_estacion / 255.0, 0, 0, 0))
@@ -175,16 +194,24 @@ func _on_update_app():
 func _process(_delta: float):
 	for i in diccionario_sitios.keys():
 		var camera_pos = camera_3d_perfil.global_position
-		var _transform = multi_mesh_instance_3d_labels.multimesh.get_instance_transform(i)
-		var world_pos = global_transform * _transform.origin
+		var _transform_label = multi_mesh_instance_3d_labels.multimesh.get_instance_transform(i)
+		var _transform_sphere = multi_mesh_instance_3d_esferas.multimesh.get_instance_transform(i)
 		
+		var world_pos = global_transform * _transform_label.origin
 		var look_dir = (camera_pos - world_pos).normalized()
-		_transform.basis = Basis.looking_at(-look_dir, Vector3.UP)
 		
-		#var distance = world_pos.distance_to(camera_pos)
-		#var distance_factor = clamp(distance / 10.0, 0.0, 1.0)
-		#var offset_y = 0.1 * distance_factor
-		#
-		#_transform.origin.y = diccionario_sitios.get(i).position_label + offset_y
+		_transform_label.basis = Basis.looking_at(-look_dir, Vector3.UP)
+		_transform_sphere.basis = Basis.looking_at(-look_dir, Vector3.UP)
 		
-		multi_mesh_instance_3d_labels.multimesh.set_instance_transform(i, _transform)
+		var euler_angles = _transform_sphere.basis.get_euler()
+		_transform_sphere.basis = Basis.from_euler(Vector3(euler_angles.x, 0, euler_angles.z))
+		
+		euler_angles = _transform_label.basis.get_euler()
+		_transform_label.basis = Basis.from_euler(Vector3(euler_angles.x, 0, euler_angles.z))
+
+		multi_mesh_instance_3d_labels.multimesh.set_instance_transform(i, _transform_label)
+		multi_mesh_instance_3d_esferas.multimesh.set_instance_transform(i, _transform_sphere)
+		
+		#var dic = diccionario_sitios.get(i);
+		#if dic.id_proyecto == 22 and (dic.id_estacion == 10 or dic.id_estacion == 3):
+			#print(dic.id_estacion, " -------------- ",  _transform_palos.origin);

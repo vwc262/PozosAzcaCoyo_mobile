@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b00fcff08gpwp"]
 
 [ext_resource type="Shader" uid="uid://chmnfk2ipxkqj" path="res://assets/shaders/FX/GradientColorTransition.gdshader" id="1_nx1ts"]
-[ext_resource type="Texture2D" uid="uid://ba86muio42eai" path="res://assets/textures/FX/gradient_texture_onOff_2d.tres" id="2_jnbtn"]
+[ext_resource type="Texture2D" uid="uid://b2uj7s66ktroo" path="res://assets/textures/FX/gradient_texture_onOff_2d.tres" id="2_jnbtn"]
 
 [resource]
 render_priority = 0

@@ -16,16 +16,26 @@ extends Node3D
 @export var min_distance: float = 55.0
 @export var max_distance: float = 75.0
 
+# POSICIÓN INICIAL (ángulos en grados)
+@export var initial_x_rotation: float = -30.0  # Inclinación inicial
+@export var initial_y_rotation: float = 95.0   # Rotación horizontal inicial
+
 # Variables internas
 var rotation_x: float = 0.0
 var rotation_y: float = 0.0
 var target_rotation: Vector2 = Vector2.ZERO
-var current_distance: float = 5.0
+var current_distance: float = 65.0
 
 # Referencia a la cámara
 @onready var camera: Camera3D = $Camera3D
 
 func _ready():
+	
+	 # Configurar posición inicial
+	rotation_x = deg_to_rad(initial_x_rotation)
+	rotation_y = deg_to_rad(initial_y_rotation)
+	target_rotation = Vector2(rotation_x, rotation_y)
+	
 	# Configurar distancia inicial
 	current_distance = camera_distance
 	update_camera_position()

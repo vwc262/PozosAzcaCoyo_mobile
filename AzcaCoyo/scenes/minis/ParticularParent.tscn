@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://clau2t3o727nr" path="res://scenes/minis/Vis1Sitio.tscn" id="1_uii36"]
 [ext_resource type="Script" uid="uid://bjaxgacvnqvh2" path="res://scripts/Navigation/camera_orbit.gd" id="2_uqbyq"]
 [ext_resource type="Shader" uid="uid://chmnfk2ipxkqj" path="res://assets/shaders/FX/GradientColorTransition.gdshader" id="3_jfwk5"]
-[ext_resource type="Texture2D" uid="uid://ba86muio42eai" path="res://assets/textures/FX/gradient_texture_onOff_2d.tres" id="4_1f4se"]
+[ext_resource type="Texture2D" uid="uid://b2uj7s66ktroo" path="res://assets/textures/FX/gradient_texture_onOff_2d.tres" id="4_1f4se"]
 [ext_resource type="PackedScene" uid="uid://hj7b2rt8b13h" path="res://assets/models/Sitios/BomaPart_Azcp_01.glb" id="5_6je5f"]
 [ext_resource type="Material" uid="uid://b00fcff08gpwp" path="res://assets/Materials/ParticularBombaFX.tres" id="6_6je5f"]
 [ext_resource type="Texture2D" uid="uid://brjqoxpber7rq" path="res://assets/textures/FX/dot_bright.png" id="7_p5eyc"]
@@ -36,6 +36,7 @@ size = Vector2(2, 2)
 [node name="CameraOrbit" type="Node3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -10, -5)
 script = ExtResource("2_uqbyq")
+camera_distance = 65.0
 
 [node name="Camera3D" type="Camera3D" parent="Pivot/CameraOrbit"]
 transform = Transform3D(-3.84499e-08, -0.475655, 0.879632, -2.07915e-08, 0.879632, 0.475655, -1, 1.77636e-14, -4.37113e-08, 51.2435, 21.2187, -1.43891)

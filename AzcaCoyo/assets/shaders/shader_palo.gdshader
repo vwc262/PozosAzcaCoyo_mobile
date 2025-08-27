@@ -39,7 +39,7 @@ void vertex() {
 	float peso = 1.0 - remap(distancia_camara, distancia_minima, distancia_maxima, 0.0, 1.0);
 	float desplazamiento_y = mix(altura_minima, altura_maxima, peso) / 100.0;
     
-    VERTEX = VERTEX * factor_escala * vec3(0.2, 1.0, 0.2);
+    VERTEX = VERTEX * factor_escala * vec3(0.1, 1.0, 0.1);
 	VERTEX.y += desplazamiento_y;
     NORMAL = normalize(NORMAL / factor_escala);
 }

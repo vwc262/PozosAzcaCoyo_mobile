@@ -1,9 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://clnmqye7ns1ni"]
+[gd_scene load_steps=31 format=3 uid="uid://clnmqye7ns1ni"]
 
 [ext_resource type="PackedScene" uid="uid://ujssxlwvupla" path="res://scenes/ui/ui_mapa/ui_header_mapa.tscn" id="1_88x2m"]
 [ext_resource type="Script" uid="uid://didwhedxkgo3c" path="res://scripts/ui/mapa/ui_mapa.gd" id="1_otdg0"]
 [ext_resource type="PackedScene" uid="uid://dtdo0ib2qvk6d" path="res://scenes/ui/ui_mapa/ui_row_mapa.tscn" id="3_1os0f"]
-[ext_resource type="Texture2D" uid="uid://dxssyu32le4sh" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_3b2s8"]
+[ext_resource type="Texture2D" uid="uid://dfrltw8q82bqd" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_3b2s8"]
 [ext_resource type="PackedScene" uid="uid://0op1dh0r0bxv" path="res://scenes/ui/graficador/ui_graficador.tscn" id="6_0p2wn"]
 [ext_resource type="PackedScene" uid="uid://c028k4c1iuku2" path="res://scenes/ui/arranque_paro/arranque_paro.tscn" id="6_1os0f"]
 
@@ -30,15 +30,25 @@ region = Rect2(835.711, 1017.98, 90.9795, 339.373)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ykm6e"]
 atlas = SubResource("AtlasTexture_2dmoo")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ykm6e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4fge"]
+resource_local_to_scene = true
+atlas = ExtResource("5_3b2s8")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4ifr"]
+atlas = SubResource("AtlasTexture_j4fge")
+region = Rect2(1694, 1053, 94, 94)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ik3r0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1os0f"]
 resource_local_to_scene = true
-atlas = SubResource("CompressedTexture2D_58qqc")
-region = Rect2(1429, 1057, 95, 94)
+atlas = ExtResource("5_3b2s8")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vlgnv"]
 atlas = SubResource("AtlasTexture_1os0f")
+region = Rect2(1429, 1057, 95, 94)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oiiik"]
 
@@ -48,7 +58,7 @@ atlas = ExtResource("5_3b2s8")
 [sub_resource type="AtlasTexture" id="AtlasTexture_oiiik"]
 resource_local_to_scene = true
 atlas = SubResource("AtlasTexture_ik3r0")
-region = Rect2(1429, 1177, 95, 127)
+region = Rect2(1429, 1177, 95, 120)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2dmoo"]
 
@@ -102,9 +112,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -100.0
+offset_left = -130.0
 offset_top = 80.0
-offset_bottom = 419.0
+offset_bottom = 520.7
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1os0f")
 
@@ -112,68 +122,94 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_1os0f")
 layout_mode = 2
 texture = SubResource("AtlasTexture_ykm6e")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_left = 985.0
-offset_top = 84.71
-offset_right = 1080.0
-offset_bottom = 178.71
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -130.0
+offset_top = 82.0
+offset_bottom = 522.0
+grow_horizontal = 0
+
+[node name="perfil_container" type="PanelContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ykm6e")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/perfil_container"]
+custom_minimum_size = Vector2(0, 122)
+layout_mode = 2
+texture = SubResource("AtlasTexture_h4ifr")
+
+[node name="goToPerfil" type="Button" parent="VBoxContainer/perfil_container/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+flat = true
+
+[node name="reset_container" type="PanelContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ik3r0")
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/reset_container"]
+custom_minimum_size = Vector2(0, 122)
 layout_mode = 2
 texture = SubResource("AtlasTexture_vlgnv")
 
-[node name="button_reset" type="Button" parent="PanelContainer/TextureRect"]
-layout_mode = 2
-offset_right = 95.0
-offset_bottom = 94.0
+[node name="button_reset" type="Button" parent="VBoxContainer/reset_container/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 0
 flat = true
 
-[node name="arranque_paro_container" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -95.0
-offset_top = 186.575
-offset_bottom = 313.575
-grow_horizontal = 0
+[node name="arranque_paro_container" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_oiiik")
 
-[node name="ControlTexture" type="TextureRect" parent="arranque_paro_container"]
+[node name="ControlTexture" type="TextureRect" parent="VBoxContainer/arranque_paro_container"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 156)
 layout_mode = 2
 texture = SubResource("AtlasTexture_oiiik")
 
-[node name="button_arranque_paro" type="Button" parent="arranque_paro_container/ControlTexture"]
+[node name="button_arranque_paro" type="Button" parent="VBoxContainer/arranque_paro_container/ControlTexture"]
 layout_mode = 1
-offset_right = 95.0
-offset_bottom = 127.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 0
 flat = true
 
-[node name="graficador_container" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -95.0
-offset_top = 311.1
-offset_bottom = 405.1
-grow_horizontal = 0
+[node name="graficador_container" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2dmoo")
 
-[node name="GraficadorTexture" type="TextureRect" parent="graficador_container"]
+[node name="GraficadorTexture" type="TextureRect" parent="VBoxContainer/graficador_container"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 122)
 layout_mode = 2
 texture = SubResource("AtlasTexture_vnit6")
 
-[node name="button_graficador" type="Button" parent="graficador_container/GraficadorTexture"]
-layout_mode = 2
-offset_right = 95.0
-offset_bottom = 94.0
+[node name="button_graficador" type="Button" parent="VBoxContainer/graficador_container/GraficadorTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 0
 flat = true
 
@@ -297,7 +333,8 @@ offset_bottom = 984.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[connection signal="pressed" from="PanelContainer/TextureRect/button_reset" to="." method="_on_button_reset_pressed"]
-[connection signal="pressed" from="arranque_paro_container/ControlTexture/button_arranque_paro" to="." method="_on_button_arranque_paro_pressed"]
-[connection signal="pressed" from="graficador_container/GraficadorTexture/button_graficador" to="." method="_on_button_graficador_pressed"]
+[connection signal="pressed" from="VBoxContainer/perfil_container/TextureRect/goToPerfil" to="." method="_on_go_to_perfil_pressed"]
+[connection signal="pressed" from="VBoxContainer/reset_container/TextureRect/button_reset" to="." method="_on_button_reset_pressed"]
+[connection signal="pressed" from="VBoxContainer/arranque_paro_container/ControlTexture/button_arranque_paro" to="." method="_on_button_arranque_paro_pressed"]
+[connection signal="pressed" from="VBoxContainer/graficador_container/GraficadorTexture/button_graficador" to="." method="_on_button_graficador_pressed"]
 [connection signal="gui_input" from="panel_lista_mapa/btn_esconder_lista" to="." method="_on_button_header_gui_input"]

@@ -89,3 +89,4 @@ func _go_to_particular():
 		print("ir a ", nombre_sitio)
 		_manejar_click()
 		GlobalSceneManager.load_particular("ParticularParent") # Ir a
+		GlobalSignals.on_go_perfil_particular.emit(true)

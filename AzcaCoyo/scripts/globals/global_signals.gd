@@ -9,6 +9,7 @@ signal on_mini_site_clicked(_id:int, _id_proyecto: int)
 signal on_go_to_poi(_tipo:TIPO_POI.ENUM_POI)
 signal on_agregar_poi_perfil(_id_estacion:int, _transform: Transform3D)
 signal on_desactivar_eventos(_desactivar: bool)
+signal on_go_perfil_particular(_isParticular: bool)
 #endregion
 
 #region UI <-> escenas
@@ -96,6 +97,12 @@ func connect_on_particular_loaded(callback:Callable,do_connect:bool) -> void:
 		on_particular_loaded.connect(callback)
 	elif on_particular_loaded.is_connected(callback):
 		on_particular_loaded.disconnect(callback)
+
+func connect_on_go_perfil_particular(callback:Callable,do_connect:bool) -> void:
+	if do_connect :
+		on_go_perfil_particular.connect(callback)
+	elif on_go_perfil_particular.is_connected(callback):
+		on_go_perfil_particular.disconnect(callback)
 
 func connect_on_desactivar_eventos(callback:Callable,do_connect:bool) -> void:
 	if do_connect :

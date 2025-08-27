@@ -2,6 +2,9 @@ extends Node
 
 @export var scene_row_mapa: PackedScene
 
+@onready var perfil_container = %perfil_container
+@onready var reset_container = %reset_container
+
 @onready var container: VBoxContainer = %VBoxContainer
 @onready var panel_lista_mapa: Panel = %panel_lista_mapa
 @onready var tr_btn_esconder: TextureRect = %tr_btn_esconder
@@ -14,6 +17,7 @@ extends Node
 
 const UMBRAL_SINGLE_CLICK := 0.25
 
+var isParticular: bool = false
 var transition_time: float = 0.75;
 var tiempo_click: float = 0.0
 var hiden_panel: bool = false
@@ -21,8 +25,8 @@ var canHidden: bool = true
 var tween_actual: Tween
 
 const bombas_coor := {
-	true: Rect2(1589, 1177, 95, 127),
-	false: Rect2(1429, 1177, 95, 127)
+	true: Rect2(1589, 1177, 95, 120),
+	false: Rect2(1429, 1177, 95, 120)
 }
 
 const graficador_coor := {
@@ -39,11 +43,13 @@ func _ready() -> void:
 	GlobalSignals.connect_on_camera_leave_initial_position(_on_camera_leave_initial_position, true)
 	GlobalSignals.connect_on_camera_reset_position(_on_camera_reset_position, true)
 	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, true)
+	GlobalSignals.connect_on_go_perfil_particular(_set_perfil_reset, true)
 
 func _exit_tree() -> void:
 	GlobalSignals.connect_on_camera_leave_initial_position(_on_camera_leave_initial_position, false)
 	GlobalSignals.connect_on_camera_reset_position(_on_camera_reset_position, false)
 	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, false)
+	GlobalSignals.connect_on_go_perfil_particular(_set_perfil_reset, false)
 
 func get_tween():
 	var tween = create_tween().set_parallel(true) 
@@ -108,6 +114,10 @@ func _set_texture_buttons(control: bool, graficador: bool):
 	control_texture.texture.set('region', bombas_coor[control])
 	graficador_texture.texture.set('region', graficador_coor[graficador])
 
+func _set_perfil_reset(_show: bool):
+	perfil_container.visible = _show
+	reset_container.visible = !_show
+
 func _on_button_reset_pressed() -> void:
 	canHidden = true
 	GlobalSignals.on_mini_site_clicked.emit(0, 0)
@@ -126,3 +136,7 @@ func _on_button_graficador_pressed() -> void:
 	_on_camera_reset_position()
 	_set_texture_buttons(false, true)
 	_moverPanel(arranque_paro, ui_graficador, 1105.0, 0.0)
+
+func _on_go_to_perfil_pressed():
+	GlobalSceneManager.load_perfil()
+	GlobalSignals.on_go_perfil_particular.emit(false)

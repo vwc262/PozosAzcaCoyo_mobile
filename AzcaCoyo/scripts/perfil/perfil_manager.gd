@@ -106,19 +106,19 @@ func _ready() -> void:
 						break;
 
 				base_transform_bomba = Transform3D.IDENTITY;
-				base_transform_bomba.origin = child.position + Vector3(0.002,0.29,0.0)
+				base_transform_bomba.origin = child.position + Vector3(0.002,0.318,0.0)
 				base_transform_bomba.basis = Basis.from_euler(Vector3(0,0,0))
 				
 				base_transform_sphere = Transform3D.IDENTITY;
-				base_transform_sphere.origin = child.position + Vector3(0.0,0.357,0.0)
+				base_transform_sphere.origin = child.position + Vector3(0.0,0.412,0.0)
 				base_transform_sphere.basis = Basis.from_euler(Vector3(0,0,0))
 				
 				base_transform_palos = Transform3D.IDENTITY;
-				base_transform_palos.origin = child.position + Vector3(0.0,0.325,0.0)
+				base_transform_palos.origin = child.position + Vector3(0.0,0.370,0.0)
 				base_transform_palos.basis = Basis.from_euler(Vector3(0,0,0))
 				
 				base_transform_labels = Transform3D.IDENTITY;
-				base_transform_labels.origin = child.position + Vector3(0.0,0.357,0.00)
+				base_transform_labels.origin = child.position + Vector3(0.0,0.412,0.00)
 				base_transform_labels.basis = Basis.from_euler(Vector3(0,0,0))
 				
 				#var area = Area3D.new()

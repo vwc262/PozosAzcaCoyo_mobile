@@ -7,10 +7,12 @@
 render_priority = 3
 shader = ExtResource("1_au20u")
 shader_parameter/numeros_texture = ExtResource("2_3n7yr")
-shader_parameter/color_texto = Color(1, 0.556863, 0, 1)
+shader_parameter/color_texto = Color(1, 1, 0, 1)
 shader_parameter/escala_numeros = 1.0
 shader_parameter/espaciado = -0.255
 shader_parameter/escala_minima = 0.25
 shader_parameter/escala_maxima = 2.5
 shader_parameter/distancia_minima = 0.03
 shader_parameter/distancia_maxima = 10.0
+shader_parameter/altura_minima = 0.0
+shader_parameter/altura_maxima = 1.0

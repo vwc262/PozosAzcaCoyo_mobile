@@ -2,7 +2,6 @@ shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled, depth_prepass_alpha;
 
 uniform sampler2D albedo_texture : source_color;
-uniform vec4 tint_color : source_color = vec4(1.0);
 uniform vec2 atlas_position = vec2(0.0, 0.0); // Posición en el atlas (0-1)
 uniform vec2 atlas_size = vec2(1.0, 1.0); 
 uniform vec2 resolution = vec2(1.0, 1.0); 
@@ -52,6 +51,6 @@ void fragment() {
 	atlas_uv /= resolution;
     
     vec4 texture_color = texture(albedo_texture, atlas_uv);
-    ALBEDO = texture_color.rgb * tint_color.rgb;
-    ALPHA = texture_color.a * tint_color.a;
+    ALBEDO = texture_color.rgb * instance_custom_data.rgb;
+    ALPHA = texture_color.a * instance_custom_data.a;
 }

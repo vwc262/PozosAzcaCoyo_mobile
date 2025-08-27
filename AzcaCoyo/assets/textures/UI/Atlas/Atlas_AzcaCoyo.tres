@@ -6,4 +6,4 @@ load_path = "res://.godot/imported/Atlas_AzcaCoyo.png-6919e367031edd0e3a9c3f590c
 [resource]
 resource_local_to_scene = true
 atlas = SubResource("CompressedTexture2D_58qqc")
-region = Rect2(1253, 2666, 278, 271)
+region = Rect2(1277.68, 2957.16, 260.911, 258.179)

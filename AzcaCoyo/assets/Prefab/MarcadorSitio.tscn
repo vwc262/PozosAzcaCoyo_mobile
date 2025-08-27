@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt04pr11undsv"]
+[gd_scene load_steps=7 format=3 uid="uid://dt04pr11undsv"]
 
 [ext_resource type="Material" uid="uid://01dtb5ujsrtk" path="res://assets/Materials/material_esfera.tres" id="1_cecpk"]
 [ext_resource type="Material" uid="uid://c7i2k65dye21d" path="res://assets/Materials/material_palo.tres" id="2_h734t"]
+[ext_resource type="Material" uid="uid://1p7dlaxn8rlb" path="res://assets/Materials/material_bomba.tres" id="3_i2run"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gtuy0"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_cecpk"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_o14nq"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -17,3 +20,7 @@ mesh = SubResource("QuadMesh_gtuy0")
 transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.83563, -0.02)
 material_override = ExtResource("2_h734t")
 mesh = SubResource("QuadMesh_cecpk")
+
+[node name="bomba" type="MeshInstance3D" parent="."]
+material_override = ExtResource("3_i2run")
+mesh = SubResource("QuadMesh_o14nq")

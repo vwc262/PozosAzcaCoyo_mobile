@@ -17,7 +17,6 @@ extends Node3D
 var diccionario_sitios: Dictionary = {};
 @onready var camera_3d_perfil: TouchCameraController = %Camera3D_Perfil
 
-const BOMBA_AZCACOYO_01 = preload("res://assets/models/Perfil/iconos/Bomba_Azcacoyo_01.glb")
 const MARCADOR_SITIO = preload("res://assets/Prefab/MarcadorSitio.tscn")
 
 #region input
@@ -54,9 +53,9 @@ func _ready() -> void:
 	multi_mesh_instance_3d_labels.multimesh.use_custom_data = true;
 	multi_mesh_instance_3d_labels.multimesh.transform_format = MultiMesh.TRANSFORM_3D;
 	
-	var instanced_bomba: MeshInstance3D = BOMBA_AZCACOYO_01.instantiate().get_child(0);
 	var instanced_marker: Node3D = MARCADOR_SITIO.instantiate();
 	
+	var instanced_bomba: MeshInstance3D = instanced_marker.get_node("bomba");
 	var instanced_sphere: MeshInstance3D = instanced_marker.get_node("bola");
 	var instanced_palo: MeshInstance3D = instanced_marker.get_node("palo");
 	
@@ -107,19 +106,19 @@ func _ready() -> void:
 						break;
 
 				base_transform_bomba = Transform3D.IDENTITY;
-				base_transform_bomba.origin = child.position + Vector3(0.0,0.27,0.0)
+				base_transform_bomba.origin = child.position + Vector3(0.002,0.29,0.0)
 				base_transform_bomba.basis = Basis.from_euler(Vector3(0,0,0))
 				
 				base_transform_sphere = Transform3D.IDENTITY;
-				base_transform_sphere.origin = child.position + Vector3(0.0,0.379,0.0)
+				base_transform_sphere.origin = child.position + Vector3(0.0,0.357,0.0)
 				base_transform_sphere.basis = Basis.from_euler(Vector3(0,0,0))
 				
 				base_transform_palos = Transform3D.IDENTITY;
-				base_transform_palos.origin = child.position + Vector3(0.0,0.347,0.0)
+				base_transform_palos.origin = child.position + Vector3(0.0,0.325,0.0)
 				base_transform_palos.basis = Basis.from_euler(Vector3(0,0,0))
 				
 				base_transform_labels = Transform3D.IDENTITY;
-				base_transform_labels.origin = child.position + Vector3(0.0,0.379,0.00)
+				base_transform_labels.origin = child.position + Vector3(0.0,0.357,0.00)
 				base_transform_labels.basis = Basis.from_euler(Vector3(0,0,0))
 				
 				#var area = Area3D.new()
@@ -196,22 +195,24 @@ func _process(_delta: float):
 		var camera_pos = camera_3d_perfil.global_position
 		var _transform_label = multi_mesh_instance_3d_labels.multimesh.get_instance_transform(i)
 		var _transform_sphere = multi_mesh_instance_3d_esferas.multimesh.get_instance_transform(i)
+		var _transform_bomba = multi_mesh_instance_3d_bombas.multimesh.get_instance_transform(i)
 		
 		var world_pos = global_transform * _transform_label.origin
 		var look_dir = (camera_pos - world_pos).normalized()
 		
 		_transform_label.basis = Basis.looking_at(-look_dir, Vector3.UP)
 		_transform_sphere.basis = Basis.looking_at(-look_dir, Vector3.UP)
+		_transform_bomba.basis = Basis.looking_at(-look_dir, Vector3.UP)
 		
 		var euler_angles = _transform_sphere.basis.get_euler()
 		_transform_sphere.basis = Basis.from_euler(Vector3(euler_angles.x, 0, euler_angles.z))
 		
 		euler_angles = _transform_label.basis.get_euler()
 		_transform_label.basis = Basis.from_euler(Vector3(euler_angles.x, 0, euler_angles.z))
+		
+		euler_angles = _transform_bomba.basis.get_euler()
+		_transform_bomba.basis = Basis.from_euler(Vector3(euler_angles.x, 0, euler_angles.z))
 
 		multi_mesh_instance_3d_labels.multimesh.set_instance_transform(i, _transform_label)
 		multi_mesh_instance_3d_esferas.multimesh.set_instance_transform(i, _transform_sphere)
-		
-		#var dic = diccionario_sitios.get(i);
-		#if dic.id_proyecto == 22 and (dic.id_estacion == 10 or dic.id_estacion == 3):
-			#print(dic.id_estacion, " -------------- ",  _transform_palos.origin);
+		multi_mesh_instance_3d_bombas.multimesh.set_instance_transform(i, _transform_bomba)

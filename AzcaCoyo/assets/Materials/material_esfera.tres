@@ -8,7 +8,6 @@ resource_local_to_scene = true
 render_priority = 2
 shader = ExtResource("1_46asf")
 shader_parameter/albedo_texture = ExtResource("2_46asf")
-shader_parameter/tint_color = Color(1, 1, 1, 1)
 shader_parameter/atlas_position = Vector2(48.12, 73.7)
 shader_parameter/atlas_size = Vector2(9.945, 6.49)
 shader_parameter/resolution = Vector2(100, 100)

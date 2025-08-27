@@ -1,13 +1,20 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://01dtb5ujsrtk"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://01dtb5ujsrtk"]
 
-[ext_resource type="Shader" uid="uid://dsoh76iwnm2lm" path="res://assets/shaders/MarcadorPerfilEsfera.gdshader" id="1_46asf"]
+[ext_resource type="Shader" uid="uid://dsoh76iwnm2lm" path="res://assets/shaders/shader_esfera.gdshader" id="1_46asf"]
+[ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="2_46asf"]
 
 [resource]
 resource_local_to_scene = true
-render_priority = 0
+render_priority = 2
 shader = ExtResource("1_46asf")
+shader_parameter/albedo_texture = ExtResource("2_46asf")
 shader_parameter/tint_color = Color(1, 1, 1, 1)
-shader_parameter/escala_minima = 1.55
-shader_parameter/escala_maxima = 1.6
-shader_parameter/distancia_minima = 2.0
-shader_parameter/distancia_maxima = 5.0
+shader_parameter/atlas_position = Vector2(48.56, 66.92)
+shader_parameter/atlas_size = Vector2(8.5, 5.93)
+shader_parameter/resolution = Vector2(100, 100)
+shader_parameter/escala_minima = 0.025
+shader_parameter/escala_maxima = 0.25
+shader_parameter/distancia_minima = 0.03
+shader_parameter/distancia_maxima = 10.0
+shader_parameter/altura_minima = 0.0
+shader_parameter/altura_maxima = 1.0

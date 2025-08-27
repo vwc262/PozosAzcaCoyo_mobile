@@ -13,6 +13,17 @@ var id_Estacion: int
 var id_Proyecto: int
 var id_Pressure: int
 
+var mapa_acentos = {
+		"á": "a", "é": "e", "í": "i", "ó": "o", "ú": "u",
+		"Á": "A", "É": "E", "Í": "I", "Ó": "O", "Ú": "U",
+		"à": "a", "è": "e", "ì": "i", "ò": "o", "ù": "u",
+		"À": "A", "È": "E", "Ì": "I", "Ò": "O", "Ù": "U",
+		"ä": "a", "ë": "e", "ï": "i", "ö": "o", "ü": "u",
+		"Ä": "A", "Ë": "E", "Ï": "I", "Ö": "O", "Ü": "U",
+		"ñ": "n", "Ñ": "N",
+		"ç": "c", "Ç": "C"
+	}
+
 const alarmado_coor := {
 	false: Rect2(159, 190, 50, 50),  # rojo
 	true: Rect2(213, 190, 50, 50),  # verde
@@ -61,8 +72,7 @@ func _manejar_click():
 	if intervalo < UMBRAL_SINGLE_CLICK:
 		GlobalSignals.on_mini_site_clicked.emit(id_Estacion, id_Proyecto)
 
-
-func _on_button_go_ToParticular(event):
+func _on_button_go_to_particular(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		tiempo_click = Time.get_ticks_msec() / 1000.0
 		GlobalSignals.on_desactivar_eventos.emit(true)
@@ -71,5 +81,11 @@ func _on_button_go_ToParticular(event):
 		GlobalSignals.on_desactivar_eventos.emit(false)
 
 func _go_to_particular():
-	print("ir a ", estacion.nombre)
-	#GlobalSceneManager.load_particular("ParticularParent") -- ir a
+	var tiempo_actual = Time.get_ticks_msec() / 1000.0
+	var intervalo = tiempo_actual - tiempo_click
+
+	if intervalo < UMBRAL_SINGLE_CLICK:
+		var nombre_sitio = estacion.nombre.replace(" ", "_").replace(".","")
+		print("ir a ", nombre_sitio)
+		_manejar_click()
+		GlobalSceneManager.load_particular("ParticularParent") # Ir a

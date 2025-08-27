@@ -1,7 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://o74nfgexgpor"]
+[gd_scene load_steps=12 format=3 uid="uid://o74nfgexgpor"]
 
 [ext_resource type="PackedScene" uid="uid://clau2t3o727nr" path="res://scenes/minis/Vis1Sitio.tscn" id="1_uii36"]
 [ext_resource type="Script" uid="uid://bjaxgacvnqvh2" path="res://scripts/Navigation/camera_orbit.gd" id="2_uqbyq"]
+[ext_resource type="Shader" uid="uid://chmnfk2ipxkqj" path="res://assets/shaders/FX/GradientColorTransition.gdshader" id="3_jfwk5"]
+[ext_resource type="Texture2D" uid="uid://ba86muio42eai" path="res://assets/textures/FX/gradient_texture_onOff_2d.tres" id="4_1f4se"]
+[ext_resource type="PackedScene" uid="uid://hj7b2rt8b13h" path="res://assets/models/Sitios/BomaPart_Azcp_01.glb" id="5_6je5f"]
+[ext_resource type="Material" uid="uid://b00fcff08gpwp" path="res://assets/Materials/ParticularBombaFX.tres" id="6_6je5f"]
+[ext_resource type="Texture2D" uid="uid://brjqoxpber7rq" path="res://assets/textures/FX/dot_bright.png" id="7_p5eyc"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p5eyc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6xka6"]
+render_priority = 0
+shader = ExtResource("3_jfwk5")
+shader_parameter/gradient = ExtResource("4_1f4se")
+shader_parameter/percentage = -1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xka6"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+albedo_color = Color(0.31, 1, 0.31, 1)
+albedo_texture = ExtResource("7_p5eyc")
+
+[sub_resource type="QuadMesh" id="QuadMesh_tmdj3"]
+material = SubResource("StandardMaterial3D_6xka6")
+size = Vector2(2, 2)
 
 [node name="Node3D" type="Node3D"]
 
@@ -16,3 +40,31 @@ script = ExtResource("2_uqbyq")
 [node name="Camera3D" type="Camera3D" parent="Pivot/CameraOrbit"]
 transform = Transform3D(-3.84499e-08, -0.475655, 0.879632, -2.07915e-08, 0.879632, 0.475655, -1, 1.77636e-14, -4.37113e-08, 51.2435, 21.2187, -1.43891)
 current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.24161e-07, 1.69177, -2.27227e-07, 0, -7.39497e-08, -5.19834, -2.84048, -7.39497e-08, 9.9324e-15, 3.78742, 7.48293, -15.6291)
+visible = false
+mesh = SubResource("PlaneMesh_p5eyc")
+skeleton = NodePath("../Vis_particular")
+surface_material_override/0 = SubResource("ShaderMaterial_6xka6")
+
+[node name="BomaPart_Azcp_01" parent="." instance=ExtResource("5_6je5f")]
+
+[node name="Bomba_Ok" parent="BomaPart_Azcp_01" index="0"]
+material_override = ExtResource("6_6je5f")
+
+[node name="CPUParticles3D_OnBurst" type="CPUParticles3D" parent="BomaPart_Azcp_01"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.09332, 2.82103, -15.363)
+emitting = false
+lifetime = 0.4
+one_shot = true
+mesh = SubResource("QuadMesh_tmdj3")
+direction = Vector3(0, 1, 0)
+spread = 49.15
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 26.0
+angular_velocity_min = 14.55
+angular_velocity_max = 145.45
+
+[editable path="BomaPart_Azcp_01"]

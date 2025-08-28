@@ -38,7 +38,15 @@ size = Vector2(2, 2)
 [node name="CameraOrbit" type="Node3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -10, -5)
 script = ExtResource("2_uqbyq")
-camera_distance = 65.0
+min_x_rotation = -60.0
+max_x_rotation = -30.0
+min_y_rotation = 45.0
+max_y_rotation = 120.0
+camera_distance = 50.0
+min_distance = 45.0
+max_distance = 55.0
+initial_x_rotation = -45.0
+initial_y_rotation = 60.0
 
 [node name="Camera3D" type="Camera3D" parent="Pivot/CameraOrbit"]
 transform = Transform3D(0.381264, -0.439727, 0.81319, -2.07915e-08, 0.879632, 0.475655, -0.924466, -0.18135, 0.335372, 44.5535, 27.2988, 18.9158)

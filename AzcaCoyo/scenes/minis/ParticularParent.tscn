@@ -39,8 +39,11 @@ script = ExtResource("2_uqbyq")
 camera_distance = 65.0
 
 [node name="Camera3D" type="Camera3D" parent="Pivot/CameraOrbit"]
-transform = Transform3D(-3.84499e-08, -0.475655, 0.879632, -2.07915e-08, 0.879632, 0.475655, -1, 1.77636e-14, -4.37113e-08, 51.2435, 21.2187, -1.43891)
+transform = Transform3D(0.381264, -0.439727, 0.81319, -2.07915e-08, 0.879632, 0.475655, -0.924466, -0.18135, 0.335372, 44.5535, 27.2988, 18.9158)
 current = true
+fov = 87.2
+near = 10.0
+far = 140.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.24161e-07, 1.69177, -2.27227e-07, 0, -7.39497e-08, -5.19834, -2.84048, -7.39497e-08, 9.9324e-15, 3.78742, 7.48293, -15.6291)

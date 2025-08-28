@@ -13,6 +13,11 @@ extends Node
 @onready var color_rect_loading: ColorRect = %ColorRect_loading
 @onready var label: Label = %Label
 
+@onready var bomba_container = %BombaContainer
+@onready var button_ejecutar = %Button_ejecutar
+@onready var button_accion = %Button_accion
+@onready var apagar_text_container = %ApagarTextContainer
+
 var id_estacion: int = 0;
 var id_proyecto: int = 0;
 var id_bomba: int = 0;
@@ -22,6 +27,11 @@ var ejecutar: bool = false;
 var estacion: Estacion;
 var bomba: Señal;
 var perilla: Señal;
+
+const GRADIENT_TEXTURE_ON_OFF_UI_2D = preload("res://assets/textures/FX/gradient_texture_onOff_UI2D.tres")
+const GRADIENT_TEXTURE_OFF_ON_UI_2D = preload("res://assets/textures/FX/gradient_texture_offOn_UI2D.tres")
+
+var tween_actual: Tween
 
 const boton_accion := {
 	true: Rect2(760, 2065, 179, 182),
@@ -38,11 +48,12 @@ var data_to_send: Dictionary = {
 
 const HEADERS = ["Content-Type: application/json"]
 var uri_reportes: String = "https://virtualwavecontrol.com.mx/Core24/crud/InsertComando?idProyecto="
-	
+
 func _ready() -> void:
 	GlobalSignals.connect_on_mini_site_clicked(_on_site_row_clicked, true)
 	GlobalSignals.connect_on_update_app(_on_update_app, true);
 	_on_site_row_clicked(1, 23)
+	showButtos(0)
 	
 func _exit_tree() -> void:
 	GlobalSignals.connect_on_mini_site_clicked(_on_site_row_clicked, false)
@@ -98,7 +109,6 @@ func send_command():
 	data_to_send.idEstacion = id_estacion
 
 	http_request.request(uri_reportes + str(id_proyecto), HEADERS, HTTPClient.METHOD_POST, JSON.stringify(data_to_send))
-	
 
 func armar_codigo() -> int:
 	return ((id_estacion << 8) | (bomba.ordinal << 4) | ( 1 if arrancar else 2));
@@ -195,3 +205,22 @@ func generate_matrix_text(length: int) -> String:
 func set_new_text(new_text: String):
 	text_to_display = new_text
 	start_writing()
+
+func showButtos(alpha: float):
+	if tween_actual and tween_actual.is_running():
+		tween_actual.kill()
+
+	tween_actual = create_tween()
+	tween_actual.set_ease(Tween.EASE_IN_OUT)
+	tween_actual.set_trans(Tween.TRANS_SINE)
+	tween_actual.parallel().tween_property(bomba_container, "modulate:a", alpha, 0.5)
+	tween_actual.tween_interval(1)
+	tween_actual.parallel().tween_property(button_accion, "modulate:a", alpha, 0.5)
+	tween_actual.tween_interval(0.2)
+	tween_actual.parallel().tween_property(apagar_text_container, "modulate:a", alpha, 0.5)
+	tween_actual.tween_interval(0.3)
+	tween_actual.parallel().tween_property(button_ejecutar, "modulate:a", alpha, 0.5)
+
+	await tween_actual.finished
+	tween_actual.kill()
+	tween_actual = null

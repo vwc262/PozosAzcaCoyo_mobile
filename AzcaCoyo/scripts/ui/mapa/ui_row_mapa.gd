@@ -16,6 +16,7 @@ var proyecto_name: String;
 var online_count: int;
 
 const UMBRAL_SINGLE_CLICK := 0.25
+var canZoom: bool = true
 var tiempo_click: float = 0.0
 var tween_actual: Tween
 
@@ -49,12 +50,16 @@ func _ready() -> void:
 	else:
 		GlobalSignals.connect_on_update_app(_on_update_app, true)
 		GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, true)
+		GlobalSignals.connect_on_row_site_clicked_at_particular(_on_mini_site_clicked, true)
+		GlobalSignals.connect_on_go_perfil_particular(_set_perfil_reset, true)
 
 		_on_update_app()
 
 func _exit_tree() -> void:
 	GlobalSignals.connect_on_update_app(_on_update_app, false)
 	GlobalSignals.connect_on_mini_site_clicked(_on_mini_site_clicked, false)
+	GlobalSignals.connect_on_row_site_clicked_at_particular(_on_mini_site_clicked, false)
+	GlobalSignals.connect_on_go_perfil_particular(_set_perfil_reset, false)
 
 func _on_update_app():
 	online_count = 0;
@@ -66,6 +71,9 @@ func _on_update_app():
 
 	lbl_total_online.text = str(online_count);
 	lbl_total_offline.text = str(id_estaciones.size() - online_count);
+
+func _set_perfil_reset(_perfil: bool):
+	canZoom = !_perfil
 
 func _on_button_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
@@ -81,7 +89,10 @@ func _manejar_click():
 	esta_expandido = !esta_expandido
 	id_proyectoAux = id_proyecto if esta_expandido else 0
 	if intervalo < UMBRAL_SINGLE_CLICK:
-		GlobalSignals.on_mini_site_clicked.emit(0, id_proyectoAux)
+		if canZoom:
+			GlobalSignals.on_mini_site_clicked.emit(0, id_proyectoAux)
+		else:
+			GlobalSignals.on_row_site_clicked_at_particular.emit(0, id_proyectoAux)
 
 func _cambiarAlturaPanel(_nueva_altura: float):
 	var nueva_altura = _nueva_altura

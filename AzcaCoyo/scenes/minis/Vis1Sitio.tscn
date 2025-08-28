@@ -19,10 +19,19 @@ sky_material = SubResource("ProceduralSkyMaterial_v2fqj")
 
 [sub_resource type="Environment" id="Environment_n2mcf"]
 background_mode = 1
+background_color = Color(0.0248806, 0.0796138, 0.17533, 1)
 sky = SubResource("Sky_ecxm5")
-tonemap_mode = 2
+ambient_light_energy = 0.0
+tonemap_mode = 4
+tonemap_exposure = 1.59
 glow_enabled = true
+glow_intensity = 1.1
 glow_bloom = 1.0
+glow_hdr_threshold = 0.88
+fog_light_energy = 0.31
+fog_density = 0.0
+fog_sky_affect = 0.693
+fog_height = -228.26
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6mqv"]
 vertex_color_use_as_albedo = true
@@ -109,14 +118,20 @@ shadow_mesh = SubResource("ArrayMesh_6x6dy")
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_texture = ExtResource("2_v2fqj")
+metallic = 0.06
+metallic_specular = 1.0
+roughness = 0.35
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_id2hk"]
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("3_ecxm5")
+metallic = 0.14
+normal_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_exvh2"]
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("4_n2mcf")
+metallic = 0.09
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjdj6"]
 albedo_texture = ExtResource("5_0q3yx")
@@ -234,13 +249,15 @@ mesh = SubResource("ArrayMesh_xnty1")
 surface_material_override/0 = SubResource("StandardMaterial3D_b5x38")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2896, 17.7306, -2.35252)
-light_color = Color(0.826631, 0.786932, 0.903896, 1)
-light_energy = 0.5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28825, 17.7306, -17.2911)
+light_color = Color(0.718874, 0.827093, 0.902434, 1)
+light_energy = 0.8
+light_indirect_energy = 1.531
+light_volumetric_fog_energy = 5.157
 light_bake_mode = 1
 shadow_enabled = true
-omni_range = 39.396
-omni_attenuation = -0.077
+omni_range = 35.628
+omni_attenuation = 0.225
 
 [node name="Ciclorama_Part" parent="." instance=ExtResource("2_runaa")]
 
@@ -250,6 +267,11 @@ surface_material_override/0 = SubResource("ShaderMaterial_xnty1")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.960209, -0.171318, 0.220564, -0.0138122, 0.759657, 0.650177, -0.27894, -0.627352, 0.727064, 20.3489, 16.1686, 7.38406)
 light_color = Color(1, 0.9655, 0.77, 1)
+light_energy = 0.3
+light_indirect_energy = 6.269
+light_volumetric_fog_energy = 1.822
+light_angular_distance = 10.06
+light_specular = 0.033
 light_bake_mode = 1
 shadow_enabled = true
 

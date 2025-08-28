@@ -91,6 +91,117 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26411, 0)
 
+[node name="Pozo_23_6" parent="posiciones_coyoAzc" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.328055, 0.552868, -0.28416)
+
+[node name="Pozo_23_5" parent="posiciones_coyoAzc" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.551301, 0.552868, -0.456979)
+
+[node name="Pozo_23_3" parent="posiciones_coyoAzc" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.943892, 0.552868, -0.488283)
+
+[node name="Pozo_23_22" parent="posiciones_coyoAzc" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.891963, 0.552868, -0.136371)
+
+[node name="Pozo_23_21" parent="posiciones_coyoAzc" index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.798985, 0.552868, -0.0742724)
+
+[node name="Pozo_23_2" parent="posiciones_coyoAzc" index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.398194, 0.552868, -0.669182)
+
+[node name="Pozo_23_18" parent="posiciones_coyoAzc" index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02323, 0.552868, -0.411389)
+
+[node name="Pozo_23_17" parent="posiciones_coyoAzc" index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.767986, 0.552868, -0.371827)
+
+[node name="Pozo_23_16" parent="posiciones_coyoAzc" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.697894, 0.552868, -0.262585)
+
+[node name="Pozo_23_15" parent="posiciones_coyoAzc" index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.839119, 0.552868, -0.235831)
+
+[node name="Pozo_23_14" parent="posiciones_coyoAzc" index="17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.608399, 0.552868, -0.315579)
+
+[node name="Pozo_23_13" parent="posiciones_coyoAzc" index="18"]
+transform = Transform3D(0.999727, 0.0233853, 0, -0.0233853, 0.999727, 0, 0, 0, 1, -0.524927, 0.552868, -0.263692)
+
+[node name="Pozo_23_12" parent="posiciones_coyoAzc" index="19"]
+transform = Transform3D(0.999907, 0.0136655, 0, -0.0136655, 0.999907, 0, 0, 0, 1, -0.448151, 0.552868, -0.359943)
+
+[node name="Pozo_23_11" parent="posiciones_coyoAzc" index="20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.374196, 0.552868, -0.461988)
+
+[node name="Pozo_22_8" parent="posiciones_coyoAzc" index="24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.151242, 0.552868, 1.94151)
+
+[node name="Pozo_22_5" parent="posiciones_coyoAzc" index="27"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.422367, 0.552868, 2.38748)
+
+[node name="Pozo_22_3" parent="posiciones_coyoAzc" index="30"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.660426, 0.552868, 2.29682)
+
+[node name="Pozo_22_29" parent="posiciones_coyoAzc" index="31"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49097, 0.552868, 2.28355)
+
+[node name="Pozo_22_28" parent="posiciones_coyoAzc" index="32"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.317142, 0.552868, 2.46128)
+
+[node name="Pozo_22_27" parent="posiciones_coyoAzc" index="33"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.144874, 0.552868, 2.24118)
+
+[node name="Pozo_22_26" parent="posiciones_coyoAzc" index="34"]
+transform = Transform3D(0.999972, 0, -0.00741758, 0, 1, 0, 0.00741758, 0, 0.999972, -0.78894, 0.552868, 2.1846)
+
+[node name="Pozo_22_25" parent="posiciones_coyoAzc" index="35"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.888054, 0.552868, 1.83602)
+
+[node name="Pozo_22_24" parent="posiciones_coyoAzc" index="36"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.184645, 0.552868, 2.35702)
+
+[node name="Pozo_22_23" parent="posiciones_coyoAzc" index="37"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51779, 0.552868, 1.97464)
+
+[node name="Pozo_22_22" parent="posiciones_coyoAzc" index="38"]
+transform = Transform3D(0.999975, 0, -0.00705107, 0, 1, 0, 0.00705107, 0, 0.999975, -0.0739072, 0.552868, 2.13311)
+
+[node name="Pozo_22_21" parent="posiciones_coyoAzc" index="39"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223361, 0.552868, 1.76702)
+
+[node name="Pozo_22_20" parent="posiciones_coyoAzc" index="40"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.279981, 0.552868, 1.98715)
+
+[node name="Pozo_22_2" parent="posiciones_coyoAzc" index="41"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.333526, 0.552868, 2.32572)
+
+[node name="Pozo_22_19" parent="posiciones_coyoAzc" index="42"]
+transform = Transform3D(0.999979, 0, 0.00647513, 0, 1, 0, -0.00647513, 0, 0.999979, -0.583828, 0.552868, 2.09233)
+
+[node name="Pozo_22_18" parent="posiciones_coyoAzc" index="43"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.265228, 0.552868, 2.25725)
+
+[node name="Pozo_22_17" parent="posiciones_coyoAzc" index="44"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.569742, 0.552868, 2.39017)
+
+[node name="Pozo_22_16" parent="posiciones_coyoAzc" index="45"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.667172, 0.552868, 1.98978)
+
+[node name="Pozo_22_15" parent="posiciones_coyoAzc" index="46"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.478741, 0.552868, 1.72135)
+
+[node name="Pozo_22_14" parent="posiciones_coyoAzc" index="47"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.426764, 0.552868, 1.89258)
+
+[node name="Pozo_22_13" parent="posiciones_coyoAzc" index="48"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.621123, 0.552868, 2.20219)
+
+[node name="Pozo_22_11" parent="posiciones_coyoAzc" index="50"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.806526, 0.552868, 2.40819)
+
+[node name="Pozo_22_1" parent="posiciones_coyoAzc" index="52"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221167, 0.552868, 2.08977)
+
 [node name="pois_alcaldias" type="Node3D" parent="."]
 
 [node name="Camera3D_azcapo_23" type="Camera3D" parent="pois_alcaldias"]
@@ -116,3 +227,5 @@ multimesh = SubResource("MultiMesh_5fpvp")
 [node name="MultiMeshInstance3D_palos" type="MultiMeshInstance3D" parent="."]
 unique_name_in_owner = true
 multimesh = SubResource("MultiMesh_d85o1")
+
+[editable path="posiciones_coyoAzc"]

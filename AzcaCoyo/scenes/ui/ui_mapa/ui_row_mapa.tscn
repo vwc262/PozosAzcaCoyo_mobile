@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bm34a4cfowx5o" path="res://scenes/ui/ui_mapa/Ui_row_mapa_estacion.tscn" id="2_4em0a"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="3_4em0a"]
 [ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="3_10s6v"]
-[ext_resource type="Texture2D" uid="uid://dfrltw8q82bqd" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_mrqtx"]
+[ext_resource type="Texture2D" uid="uid://luuw7akdl500" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_mrqtx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yt8k0"]
 
@@ -138,7 +138,7 @@ theme_override_font_sizes/font_size = 32
 text = "nombre_del_interceptor"
 
 [node name="contador_contenedor" type="Panel" parent="VBoxContainer/Panel/HBoxContainer"]
-custom_minimum_size = Vector2(257, 0)
+custom_minimum_size = Vector2(288, 0)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hsqub")

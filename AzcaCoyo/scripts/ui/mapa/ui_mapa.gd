@@ -23,6 +23,7 @@ var tiempo_click: float = 0.0
 var hiden_panel: bool = false
 var canHidden: bool = true
 var tween_actual: Tween
+var alpha: float = 0
 
 const bombas_coor := {
 	true: Rect2(1589, 1177, 95, 120),
@@ -93,9 +94,10 @@ func _on_button_header_gui_input(event: InputEvent) -> void:
 				else:
 					_on_camera_leave_initial_position()
 
-func _moverPanel(canvaGraficador: Control, canvaCBomba: Control, _graficadorPosition: float, _cBombaPosition: float):
+func _moverPanel(canvaGraficador: Control, canvaCBomba: Control, _graficadorPosition: float, _cBombaPosition: float, _alpha: float):
 	var graficadorPosition = Vector2(_graficadorPosition, canvaGraficador.position.y)
 	var cBombaPosition = Vector2(_cBombaPosition, canvaCBomba.position.y)
+	alpha = _alpha
 
 	if tween_actual and tween_actual.is_running():
 		tween_actual.kill()
@@ -105,10 +107,14 @@ func _moverPanel(canvaGraficador: Control, canvaCBomba: Control, _graficadorPosi
 	tween_actual.set_trans(Tween.TRANS_SINE)
 	tween_actual.parallel().tween_property(canvaGraficador, "position", graficadorPosition, 0.3)
 	tween_actual.parallel().tween_property(canvaCBomba, "position", cBombaPosition, 0.3)
+	tween_actual.tween_callback(_showButtons)
 
 	await tween_actual.finished
 	tween_actual.kill()
 	tween_actual = null
+
+func _showButtons():
+	arranque_paro.showButtos(alpha)
 
 func _set_texture_buttons(control: bool, graficador: bool):
 	control_texture.texture.set('region', bombas_coor[control])
@@ -117,25 +123,27 @@ func _set_texture_buttons(control: bool, graficador: bool):
 func _set_perfil_reset(_show: bool):
 	perfil_container.visible = _show
 	reset_container.visible = !_show
+	if !_show:
+		GlobalSignals.on_mini_site_clicked.emit(0, 0)
 
 func _on_button_reset_pressed() -> void:
 	canHidden = true
 	GlobalSignals.on_mini_site_clicked.emit(0, 0)
 	_on_camera_reset_position()
 	_set_texture_buttons(false, false)
-	_moverPanel(arranque_paro, ui_graficador, 1105.0, -1100.0)
+	_moverPanel(arranque_paro, ui_graficador, 1105.0, -1100.0, 0.0)
 
 func _on_button_arranque_paro_pressed() -> void:
 	canHidden = false
 	_on_camera_reset_position()
 	_set_texture_buttons(true, false)
-	_moverPanel(arranque_paro, ui_graficador, 104.0, -1100.0)
+	_moverPanel(arranque_paro, ui_graficador, 104.0, -1100.0, 1.0)
 
 func _on_button_graficador_pressed() -> void:
 	canHidden = false
 	_on_camera_reset_position()
 	_set_texture_buttons(false, true)
-	_moverPanel(arranque_paro, ui_graficador, 1105.0, 0.0)
+	_moverPanel(arranque_paro, ui_graficador, 1105.0, 0.0, 0.0)
 
 func _on_go_to_perfil_pressed():
 	GlobalSceneManager.load_perfil()

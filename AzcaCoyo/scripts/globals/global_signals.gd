@@ -6,6 +6,7 @@ signal on_update_app
 signal on_camera_leave_initial_position()
 signal on_camera_reset_position()
 signal on_mini_site_clicked(_id:int, _id_proyecto: int)
+signal on_row_site_clicked_at_particular(_id:int, _id_proyecto: int)
 signal on_go_to_poi(_tipo:TIPO_POI.ENUM_POI)
 signal on_agregar_poi_perfil(_id_estacion:int, _transform: Transform3D)
 signal on_desactivar_eventos(_desactivar: bool)
@@ -49,6 +50,12 @@ func connect_on_mini_site_clicked(callback:Callable,do_connect:bool) -> void:
 		on_mini_site_clicked.connect(callback)
 	elif on_mini_site_clicked.is_connected(callback):
 		on_mini_site_clicked.disconnect(callback)
+
+func connect_on_row_site_clicked_at_particular(callback:Callable,do_connect:bool) -> void:
+	if do_connect :
+		on_row_site_clicked_at_particular.connect(callback)
+	elif on_row_site_clicked_at_particular.is_connected(callback):
+		on_row_site_clicked_at_particular.disconnect(callback)
 
 func connect_on_go_to_poi(callback:Callable,do_connect:bool) -> void:
 	if do_connect :

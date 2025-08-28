@@ -1,11 +1,14 @@
-[gd_scene load_steps=22 format=3 uid="uid://c028k4c1iuku2"]
+[gd_scene load_steps=27 format=3 uid="uid://c028k4c1iuku2"]
 
-[ext_resource type="Texture2D" uid="uid://dfrltw8q82bqd" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_0svon"]
+[ext_resource type="Texture2D" uid="uid://luuw7akdl500" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_0svon"]
 [ext_resource type="Script" uid="uid://tyywvwlcqnkp" path="res://scripts/arranque_paro/arranque_paro.gd" id="1_vewdl"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_inokt"]
+[ext_resource type="Shader" uid="uid://pi4o1piakc8f" path="res://assets/shaders/FX/GradientColorTransition2D.gdshader" id="3_mnpb4"]
 [ext_resource type="Shader" uid="uid://pbeq6fihqq3t" path="res://assets/shaders/destello_panel.gdshader" id="4_h0xos"]
+[ext_resource type="Texture2D" uid="uid://pedmln5u8b3y" path="res://assets/textures/FX/gradient_texture_onOff_UI2D.tres" id="4_mnpb4"]
 [ext_resource type="Texture2D" uid="uid://br8dny3imjknp" path="res://assets/textures/UI/corchete1.webp" id="5_2lkig"]
 [ext_resource type="Shader" uid="uid://cd0clrnh5jl61" path="res://scenes/ui/arranque_paro/barra_degradado.gdshader" id="6_2lkig"]
+[ext_resource type="FontFile" uid="uid://bpaepf6gfktvy" path="res://assets/fonts/RobotoCondensed-Bold.ttf" id="6_x8324"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6f0xq"]
 
@@ -16,6 +19,8 @@ atlas = ExtResource("1_0svon")
 atlas = SubResource("AtlasTexture_inokt")
 region = Rect2(1015, 2125, 860, 544)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mnpb4"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vewdl"]
 atlas = ExtResource("1_0svon")
 
@@ -23,6 +28,12 @@ atlas = ExtResource("1_0svon")
 resource_local_to_scene = true
 atlas = SubResource("AtlasTexture_vewdl")
 region = Rect2(454.685, 2186.16, 205.948, 457.623)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2lkig"]
+shader = ExtResource("3_mnpb4")
+shader_parameter/base_texture = SubResource("AtlasTexture_h13cj")
+shader_parameter/gradient = ExtResource("4_mnpb4")
+shader_parameter/percentage = -1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vewdl"]
 
@@ -102,17 +113,88 @@ offset_right = 871.0
 offset_bottom = 562.0
 texture = SubResource("AtlasTexture_0svon")
 
-[node name="tr_bomba" type="TextureRect" parent="Panel"]
+[node name="BombaContainer" type="Panel" parent="Panel"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 56.0
-offset_top = 56.0
-offset_right = 261.0
-offset_bottom = 513.0
+offset_left = 38.0
+offset_top = 46.0
+offset_right = 229.0
+offset_bottom = 543.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mnpb4")
+
+[node name="tr_bomba" type="TextureRect" parent="Panel/BombaContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_2lkig")
+layout_mode = 0
+offset_left = 18.0
+offset_top = 10.0
+offset_right = 223.0
+offset_bottom = 467.0
 scale = Vector2(0.75, 0.75)
 texture = SubResource("AtlasTexture_h13cj")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="lbl_edo_bomba_titulo" type="Label" parent="Panel/BombaContainer"]
+layout_mode = 0
+offset_left = 11.625
+offset_top = 343.36
+offset_right = 189.625
+offset_bottom = 379.36
+theme_override_colors/font_color = Color(0.85098, 0.67451, 0.298039, 1)
+theme_override_fonts/font = ExtResource("2_inokt")
+theme_override_font_sizes/font_size = 26
+text = "Estado bomba:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lbl_edo_bomba" type="Label" parent="Panel/BombaContainer"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 18.6
+offset_top = 373.825
+offset_right = 177.6
+offset_bottom = 404.825
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_x8324")
+theme_override_font_sizes/font_size = 25
+text = "NO DISPONIBLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lbl_perilla_bomba_titulo" type="Label" parent="Panel/BombaContainer"]
+layout_mode = 0
+offset_left = 11.625
+offset_top = 417.385
+offset_right = 180.625
+offset_bottom = 453.385
+theme_override_colors/font_color = Color(0.85098, 0.67451, 0.298039, 1)
+theme_override_fonts/font = ExtResource("2_inokt")
+theme_override_font_sizes/font_size = 26
+text = "Estado perilla:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lbl_perilla_bomba" type="Label" parent="Panel/BombaContainer"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 59.96
+offset_top = 447.935
+offset_right = 124.83
+offset_bottom = 478.935
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_x8324")
+theme_override_font_sizes/font_size = 25
+text = "OFF"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button_accion" type="Button" parent="Panel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -139,6 +221,7 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_h0xos")
 
 [node name="Button_ejecutar" type="Button" parent="Panel"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 643.0
 offset_top = 150.0
@@ -157,57 +240,25 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_ee4wf")
 
-[node name="control_de_bombas2" type="Label" parent="Panel"]
+[node name="ApagarTextContainer" type="VBoxContainer" parent="Panel"]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = 262.0
+offset_left = 302.0
 offset_top = 350.0
-offset_right = 578.0
-offset_bottom = 393.0
+offset_right = 533.0
+offset_bottom = 427.0
+
+[node name="control_de_bombas2" type="Label" parent="Panel/ApagarTextContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_inokt")
 text = "Acción a realizar"
 label_settings = SubResource("LabelSettings_inokt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="lbl_perilla_bomba" type="Label" parent="Panel"]
+[node name="lbl_accion" type="Label" parent="Panel/ApagarTextContainer"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 97.96
-offset_top = 493.935
-offset_right = 162.83
-offset_bottom = 524.935
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_inokt")
-theme_override_font_sizes/font_size = 25
-text = "OFF"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="lbl_edo_bomba" type="Label" parent="Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 56.6
-offset_top = 419.825
-offset_right = 215.6
-offset_bottom = 450.825
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_inokt")
-theme_override_font_sizes/font_size = 25
-text = "NO DISPONIBLE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="lbl_accion" type="Label" parent="Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 266.0
-offset_top = 386.0
-offset_right = 573.0
-offset_bottom = 422.0
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_inokt")
 text = "APAGAR"
 label_settings = SubResource("LabelSettings_vewdl")
@@ -224,30 +275,6 @@ offset_bottom = 64.0
 theme_override_font_sizes/font_size = 31
 text = "Nombre del sitio"
 horizontal_alignment = 1
-
-[node name="lbl_edo_bomba_titulo" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 49.625
-offset_top = 389.36
-offset_right = 227.625
-offset_bottom = 425.36
-theme_override_fonts/font = ExtResource("2_inokt")
-theme_override_font_sizes/font_size = 26
-text = "Estado bomba:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="lbl_perilla_bomba_titulo" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 49.625
-offset_top = 463.385
-offset_right = 218.625
-offset_bottom = 499.385
-theme_override_fonts/font = ExtResource("2_inokt")
-theme_override_font_sizes/font_size = 26
-text = "Estado perilla:"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="ejecutar_background" type="TextureRect" parent="."]
 unique_name_in_owner = true

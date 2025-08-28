@@ -1,10 +1,12 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b00fcff08gpwp"]
 
 [ext_resource type="Shader" uid="uid://chmnfk2ipxkqj" path="res://assets/shaders/FX/GradientColorTransition.gdshader" id="1_nx1ts"]
-[ext_resource type="Texture2D" uid="uid://b2uj7s66ktroo" path="res://assets/textures/FX/gradient_texture_onOff_2d.tres" id="2_jnbtn"]
+[ext_resource type="Texture2D" uid="uid://gtkfloqvndis" path="res://assets/textures/FX/gradient_texture_offOn_2d.tres" id="2_nx1ts"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_nx1ts")
-shader_parameter/gradient = ExtResource("2_jnbtn")
+shader_parameter/gradient = ExtResource("2_nx1ts")
 shader_parameter/percentage = -1.0
+shader_parameter/fresnel_power = 4.8
+shader_parameter/fresnel_color = Color(1, 0.864333, 0.26, 1)

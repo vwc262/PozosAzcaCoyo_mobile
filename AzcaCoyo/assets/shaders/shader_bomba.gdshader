@@ -1,10 +1,10 @@
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled, depth_prepass_alpha;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, depth_prepass_alpha, unshaded;
 
 uniform sampler2D albedo_texture : source_color;
 uniform vec2 atlas_position = vec2(0.0, 0.0); // Posición en el atlas (0-1)
-uniform vec2 atlas_size = vec2(1.0, 1.0); 
-uniform vec2 resolution = vec2(1.0, 1.0); 
+uniform vec2 atlas_size = vec2(1.0, 1.0);
+uniform vec2 resolution = vec2(1.0, 1.0);
 
 // dither - Ahora con valores relativos a la escala
 uniform float max_distance = 10.0;
@@ -24,9 +24,9 @@ varying float distancia_camara;
 void vertex() {
 
     // Calcular posición mundial de la instancia
-    vec4 world_pos = MODEL_MATRIX * vec4(VERTEX, 1.0);
-    vec3 camera_pos = (INV_VIEW_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
-    distancia_camara = distance(world_pos.xyz, camera_pos);
+	vec3 centro_objeto = MODEL_MATRIX[3].xyz;
+	vec3 camera_pos = INV_VIEW_MATRIX[3].xyz;
+	distancia_camara = distance(centro_objeto, camera_pos);
 
     // AJUSTAR distancia por escala relativa del modelo ← CLAVE
     float distancia_ajustada = distancia_camara;
@@ -35,7 +35,7 @@ void vertex() {
     factor_escala = 1.0 - smoothstep(distancia_minima, distancia_maxima, distancia_ajustada);
     factor_escala = escala_minima + factor_escala * (escala_maxima - escala_minima);
 
-    VERTEX = VERTEX * factor_escala;
+    VERTEX = VERTEX * factor_escala * vec3(0.75, 1.0, 0.75);
     NORMAL = normalize(NORMAL / factor_escala);
     instance_custom_data = INSTANCE_CUSTOM;
 }
@@ -64,9 +64,9 @@ float dither8x8(vec2 position, float brightness) {
 void fragment() {
     vec2 atlas_uv = atlas_position + UV * atlas_size;
 	atlas_uv /= resolution;
-    
+
     vec4 texture_color = texture(albedo_texture, atlas_uv);
-	
+
     float distancia_ajustada = distancia_camara;
     float alpha = 0.0;
     alpha = 1.0 - smoothstep(min_distance, max_distance, distancia_ajustada);
@@ -74,7 +74,7 @@ void fragment() {
     vec2 screen_pos = FRAGCOORD.xy * dither_scale;
 
     float fresnel = fresnel(3.0, NORMAL, VIEW);
-    
+
     ALBEDO = texture_color.rgb * alpha * instance_custom_data.rgb;
     EMISSION = (fresnel * instance_custom_data.rgb);
 	ALPHA = texture_color.a * alpha * instance_custom_data.a;

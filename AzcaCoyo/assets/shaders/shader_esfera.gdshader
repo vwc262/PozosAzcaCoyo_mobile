@@ -1,5 +1,11 @@
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled, depth_prepass_alpha;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, depth_prepass_alpha, unshaded;
+
+uniform sampler2D curve_0 : source_color;
+uniform sampler2D curve_1 : source_color;
+uniform sampler2D curve_y : source_color;
+uniform float distancia_transicion = 4.5;
+uniform float suavizado_transicion = 1.0;
 
 uniform sampler2D albedo_texture : source_color;
 uniform vec2 atlas_position = vec2(0.0, 0.0); // Posición en el atlas (0-1)
@@ -27,21 +33,45 @@ float remap(float value, float in_min, float in_max, float out_min, float out_ma
 void vertex() {
 
     // Calcular posición mundial de la instancia
-    vec4 world_pos = MODEL_MATRIX * vec4(VERTEX, 1.0);
-    vec3 camera_pos = (INV_VIEW_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
-    distancia_camara = distance(world_pos.xyz, camera_pos);
-
-    // Calcular factor de escala basado en distancia AJUSTADA
-    factor_escala = smoothstep(distancia_minima, distancia_maxima, distancia_camara);
-    factor_escala = escala_minima + factor_escala * (escala_maxima - escala_minima);
+	vec3 centro_objeto = MODEL_MATRIX[3].xyz;
+	vec3 camera_pos = INV_VIEW_MATRIX[3].xyz;
+	distancia_camara = distance(centro_objeto, camera_pos);
 	
-	// Calcular desplazamiento en Y basado en factor_escala
-	float peso = 1.0 - remap(distancia_camara, distancia_minima, distancia_maxima, 0.0, 1.0);
-	float desplazamiento_y = mix(altura_minima, altura_maxima, peso) / 100.0;
+	// Normalizar la distancia al rango [0, 1]
+    float distancia_normalizada = clamp(
+       	(distancia_camara - distancia_minima) / (distancia_maxima - distancia_minima),
+       	0.0, 1.0
+    );
+		
+    vec4 muestra_curva_0 = texture(curve_0, vec2(distancia_normalizada));
+    vec4 muestra_curva_1 = texture(curve_1, vec2(distancia_normalizada));
+	
+	float factor_0 = escala_minima + muestra_curva_0.r * (escala_maxima - escala_minima);
+    float factor_1 = escala_minima + muestra_curva_1.r * (escala_maxima - escala_minima);
+    
+    // Aplicar divisores específicos
+    factor_0 /= 10.0;
+    factor_1 /= 5.0;
+    
+    // Calcular peso de interpolación con smoothstep
+    float peso = smoothstep(
+        distancia_transicion - suavizado_transicion,
+        distancia_transicion + suavizado_transicion,
+        distancia_camara
+    );
+	
+	factor_escala = mix(factor_0, factor_1, peso);
+	
+	vec4 muestra_curva_y = texture(curve_y, vec2(distancia_normalizada));
+	float peso_y = muestra_curva_y.r;
+	
+	// Calcular desplazamiento en Y basado en el peso
+	float desplazamiento_y = mix(altura_minima, altura_maxima, peso_y);
+	desplazamiento_y /= 10.0;
     
     VERTEX = VERTEX * factor_escala;
 	VERTEX.y += desplazamiento_y;
-    NORMAL = normalize(NORMAL / factor_escala);
+    NORMAL = NORMAL * factor_escala;
     instance_custom_data = INSTANCE_CUSTOM;
 }
 

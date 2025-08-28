@@ -14,6 +14,7 @@ extends Node3D
 @export var material_palos: Material;
 @export var material_label: Material;
 
+var target_point = Vector3(0, 0, 2.5)
 var diccionario_sitios: Dictionary = {};
 @onready var camera_3d_perfil: TouchCameraController = %Camera3D_Perfil
 
@@ -90,6 +91,10 @@ func _ready() -> void:
 	multi_mesh_instance_3d_labels.multimesh.instance_count = meshes.size();
 	multi_mesh_instance_3d_labels.multimesh.mesh = quad_mesh_numero;
 	multi_mesh_instance_3d_labels.material_override = material_label;
+	
+	meshes.sort_custom(func(a, b): 
+		return abs(a.global_position.z - target_point.z) < abs(b.global_position.z - target_point.z)
+	);
 	
 	for child in meshes:
 		if child is MeshInstance3D:

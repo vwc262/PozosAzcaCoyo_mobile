@@ -1,5 +1,7 @@
 shader_type spatial;
 
+render_mode unshaded;
+
 // Parámetros configurables
 uniform vec4 base_color : source_color = vec4(0.5, 0.5, 0.8, 0.3);
 uniform vec4 stripe_color : source_color = vec4(1.0, 0.5, 0.2, 0.8);
@@ -34,11 +36,11 @@ void vertex() {
     // Calcular factor de escala basado en distancia AJUSTADA
     factor_escala = smoothstep(distancia_minima, distancia_maxima, distancia_camara);
     factor_escala = escala_minima + factor_escala * (escala_maxima - escala_minima);
-	
+
 	// Calcular desplazamiento en Y basado en factor_escala
 	float peso = 1.0 - remap(distancia_camara, distancia_minima, distancia_maxima, 0.0, 1.0);
 	float desplazamiento_y = mix(altura_minima, altura_maxima, peso) / 100.0;
-    
+
     VERTEX = VERTEX * factor_escala * vec3(0.1, 1.0, 0.1);
 	VERTEX.y += desplazamiento_y;
     NORMAL = normalize(NORMAL / factor_escala);
@@ -54,16 +56,16 @@ void fragment() {
         // Usar coordenadas UV (locales al objeto)
         y_pos = UV.y;
     }
-    
+
     // Animación de la franja con el tiempo
     float moving_stripe = mod(y_pos + TIME * stripe_speed, 1.0);
-    
+
     // Crear el patrón de franja
     float stripe_pattern = step(stripe_width, moving_stripe);
-    
+
     // Mezclar entre el color base y el color de la franja
     vec4 final_color = mix(stripe_color, base_color, stripe_pattern);
-    
+
     // Aplicar al material
     ALBEDO = final_color.rgb;
     ALPHA = final_color.a;

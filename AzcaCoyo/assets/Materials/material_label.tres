@@ -1,18 +1,26 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b5nqhg5cldb2k"]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://b5nqhg5cldb2k"]
 
 [ext_resource type="Shader" uid="uid://ca811l80rp3lj" path="res://assets/shaders/shader_label.gdshader" id="1_au20u"]
 [ext_resource type="Texture2D" uid="uid://bnf4lfjb63sj3" path="res://assets/textures/UI/numeros.png" id="2_3n7yr"]
+[ext_resource type="Texture2D" uid="uid://bn72h0d6rejp4" path="res://assets/curves/curve_near.tres" id="2_4r1bu"]
+[ext_resource type="Texture2D" uid="uid://bfya1jl4lif14" path="res://assets/curves/curve_far.tres" id="3_taiaj"]
+[ext_resource type="Texture2D" uid="uid://b675cvm80wk2j" path="res://assets/curves/curve_y.tres" id="4_d4uuq"]
 
 [resource]
 render_priority = 3
 shader = ExtResource("1_au20u")
+shader_parameter/curve_0 = ExtResource("2_4r1bu")
+shader_parameter/curve_1 = ExtResource("3_taiaj")
+shader_parameter/curve_y = ExtResource("4_d4uuq")
+shader_parameter/distancia_transicion = 2.0
+shader_parameter/suavizado_transicion = 0.5
 shader_parameter/numeros_texture = ExtResource("2_3n7yr")
 shader_parameter/color_texto = Color(1, 1, 0, 1)
 shader_parameter/escala_numeros = 1.0
 shader_parameter/espaciado = -0.255
-shader_parameter/escala_minima = 0.5
-shader_parameter/escala_maxima = 2.5
+shader_parameter/escala_minima = 3.5
+shader_parameter/escala_maxima = 7.0
 shader_parameter/distancia_minima = 0.03
 shader_parameter/distancia_maxima = 10.0
 shader_parameter/altura_minima = 0.0
-shader_parameter/altura_maxima = 1.0
+shader_parameter/altura_maxima = 0.766

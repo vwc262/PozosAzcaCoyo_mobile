@@ -1,0 +1,9 @@
+[gd_resource type="CurveTexture" load_steps=2 format=3 uid="uid://bn72h0d6rejp4"]
+
+[sub_resource type="Curve" id="Curve_46asf"]
+_data = [Vector2(0, 1), 0.0, -0.803235, 0, 0, Vector2(0.0503731, 0.959947), -0.601734, -0.601734, 0, 0, Vector2(0.0951492, 0.176056), -3.22024, -3.22024, 0, 0, Vector2(0.222015, 0.0129843), -0.0511148, -0.0511148, 0, 0, Vector2(1, 0), 0.0202204, 0.0, 0, 0]
+point_count = 5
+
+[resource]
+resource_local_to_scene = true
+curve = SubResource("Curve_46asf")

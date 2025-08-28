@@ -1,13 +1,15 @@
-[gd_scene load_steps=32 format=4 uid="uid://clau2t3o727nr"]
+[gd_scene load_steps=35 format=4 uid="uid://clau2t3o727nr"]
 
 [ext_resource type="PackedScene" uid="uid://ebl2i7a2l1m3" path="res://assets/models/Sitios/PozoPart_01_Azcp.glb" id="1_b5sf2"]
 [ext_resource type="PackedScene" uid="uid://b76w1ats4g8sq" path="res://assets/models/Sitios/Ciclorama_Part.glb" id="2_runaa"]
 [ext_resource type="Texture2D" uid="uid://dvho0vt0lsjxp" path="res://assets/textures/Tiles/Scratched_Painted_Metal_D.jpg" id="2_v2fqj"]
 [ext_resource type="Texture2D" uid="uid://8nieyfk44hq7" path="res://assets/textures/Tiles/StainedConcrete_2K_D.jpg" id="3_ecxm5"]
 [ext_resource type="Shader" uid="uid://crr80b68oyeeu" path="res://assets/shaders/HoloWallCiclorama.gdshader" id="3_rukll"]
+[ext_resource type="Texture2D" uid="uid://c3nkpmyaku164" path="res://assets/textures/NormalMaps/vjyifef_2K_Normal.jpg" id="4_0q3yx"]
 [ext_resource type="Texture2D" uid="uid://1ggsutixoeb1" path="res://assets/textures/FX/Txt_dots_ciclorama.png" id="4_6c53l"]
 [ext_resource type="Texture2D" uid="uid://8tla7xu5r6s5" path="res://assets/textures/Tiles/Stucco_2K_Albedo.jpg" id="4_n2mcf"]
 [ext_resource type="Texture2D" uid="uid://bll734sbsfncg" path="res://assets/textures/Tiles/Cast_In_Situ_Concrete_2K_D.jpg" id="5_0q3yx"]
+[ext_resource type="Texture2D" uid="uid://c0du1w8mb046b" path="res://assets/textures/NormalMaps/vigrejf_2K_Normal.jpg" id="6_4i2lg"]
 [ext_resource type="PackedScene" uid="uid://3ua5jr1hhslq" path="res://assets/models/Sitios/TerrenoCurvo_Part.glb" id="9_ecxm5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v2fqj"]
@@ -127,11 +129,16 @@ vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("3_ecxm5")
 metallic = 0.14
 normal_enabled = true
+normal_scale = -5.38
+normal_texture = ExtResource("4_0q3yx")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_exvh2"]
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("4_n2mcf")
 metallic = 0.09
+normal_enabled = true
+normal_scale = 3.68
+normal_texture = ExtResource("6_4i2lg")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjdj6"]
 albedo_texture = ExtResource("5_0q3yx")
@@ -224,6 +231,13 @@ shader_parameter/Speeds = Vector2(0, 0.05)
 shader_parameter/tiling = 20.0
 shader_parameter/tiling_noise = 1.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x3gi6"]
+albedo_texture = ExtResource("5_0q3yx")
+normal_enabled = true
+normal_scale = 0.9
+normal_texture = ExtResource("4_0q3yx")
+uv1_scale = Vector3(2, 2, 2)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -269,16 +283,21 @@ transform = Transform3D(0.960209, -0.171318, 0.220564, -0.0138122, 0.759657, 0.6
 light_color = Color(1, 0.9655, 0.77, 1)
 light_energy = 0.3
 light_indirect_energy = 6.269
-light_volumetric_fog_energy = 1.822
-light_angular_distance = 10.06
-light_specular = 0.033
+light_volumetric_fog_energy = 2.595
+light_angular_distance = 5.98
+light_specular = 0.71
 light_bake_mode = 1
 shadow_enabled = true
+shadow_bias = 0.07
+shadow_normal_bias = 0.0
+shadow_transmittance_bias = -1.207
+shadow_opacity = 0.47
+shadow_blur = 4.172
 
 [node name="TerrenoCurvo_Part" parent="." instance=ExtResource("9_ecxm5")]
 
 [node name="Piso_Curvo" parent="TerrenoCurvo_Part" index="0"]
-material_override = SubResource("StandardMaterial3D_rjdj6")
+material_override = SubResource("StandardMaterial3D_x3gi6")
 
 [editable path="PozoPart_01_Azcp"]
 [editable path="Ciclorama_Part"]

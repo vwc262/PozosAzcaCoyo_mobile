@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://clnmqye7ns1ni"]
+[gd_scene load_steps=41 format=3 uid="uid://clnmqye7ns1ni"]
 
 [ext_resource type="PackedScene" uid="uid://ujssxlwvupla" path="res://scenes/ui/ui_mapa/ui_header_mapa.tscn" id="1_88x2m"]
 [ext_resource type="Script" uid="uid://didwhedxkgo3c" path="res://scripts/ui/mapa/ui_mapa.gd" id="1_otdg0"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://luuw7akdl500" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_3b2s8"]
 [ext_resource type="PackedScene" uid="uid://0op1dh0r0bxv" path="res://scenes/ui/graficador/ui_graficador.tscn" id="6_0p2wn"]
 [ext_resource type="PackedScene" uid="uid://c028k4c1iuku2" path="res://scenes/ui/arranque_paro/arranque_paro.tscn" id="6_1os0f"]
+[ext_resource type="Shader" uid="uid://pbeq6fihqq3t" path="res://assets/shaders/destello_panel.gdshader" id="7_dpn2k"]
+[ext_resource type="Texture2D" uid="uid://br8dny3imjknp" path="res://assets/textures/UI/corchete1.webp" id="8_kh1my"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh1my"]
 
@@ -82,6 +84,46 @@ atlas = ExtResource("5_3b2s8")
 [sub_resource type="AtlasTexture" id="AtlasTexture_kh1my"]
 atlas = SubResource("AtlasTexture_dpn2k")
 region = Rect2(37, 495, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vewdl"]
+atlas = ExtResource("5_3b2s8")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io0ce"]
+resource_local_to_scene = true
+atlas = SubResource("AtlasTexture_vewdl")
+region = Rect2(454.685, 2186.16, 205.948, 457.623)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnpb4"]
+atlas = ExtResource("5_3b2s8")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n51q5"]
+resource_local_to_scene = true
+atlas = SubResource("AtlasTexture_mnpb4")
+region = Rect2(760, 2265, 179, 182)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lkig"]
+atlas = ExtResource("5_3b2s8")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84rea"]
+resource_local_to_scene = true
+atlas = SubResource("AtlasTexture_2lkig")
+region = Rect2(760, 2475, 179, 182)
+
+[sub_resource type="LabelSettings" id="LabelSettings_05b85"]
+resource_local_to_scene = true
+line_spacing = -5.0
+font_size = 30
+font_color = Color(1, 0, 0, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jg4vs"]
+resource_local_to_scene = true
+shader = ExtResource("7_dpn2k")
+shader_parameter/texture_input = ExtResource("8_kh1my")
+shader_parameter/speed = 0.1
+shader_parameter/smoothness = 0.931
+shader_parameter/albedo = Color(0.0352941, 0.564706, 0.415686, 1)
 
 [node name="UiMapa" type="Control"]
 custom_minimum_size = Vector2(1080, 1720)
@@ -333,8 +375,25 @@ offset_bottom = 984.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[node name="tr_bomba" parent="ArranqueParo/Panel" index="1"]
+texture = SubResource("AtlasTexture_io0ce")
+
+[node name="tr_accion" parent="ArranqueParo/Panel/Button_accion" index="0"]
+texture = SubResource("AtlasTexture_n51q5")
+
+[node name="tr_ejecutar" parent="ArranqueParo/Panel/Button_ejecutar" index="0"]
+texture = SubResource("AtlasTexture_84rea")
+
+[node name="lbl_accion" parent="ArranqueParo/Panel" index="7"]
+label_settings = SubResource("LabelSettings_05b85")
+
+[node name="ejecutar_background" parent="ArranqueParo" index="2"]
+material = SubResource("ShaderMaterial_jg4vs")
+
 [connection signal="pressed" from="VBoxContainer/perfil_container/TextureRect/goToPerfil" to="." method="_on_go_to_perfil_pressed"]
 [connection signal="pressed" from="VBoxContainer/reset_container/TextureRect/button_reset" to="." method="_on_button_reset_pressed"]
 [connection signal="pressed" from="VBoxContainer/arranque_paro_container/ControlTexture/button_arranque_paro" to="." method="_on_button_arranque_paro_pressed"]
 [connection signal="pressed" from="VBoxContainer/graficador_container/GraficadorTexture/button_graficador" to="." method="_on_button_graficador_pressed"]
 [connection signal="gui_input" from="panel_lista_mapa/btn_esconder_lista" to="." method="_on_button_header_gui_input"]
+
+[editable path="ArranqueParo"]

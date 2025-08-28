@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ujssxlwvupla"]
 
-[ext_resource type="Texture2D" uid="uid://dfrltw8q82bqd" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_uqjo5"]
+[ext_resource type="Texture2D" uid="uid://luuw7akdl500" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_uqjo5"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_eidji"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eidji"]
@@ -19,25 +19,30 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -67.0
+offset_top = -75.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(0, 67)
-layout_mode = 2
-offset_right = 1080.0
-offset_bottom = 67.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("AtlasTexture_5g0nb")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 2
-offset_left = 21.0
-offset_top = 8.0
-offset_right = 162.0
-offset_bottom = 67.0
+layout_mode = 0
+offset_right = 594.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.85, 0.675042, 0.2975, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -2
 theme_override_fonts/font = ExtResource("2_eidji")
-theme_override_font_sizes/font_size = 36
-text = "AzcaCoyo"
+theme_override_font_sizes/font_size = 30
+text = "Monitoreo de pozos Azcapotzalco y Coyoacán"
+horizontal_alignment = 2
 vertical_alignment = 1

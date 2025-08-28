@@ -26,6 +26,11 @@ var rotation_y: float = 0.0
 var target_rotation: Vector2 = Vector2.ZERO
 var current_distance: float = 65.0
 
+# zoom touch
+var touch_points: Dictionary = {}
+var start_distance: float = 0.0
+var previous_dist: float = 0.0
+
 # Referencia a la cámara
 @onready var camera: Camera3D = $Camera3D
 
@@ -49,9 +54,11 @@ func _input(event):
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		handle_mouse_input(event)
 	
-	# Control con touch (móvil)
-	if event is InputEventScreenDrag:
+	if event is InputEventScreenTouch:
 		handle_touch_input(event)
+	
+	if event is InputEventScreenDrag:
+		handle_touch_zoom(event)
 	
 	# Zoom con rueda del mouse
 	if event is InputEventMouseButton:
@@ -67,9 +74,25 @@ func handle_mouse_input(event: InputEventMouseMotion):
 	
 	target_rotation = Vector2(rotation_x, rotation_y)
 
-func handle_touch_input(event: InputEventScreenDrag):
+func handle_touch_input(event: InputEventScreenTouch):
+	if event.pressed:
+		touch_points[event.index] = event.position
+	else:
+		touch_points.erase(event.index)
+		
+	if touch_points.size() == 2:
+		var touch_point_positions = touch_points.values()
+		start_distance = touch_point_positions[0].distance_to(touch_point_positions[1])
+		previous_dist = start_distance
+	elif touch_points.size() < 2:
+		start_distance = 0
+	
+func handle_touch_zoom(event: InputEventScreenDrag):
+	
+	touch_points[event.index] = event.position
+	
 	# Para touch usamos un dedo para rotar
-	if event.get_index() == 0:
+	if touch_points.size() == 1:
 		rotation_y -= event.relative.x * touch_sensitivity
 		rotation_x -= event.relative.y * touch_sensitivity
 		
@@ -79,10 +102,17 @@ func handle_touch_input(event: InputEventScreenDrag):
 		
 		target_rotation = Vector2(rotation_x, rotation_y)
 	
-	# Para zoom con pinch (dos dedos)
-	elif event.get_index() == 1:
-		# Esta parte manejaría el zoom con pinch, puedes implementarlo si lo necesitas
-		pass
+	elif touch_points.size() == 2:
+		var touch_point_positions = touch_points.values()
+		start_distance = touch_point_positions[0].distance_to(touch_point_positions[1])
+		
+		if start_distance - previous_dist > 0:
+			current_distance = max(min_distance, current_distance - 1.0)
+		else:
+			current_distance = min(max_distance, current_distance + 1.0)
+	
+		update_camera_position()
+		previous_dist = start_distance
 
 func handle_zoom_input(event: InputEventMouseButton):
 	if event.button_index == MOUSE_BUTTON_WHEEL_UP:

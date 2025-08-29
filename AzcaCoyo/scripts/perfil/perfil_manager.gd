@@ -133,6 +133,7 @@ func _ready() -> void:
 				
 				var static_body : StaticBody3D = StaticBody3D.new()
 				static_body.transform = base_transform_labels
+				static_body.scale = Vector3.ONE * 0.75;
 
 				area.add_child(collision_shape);
 				static_body.add_child(area);

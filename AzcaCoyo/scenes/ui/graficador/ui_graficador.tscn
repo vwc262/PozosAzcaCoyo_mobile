@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vu1mghl1gluq" path="res://scripts/ui/graficador/ui_graficador.gd" id="1_h63pk"]
 [ext_resource type="Script" uid="uid://cermyieoqtc7q" path="res://addons/god_plot/tools/graphs/graph_2d.gd" id="1_ng6qm"]
-[ext_resource type="Texture2D" uid="uid://c5h08rw6c5llm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="2_vyr47"]
+[ext_resource type="Texture2D" uid="uid://bjjor4deu31nt" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="2_vyr47"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="3_7ujgf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h63pk"]

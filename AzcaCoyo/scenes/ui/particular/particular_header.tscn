@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bqcwygax4h5k8"]
 
-[ext_resource type="Texture2D" uid="uid://c5h08rw6c5llm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_gdf5t"]
+[ext_resource type="Texture2D" uid="uid://bjjor4deu31nt" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_gdf5t"]
 [ext_resource type="Script" uid="uid://debiwsnpxjm65" path="res://scenes/ui/particular/particular_header.gd" id="1_jnlqe"]
 [ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="2_c4rju"]
 
@@ -109,6 +109,9 @@ text = "Nombre del Sitio"
 
 [node name="direccion" type="Label" parent="Panel/Data_container/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Nicolas San Juan No. 1314"
+
+[connection signal="pressed" from="Panel/Data_container/Button" to="." method="_on_button_pressed"]

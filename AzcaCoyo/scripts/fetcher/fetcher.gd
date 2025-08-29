@@ -6,6 +6,7 @@ var id_proyecto: int = 22;
 
 #region Constantes
 const INFRAESTRUCTURA = preload("res://scripts/offline_data/infraestructura.json")
+const INFRAESTRUCTURADIC = preload("res://scripts/offline_data/direcciones.json")
 #endregion
 
 var intervalo_timer : float = 5.0 #En Segundos
@@ -27,6 +28,7 @@ func _process(delta: float) -> void:
 #region VWC Functions
 func _leer_Infraestructura() -> void : 
 	GlobalData.set_data(INFRAESTRUCTURA.data)
+	GlobalData.set_data_direcciones(INFRAESTRUCTURADIC.data)
 #endregion
 
 #region Signals Callbacks

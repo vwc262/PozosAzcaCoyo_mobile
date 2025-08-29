@@ -91,7 +91,7 @@ func _go_to_particular():
 	var intervalo = tiempo_actual - tiempo_click
 
 	if intervalo < UMBRAL_SINGLE_CLICK:
-		var nombre_sitio = estacion.nombre.replace(" ", "_").replace(".","")
+		#var nombre_sitio = estacion.nombre.replace(" ", "_").replace(".","")
 		GlobalSceneManager.load_particular("ParticularParent") # Ir a
 		GlobalSignals.on_go_perfil_particular.emit(true)
 		site_selected.visible = true

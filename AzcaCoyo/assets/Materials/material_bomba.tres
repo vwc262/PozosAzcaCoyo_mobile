@@ -1,13 +1,17 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://1p7dlaxn8rlb"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://1p7dlaxn8rlb"]
 
 [ext_resource type="Shader" uid="uid://bqijyp1d8iil1" path="res://assets/shaders/shader_bomba.gdshader" id="1_2b0ul"]
-[ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="2_2b0ul"]
+[ext_resource type="Texture2D" uid="uid://bjjor4deu31nt" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="2_2b0ul"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07tev"]
+resource_local_to_scene = true
+atlas = ExtResource("2_2b0ul")
 
 [resource]
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("1_2b0ul")
-shader_parameter/albedo_texture = ExtResource("2_2b0ul")
+shader_parameter/albedo_texture = SubResource("AtlasTexture_07tev")
 shader_parameter/atlas_position = Vector2(11.685, 54.395)
 shader_parameter/atlas_size = Vector2(3.815, 3.815)
 shader_parameter/resolution = Vector2(100, 100)

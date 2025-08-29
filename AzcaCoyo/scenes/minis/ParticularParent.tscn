@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://o74nfgexgpor"]
+[gd_scene load_steps=13 format=3 uid="uid://o74nfgexgpor"]
 
 [ext_resource type="PackedScene" uid="uid://clau2t3o727nr" path="res://scenes/minis/Vis1Sitio.tscn" id="1_uii36"]
 [ext_resource type="Script" uid="uid://bjaxgacvnqvh2" path="res://scripts/Navigation/camera_orbit.gd" id="2_uqbyq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://hj7b2rt8b13h" path="res://assets/models/Sitios/BomaPart_Azcp_01.glb" id="5_6je5f"]
 [ext_resource type="Material" uid="uid://b00fcff08gpwp" path="res://assets/Materials/ParticularBombaFX.tres" id="6_6je5f"]
 [ext_resource type="Texture2D" uid="uid://brjqoxpber7rq" path="res://assets/textures/FX/dot_bright.png" id="7_p5eyc"]
+[ext_resource type="PackedScene" uid="uid://c3h31hosj0h40" path="res://scenes/ui/Etiq_Gasto_Part.tscn" id="8_p5eyc"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_p5eyc"]
 
@@ -80,5 +81,8 @@ initial_velocity_min = 20.0
 initial_velocity_max = 26.0
 angular_velocity_min = 14.55
 angular_velocity_max = 145.45
+
+[node name="Node3D" parent="." instance=ExtResource("8_p5eyc")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.18726, 20.7598, 0.990392)
 
 [editable path="BomaPart_Azcp_01"]

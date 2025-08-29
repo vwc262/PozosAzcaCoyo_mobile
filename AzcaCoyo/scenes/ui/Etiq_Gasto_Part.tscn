@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3h31hosj0h40"]
+[gd_scene load_steps=6 format=3 uid="uid://c3h31hosj0h40"]
 
 [ext_resource type="Texture2D" uid="uid://yn3s4kt0pb7g" path="res://assets/textures/UI/etiq_PresionGasto.png" id="1_s68qj"]
+[ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="2_24t8g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24t8g"]
 transparency = 2
@@ -21,12 +22,30 @@ albedo_texture = ExtResource("1_s68qj")
 
 [node name="EtiquetaGastoPart" type="Node3D"]
 
+[node name="Label3D_presion" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50015, 0.1)
+double_sided = false
+outline_modulate = Color(0.0891859, 0.0769835, 0.283685, 1)
+text = "P: 4.2 Kg/cm2"
+font = ExtResource("2_24t8g")
+font_size = 380
+outline_size = 90
+
+[node name="Label3D_gasto" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4278, 0.1)
+double_sided = false
+outline_modulate = Color(0.0891859, 0.0769835, 0.283685, 1)
+text = "G: 32.2 l/s"
+font = ExtResource("2_24t8g")
+font_size = 380
+outline_size = 90
+
 [node name="etiqueta gasto" type="MeshInstance3D" parent="."]
 transform = Transform3D(15.3462, 0, 0, 0, 6.77532, 0, 0, 0, 1.63184, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_24t8g")
 mesh = SubResource("QuadMesh_vm3ac")
 
 [node name="poste" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.339559, 0, 0, 0, 13.6964, 0, 0, 0, 2.65341, 0, -6.85056, -0.691752)
+transform = Transform3D(0.339559, 0, 0, 0, 10.1801, 0, 0, 0, 2.65341, 0, -6.85056, -0.691752)
 material_override = SubResource("StandardMaterial3D_s68qj")
 mesh = SubResource("QuadMesh_vm3ac")

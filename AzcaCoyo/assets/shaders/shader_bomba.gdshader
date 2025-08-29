@@ -77,5 +77,5 @@ void fragment() {
 
     ALBEDO = texture_color.rgb * alpha * instance_custom_data.rgb;
     EMISSION = (fresnel * instance_custom_data.rgb);
-	ALPHA = texture_color.a * alpha * instance_custom_data.a;
+	ALPHA = texture_color.a * alpha;
 }

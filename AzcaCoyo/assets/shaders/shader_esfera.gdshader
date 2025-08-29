@@ -9,9 +9,9 @@ uniform float suavizado_transicion = 1.0;
 
 uniform sampler2D albedo_texture : source_color;
 uniform sampler2D brillo_texture : source_color;
-uniform vec2 atlas_position = vec2(0.0, 0.0); // Posición en el atlas (0-1)
+uniform vec2 atlas_position = vec2(0.0, 0.0);
+uniform vec2 atlas_position_brillo = vec2(0.0, 0.0);
 uniform vec2 atlas_size = vec2(1.0, 1.0); 
-uniform vec2 resolution = vec2(1.0, 1.0); 
 
 // escala
 uniform float escala_minima = 0.5;
@@ -74,17 +74,18 @@ void vertex() {
 	VERTEX.y += desplazamiento_y;
     NORMAL = NORMAL * factor_escala;
     instance_custom_data = INSTANCE_CUSTOM;
-	//instance_custom_data = CUSTOM1;
 }
 
 void fragment() {    
+	
     // Calcular UVs dentro de la región del atlas
     vec2 atlas_uv = atlas_position + UV * atlas_size;
-	atlas_uv /= resolution;
-    
+	vec2 brillos_uv = (atlas_position_brillo + UV * atlas_size);
+    	
 	vec4 albedo = texture(albedo_texture, atlas_uv);
-    vec4 brillo = instance_custom_data.a == 1.0 ? texture(brillo_texture, atlas_uv) : vec4(0.0);
+    vec4 brillo = mix(vec4(0.0), texture(brillo_texture, brillos_uv), instance_custom_data.a);
+	//vec4 brillo = texture(brillo_texture, brillos_uv);
 	
-    ALBEDO = (albedo.rgb * instance_custom_data.rgb) + brillo.rgb;
-    ALPHA = albedo.a + brillo.a; //texture_color.a * instance_custom_data.a;
+    ALBEDO = (albedo.rgb * instance_custom_data.rgb) + brillo.a;
+	ALPHA = albedo.a ; //texture_color.a * instance_custom_data.a;
 }

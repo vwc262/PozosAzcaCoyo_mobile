@@ -2,6 +2,7 @@ extends Node
 
 @export var scene_row_mapa: PackedScene
 
+@onready var header_particular_container = %header_particular_container
 @onready var perfil_container = %perfil_container
 @onready var reset_container = %reset_container
 
@@ -9,6 +10,7 @@ extends Node
 @onready var panel_lista_mapa: Panel = %panel_lista_mapa
 @onready var tr_btn_esconder: TextureRect = %tr_btn_esconder
 @onready var btn_esconder_lista: Button = $panel_lista_mapa/btn_esconder_lista
+
 @onready var ui_graficador = %UiGraficador
 @onready var arranque_paro = %ArranqueParo
 
@@ -77,6 +79,8 @@ func get_container_size(_container: Control) -> float:
 func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):
 	if _id_estacion == 0 && _id_proyecto == 0:
 		_moverPanel(arranque_paro, ui_graficador, 1105.0, -1100.0, 0.0)
+		control_texture.texture.set('region', bombas_coor[false])
+		graficador_texture.texture.set('region', graficador_coor[false])
 	#if _id_estacion != 0:
 		#
 		#btn_esconder_lista.z_index = 0;
@@ -124,6 +128,7 @@ func _set_texture_buttons(control: bool, graficador: bool):
 
 func _set_perfil_reset(_show: bool):
 	perfil_container.visible = _show
+	header_particular_container.visible = _show
 	reset_container.visible = !_show
 	if !_show:
 		GlobalSignals.on_mini_site_clicked.emit(0, 0)

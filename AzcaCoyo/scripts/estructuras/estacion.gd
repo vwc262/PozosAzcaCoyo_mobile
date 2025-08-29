@@ -9,6 +9,7 @@ class_name Estacion
 @export var tipo_estacion: int
 @export var signals = {}
 @export var id_proyecto: int
+@export var direccion = {}
 
 const tolerancia_minutos : int = 15
 
@@ -26,7 +27,7 @@ func _init(jsonData):
 func is_tiempo_NoValido()->bool:
 	var current_time = Time.get_unix_time_from_datetime_dict(Time.get_datetime_dict_from_system(false))
 	var estacion_time  = Time.get_unix_time_from_datetime_string(tiempo)
-	var difference_minutes = (current_time - estacion_time) / 60.0	
+	var difference_minutes = (current_time - estacion_time) / 60.0
 	return difference_minutes > tolerancia_minutos
 
 func is_estacion_en_linea() -> bool:	

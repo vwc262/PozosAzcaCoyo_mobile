@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqcwygax4h5k8"]
+[gd_scene load_steps=8 format=3 uid="uid://bqcwygax4h5k8"]
 
-[ext_resource type="Texture2D" uid="uid://c5h08rw6c5llm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_gdf5t"]
+[ext_resource type="Texture2D" uid="uid://bjjor4deu31nt" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_gdf5t"]
+[ext_resource type="Script" uid="uid://debiwsnpxjm65" path="res://scenes/ui/particular/particular_header.gd" id="1_jnlqe"]
+[ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="2_c4rju"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c4rju"]
 
@@ -12,15 +14,20 @@ atlas = ExtResource("1_gdf5t")
 atlas = SubResource("AtlasTexture_jnlqe")
 region = Rect2(507, 213, 1032, 108)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7bjq"]
+atlas = ExtResource("2_c4rju")
+region = Rect2(1600, 1070, 60, 60)
+
 [node name="ParticularHeader" type="Control"]
 clip_contents = true
 layout_mode = 3
 anchor_right = 0.956
 anchor_bottom = 1.0
-offset_right = -432.48
+offset_right = 47.52
 offset_bottom = -1812.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jnlqe")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -31,26 +38,80 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_c4rju")
 
-[node name="TextureRect" type="TextureRect" parent="Panel"]
-custom_minimum_size = Vector2(600, 108)
-layout_mode = 0
-offset_right = 600.0
-offset_bottom = 108.0
+[node name="fondo" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("AtlasTexture_fukqq")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Data_container" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -65.0
-offset_top = -11.5
-offset_right = 65.0
-offset_bottom = 11.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 32
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Data_container"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(52, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Panel/Data_container"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Data_container/Button"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_e7bjq")
+expand_mode = 1
+
+[node name="VSeparator2" type="VSeparator" parent="Panel/Data_container"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(38, 0)
+layout_mode = 2
+
+[node name="ID" type="Label" parent="Panel/Data_container"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "00"
+
+[node name="VSeparator3" type="VSeparator" parent="Panel/Data_container"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(21, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Data_container"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = -5
+
+[node name="name_site" type="Label" parent="Panel/Data_container/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
 text = "Nombre del Sitio"
+
+[node name="direccion" type="Label" parent="Panel/Data_container/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Nicolas San Juan No. 1314"
+
+[connection signal="pressed" from="Panel/Data_container/Button" to="." method="_on_button_pressed"]

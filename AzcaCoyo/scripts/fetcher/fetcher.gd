@@ -6,6 +6,7 @@ var id_proyecto: int = 22;
 
 #region Constantes
 const INFRAESTRUCTURA = preload("res://scripts/offline_data/infraestructura.json")
+const INFRAESTRUCTURADIC = preload("res://scripts/offline_data/direcciones.json")
 #endregion
 
 var intervalo_timer : float = 5.0 #En Segundos
@@ -27,6 +28,7 @@ func _process(delta: float) -> void:
 #region VWC Functions
 func _leer_Infraestructura() -> void : 
 	GlobalData.set_data(INFRAESTRUCTURA.data)
+	GlobalData.set_data_direcciones(INFRAESTRUCTURADIC.data)
 #endregion
 
 #region Signals Callbacks
@@ -47,7 +49,7 @@ func _on_request_completed(result: int, _response_code: int, _headers: PackedStr
 		GlobalSignals.on_update_app.emit()
 	else:
 		print("Servicio no alcanzado")
-		
+	
 	id_proyecto = 23 if id_proyecto == 22 else 22
 		
 #endregion

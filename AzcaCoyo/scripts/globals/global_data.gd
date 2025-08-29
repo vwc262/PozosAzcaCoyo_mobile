@@ -26,6 +26,11 @@ func set_data(json_infraestructura):
 		estacionesDict[estacion.id_proyecto][estacion.id_estacion] = estacion
 	on_datos_actualizados.emit(get_all_data())
 
+func set_data_direcciones(json_infraestructura):
+	for data in json_infraestructura:
+		var lat_lng = Lat_Lng.new(data)
+		estacionesDict[lat_lng.id_proyecto][lat_lng.id_estacion].direccion = {"latitud": lat_lng.latitud, "longitud": lat_lng.longitud}
+
 func parse_station_data(data) -> Estacion:
 	var estacion = Estacion.new(data) #Se genera en el constructor
 	for signal_data in data["signals"]:

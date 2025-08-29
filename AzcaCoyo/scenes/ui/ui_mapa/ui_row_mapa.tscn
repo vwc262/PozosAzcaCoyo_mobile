@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="3_4em0a"]
 [ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="3_10s6v"]
 [ext_resource type="FontFile" uid="uid://bpaepf6gfktvy" path="res://assets/fonts/RobotoCondensed-Bold.ttf" id="4_10s6v"]
-[ext_resource type="Texture2D" uid="uid://c5h08rw6c5llm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_mrqtx"]
+[ext_resource type="Texture2D" uid="uid://bjjor4deu31nt" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="5_mrqtx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yt8k0"]
 
@@ -18,6 +18,10 @@ atlas = ExtResource("5_mrqtx")
 resource_local_to_scene = true
 atlas = SubResource("AtlasTexture_4em0a")
 region = Rect2(1575, 486, 1030, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt8k0"]
+atlas = ExtResource("3_10s6v")
+region = Rect2(1576, 235, 1009, 63)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mrqtx"]
 
@@ -41,10 +45,6 @@ atlas = ExtResource("5_mrqtx")
 [sub_resource type="AtlasTexture" id="AtlasTexture_ni03p"]
 atlas = SubResource("AtlasTexture_mrqtx")
 region = Rect2(159, 190, 50, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yt8k0"]
-atlas = ExtResource("3_10s6v")
-region = Rect2(1576, 235, 1009, 63)
 
 [node name="UiRowMapa" type="Panel"]
 clip_contents = true
@@ -100,6 +100,19 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("AtlasTexture_10s6v")
 expand_mode = 1
+
+[node name="tr_seleccion" type="TextureRect" parent="VBoxContainer/Panel"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.4)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_yt8k0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel"]
 layout_mode = 1
@@ -259,19 +272,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "[kg/cm²]"
 horizontal_alignment = 1
-
-[node name="tr_seleccion" type="TextureRect" parent="VBoxContainer/Panel"]
-unique_name_in_owner = true
-visible = false
-modulate = Color(1, 1, 1, 0.4)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("AtlasTexture_yt8k0")
 
 [node name="PanelContainer" type="Panel" parent="VBoxContainer"]
 clip_contents = true

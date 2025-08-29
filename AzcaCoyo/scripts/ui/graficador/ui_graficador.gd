@@ -35,11 +35,13 @@ var _ahora: Dictionary = {}
 var _ayer: Dictionary = {}
 
 var y_max: float = 10
+var canZoom: bool = true
 
 var indice: int = 0
 
 func _ready():
 	GlobalSignals.connect_on_mini_site_clicked(_on_Site_Click, true)
+	GlobalSignals.connect_on_go_perfil_particular(_set_perfil_reset, true)
 	_on_Site_Click(1, 23)
 
 func _on_Site_Click(_id_estacion: int, _id_proyecto: int):
@@ -164,6 +166,11 @@ func iniciar_series(nivel: Señal) -> void:
 	line_indexes.append(nivel.id_signal)
 	fetch_data(nivel)
 
+func _set_perfil_reset(_perfil: bool):
+	canZoom = !_perfil
 
 func _on_cerrar_graficador_pressed():
-	GlobalSignals.on_mini_site_clicked.emit(0, 0)
+	if canZoom:
+		GlobalSignals.on_mini_site_clicked.emit(0, 0)
+	else:
+		GlobalSignals.on_go_perfil_particular.emit(true)

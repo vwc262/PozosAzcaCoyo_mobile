@@ -27,9 +27,12 @@ var ejecutar: bool = false;
 var estacion: Estacion;
 var bomba: Señal;
 var perilla: Señal;
+var last_bomba_value: int = 0;
 
 const GRADIENT_TEXTURE_ON_OFF_UI_2D = preload("res://assets/textures/FX/gradient_texture_onOff_UI2D.tres")
 const GRADIENT_TEXTURE_OFF_ON_UI_2D = preload("res://assets/textures/FX/gradient_texture_offOn_UI2D.tres")
+const GRADIENT_TEXTURE_OVERLOAD_UI_2D = preload("res://assets/textures/FX/gradient_texture_overload_UI2D.tres")
+const GRADIENT_TEXTURE_MANT_UI_2D = preload("res://assets/textures/FX/gradient_texture_mant_UI2D.tres")
 
 var tween_actual: Tween
 
@@ -65,10 +68,22 @@ func _on_update_app() -> void:
 		bomba = estacion.signals.get(id_bomba);
 		perilla = estacion.signals.get(id_perilla);
 
-		tr_bomba.modulate = bomba.get_color_bomba_string();
-		lbl_perilla_bomba.text = "REM" if perilla.valor == 1 else "LOC" if perilla.valor == 2 else "OFF"
-		lbl_edo_bomba.text = "ENCENDIDA" if bomba.valor == 1 else "APAGADA" if perilla.valor == 2 else "EN FALLA" if perilla.valor == 3 else "NO DISPONIBLE"
-		lbl_edo_bomba.add_theme_color_override("font_color", Color.GREEN if bomba.valor == 1 else Color.RED if perilla.valor == 2 else Color.BLUE if perilla.valor == 3 else Color.DIM_GRAY)
+	if last_bomba_value != bomba.valor:
+
+		tr_bomba.material.set_shader_parameter("percentage", -0.99);
+		tr_bomba.material.set_shader_parameter("gradient", (
+				GRADIENT_TEXTURE_OFF_ON_UI_2D if bomba.valor == 1 else 
+				GRADIENT_TEXTURE_ON_OFF_UI_2D if bomba.valor == 2 else 
+				GRADIENT_TEXTURE_OVERLOAD_UI_2D if bomba.valor == 3 else 
+				GRADIENT_TEXTURE_MANT_UI_2D))
+				
+		get_tween().tween_property(tr_bomba.material, "shader_parameter/percentage", 0.99, 1.0)
+		
+		last_bomba_value = bomba.valor;
+				
+	lbl_perilla_bomba.text = "REM" if perilla.valor == 1 else "LOC" if perilla.valor == 2 else "OFF"
+	lbl_edo_bomba.text = "ENCENDIDA" if bomba.valor == 1 else "APAGADA" if perilla.valor == 2 else "EN FALLA" if perilla.valor == 3 else "NO DISPONIBLE"
+	lbl_edo_bomba.add_theme_color_override("font_color", Color.GREEN if bomba.valor == 1 else Color.RED if bomba.valor == 2 else Color.BLUE if bomba.valor == 3 else Color.DIM_GRAY)
 
 func _on_button_accion_pressed() -> void:
 	arrancar = !arrancar

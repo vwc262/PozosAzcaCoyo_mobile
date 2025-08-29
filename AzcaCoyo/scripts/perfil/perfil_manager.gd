@@ -188,13 +188,13 @@ func _on_update_app():
 	for dic in diccionario_sitios.values():
 		estacion = GlobalData.get_estacion(dic.id_estacion, dic.id_proyecto);
 		signal_bomba = estacion.signals.get(dic.id_signal_bomba);
+		
+		i = get_actual_index(dic.id_estacion, dic.id_proyecto);
 	
 		var color = signal_bomba.get_color_bomba_vec4()
 		
 		multi_mesh_instance_3d_bombas.multimesh.set_instance_custom_data(i, Color(color.x, color.y, color.z, 0.0))
 		multi_mesh_instance_3d_esferas.multimesh.set_instance_custom_data(i, Color(color.x, color.y, color.z, ( 1.0 if selected_index == i else 0.0)))
-		
-		i += 1;
 
 func _process(_delta: float):
 	for i in diccionario_sitios.keys():
@@ -224,12 +224,18 @@ func _process(_delta: float):
 		multi_mesh_instance_3d_bombas.multimesh.set_instance_transform(i, _transform_bomba)
 
 func _on_site_row_clicked(_id_estacion: int, _id_proyecto: int):
+	selected_index = get_actual_index(_id_estacion, _id_proyecto);
+	_on_update_app();
+	
+func get_actual_index(_id_estacion: int, _id_proyecto: int) -> int:
+	var index = -1;
+	
 	if _id_estacion != 0 && _id_proyecto != 0:
 		if _id_proyecto == 22:
-			selected_index = _id_estacion - 1;
+			index = _id_estacion - 1;
 		else:
-			selected_index = 30 + _id_estacion - 1;
+			index = 30 + _id_estacion - 1;
 	else:
-		selected_index = -1;
-	
-	_on_update_app();
+		index = -1;
+		
+	return index;

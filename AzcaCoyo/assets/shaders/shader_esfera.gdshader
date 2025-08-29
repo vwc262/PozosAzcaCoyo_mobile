@@ -11,7 +11,7 @@ uniform sampler2D albedo_texture : source_color;
 uniform sampler2D brillo_texture : source_color;
 uniform vec2 atlas_position = vec2(0.0, 0.0);
 uniform vec2 atlas_position_brillo = vec2(0.0, 0.0);
-uniform vec2 atlas_size = vec2(1.0, 1.0); 
+uniform vec2 atlas_size = vec2(1.0, 1.0);
 
 // escala
 uniform float escala_minima = 0.5;
@@ -37,55 +37,55 @@ void vertex() {
 	vec3 centro_objeto = MODEL_MATRIX[3].xyz;
 	vec3 camera_pos = INV_VIEW_MATRIX[3].xyz;
 	distancia_camara = distance(centro_objeto, camera_pos);
-	
+
 	// Normalizar la distancia al rango [0, 1]
     float distancia_normalizada = clamp(
        	(distancia_camara - distancia_minima) / (distancia_maxima - distancia_minima),
        	0.0, 1.0
     );
-		
+
     vec4 muestra_curva_0 = texture(curve_0, vec2(distancia_normalizada));
     vec4 muestra_curva_1 = texture(curve_1, vec2(distancia_normalizada));
-	
+
 	float factor_0 = escala_minima + muestra_curva_0.r * (escala_maxima - escala_minima);
     float factor_1 = escala_minima + muestra_curva_1.r * (escala_maxima - escala_minima);
-    
+
     // Aplicar divisores específicos
     factor_0 /= 10.0;
     factor_1 /= 5.0;
-    
+
     // Calcular peso de interpolación con smoothstep
     float peso = smoothstep(
         distancia_transicion - suavizado_transicion,
         distancia_transicion + suavizado_transicion,
         distancia_camara
     );
-	
+
 	factor_escala = mix(factor_0, factor_1, peso);
-	
+
 	vec4 muestra_curva_y = texture(curve_y, vec2(distancia_normalizada));
 	float peso_y = muestra_curva_y.r;
-	
+
 	// Calcular desplazamiento en Y basado en el peso
 	float desplazamiento_y = mix(altura_minima, altura_maxima, peso_y);
 	desplazamiento_y /= 10.0;
-    
+
     VERTEX = VERTEX * factor_escala;
 	VERTEX.y += desplazamiento_y;
     NORMAL = NORMAL * factor_escala;
     instance_custom_data = INSTANCE_CUSTOM;
 }
 
-void fragment() {    
-	
+void fragment() {
+
     // Calcular UVs dentro de la región del atlas
     vec2 atlas_uv = atlas_position + UV * atlas_size;
 	vec2 brillos_uv = (atlas_position_brillo + UV * atlas_size);
-    	
+
 	vec4 albedo = texture(albedo_texture, atlas_uv);
     vec4 brillo = mix(vec4(0.0), texture(brillo_texture, brillos_uv), instance_custom_data.a);
 	//vec4 brillo = texture(brillo_texture, brillos_uv);
-	
+
     ALBEDO = (albedo.rgb * instance_custom_data.rgb) + brillo.a;
 	ALPHA = albedo.a ; //texture_color.a * instance_custom_data.a;
 }

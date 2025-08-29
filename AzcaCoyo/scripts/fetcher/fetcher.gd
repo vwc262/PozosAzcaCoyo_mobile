@@ -36,6 +36,7 @@ func _onUpdate()-> void:
 #Se connecta desde el editor en la parte de nodos
 func _on_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result == RESULT_SUCCESS:
+		print("_on_request_completed ", id_proyecto)
 		GlobalData.total_online = 0
 		var data = JSON.parse_string(body.get_string_from_utf8())
 		if data:
@@ -47,7 +48,7 @@ func _on_request_completed(result: int, _response_code: int, _headers: PackedStr
 		GlobalSignals.on_update_app.emit()
 	else:
 		print("Servicio no alcanzado")
-		
+	
 	id_proyecto = 23 if id_proyecto == 22 else 22
 		
 #endregion

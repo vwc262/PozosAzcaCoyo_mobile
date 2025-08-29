@@ -1,0 +1,320 @@
+[
+	{
+		"idproyecto": 22,
+		"idEstacion": 1,
+		"latitud": 19.320222854614258,
+		"longitud": -99.158607482910156
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 2,
+		"latitud": 19.307693481445313,
+		"longitud": -99.157890319824219
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 3,
+		"latitud": 19.307619094848633,
+		"longitud": -99.180053710937500
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 4,
+		"latitud": 19.317838668823242,
+		"longitud": -99.164451599121094
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 5,
+		"latitud": 19.307361602783203,
+		"longitud": -99.162887573242188
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 6,
+		"latitud": 19.336450576782227,
+		"longitud": -99.185478210449219
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 7,
+		"latitud": 19.354389190673828,
+		"longitud": -99.160530090332031
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 8,
+		"latitud": 19.331750869750977,
+		"longitud": -99.151557922363281
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 9,
+		"latitud": 19.316984176635742,
+		"longitud": -99.158058166503906
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 10,
+		"latitud": 19.303461074829102,
+		"longitud": -99.181938171386719
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 11,
+		"latitud": 19.302499771118164,
+		"longitud": -99.190422058105469
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 12,
+		"latitud": 19.302549362182617,
+		"longitud": -99.193328857421875
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 13,
+		"latitud": 19.312370300292969,
+		"longitud": -99.169944763183594
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 14,
+		"latitud": 19.330232620239258,
+		"longitud": -99.162773132324219
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 15,
+		"latitud": 19.335741043090820,
+		"longitud": -99.166206359863281
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 16,
+		"latitud": 19.324047088623047,
+		"longitud": -99.173103332519531
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 17,
+		"latitud": 19.308956146240234,
+		"longitud": -99.171432495117188
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 18,
+		"latitud": 19.311981201171875,
+		"longitud": -99.156463623046875
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 19,
+		"latitud": 19.318471908569336,
+		"longitud": -99.170394897460938
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 20,
+		"latitud": 19.328889846801758,
+		"longitud": -99.156509399414063
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 21,
+		"latitud": 19.339324951171875,
+		"longitud": -99.152725219726563
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 22,
+		"latitud": 19.319761276245117,
+		"longitud": -99.145881652832031
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 23,
+		"latitud": 19.324319839477539,
+		"longitud": -99.168769836425781
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 24,
+		"latitud": 19.305738449096680,
+		"longitud": -99.152770996093750
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 25,
+		"latitud": 19.338319778442383,
+		"longitud": -99.189033508300781
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 26,
+		"latitud": 19.306522369384766,
+		"longitud": -99.186630249023438
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 27,
+		"latitud": 19.312994003295898,
+		"longitud": -99.148292541503906
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 28,
+		"latitud": 19.301378250122070,
+		"longitud": -99.162124633789063
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 29,
+		"latitud": 19.308702468872070,
+		"longitud": -99.164962768554688
+	},
+	{
+		"idproyecto": 22,
+		"idEstacion": 30,
+		"latitud": 19.324699401855469,
+		"longitud": -99.159996032714844
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 1,
+		"latitud": 19.476446151733398,
+		"longitud": -99.209526062011719
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 2,
+		"latitud": 19.487407684326172,
+		"longitud": -99.155479431152344
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 3,
+		"latitud": 19.480344772338867,
+		"longitud": -99.198989868164063
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 4,
+		"latitud": 19.503593444824219,
+		"longitud": -99.183044433593750
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 5,
+		"latitud": 19.478252410888672,
+		"longitud": -99.163452148437500
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 6,
+		"latitud": 19.468910217285156,
+		"longitud": -99.153854370117188
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 7,
+		"latitud": 19.508842468261719,
+		"longitud": -99.192016601562500
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 8,
+		"latitud": 19.494581222534180,
+		"longitud": -99.176124572753906
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 9,
+		"latitud": 19.497392654418945,
+		"longitud": -99.210182189941406
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 10,
+		"latitud": 19.487997055053711,
+		"longitud": -99.200927734375000
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 11,
+		"latitud": 19.478603363037109,
+		"longitud": -99.151466369628906
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 12,
+		"latitud": 19.473777770996094,
+		"longitud": -99.156776428222656
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 13,
+		"latitud": 19.465110778808594,
+		"longitud": -99.166198730468750
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 14,
+		"latitud": 19.468624114990234,
+		"longitud": -99.170333862304688
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 15,
+		"latitud": 19.462335586547852,
+		"longitud": -99.182853698730469
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 16,
+		"latitud": 19.465028762817383,
+		"longitud": -99.173355102539063
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 17,
+		"latitud": 19.465364456176758,
+		"longitud": -99.181961059570313
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 18,
+		"latitud": 19.475111007690430,
+		"longitud": -99.205024719238281
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 19,
+		"latitud": 19.511152267456055,
+		"longitud": -99.198585510253906
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 20,
+		"latitud": 19.478336334228516,
+		"longitud": -99.145347595214844
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 21,
+		"latitud": 19.450500488281250,
+		"longitud": -99.184165954589844
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 22,
+		"latitud": 19.456111907958984,
+		"longitud": -99.189002990722656
+	},
+	{
+		"idproyecto": 23,
+		"idEstacion": 23,
+		"latitud": 19.451889038085938,
+		"longitud": -99.173683166503906
+	}
+]

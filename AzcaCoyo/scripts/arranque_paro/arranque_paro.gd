@@ -214,7 +214,6 @@ func showButtos(alpha: float):
 	tween_actual.set_ease(Tween.EASE_IN_OUT)
 	tween_actual.set_trans(Tween.TRANS_SINE)
 	tween_actual.parallel().tween_property(bomba_container, "modulate:a", alpha, 0.5)
-	tween_actual.tween_interval(1)
 	tween_actual.parallel().tween_property(button_accion, "modulate:a", alpha, 0.5)
 	tween_actual.tween_interval(0.2)
 	tween_actual.parallel().tween_property(apagar_text_container, "modulate:a", alpha, 0.5)

@@ -163,3 +163,8 @@ func iniciar_series(nivel: Señal) -> void:
 	graph_2d.add_series(line)
 	line_indexes.append(nivel.id_signal)
 	fetch_data(nivel)
+
+
+func _on_cerrar_graficador_pressed():
+	print("hola")
+	GlobalSignals.on_mini_site_clicked.emit(0, 0)

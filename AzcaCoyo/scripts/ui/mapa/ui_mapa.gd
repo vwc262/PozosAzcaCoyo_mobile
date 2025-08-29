@@ -74,7 +74,9 @@ func _on_camera_reset_position():
 func get_container_size(_container: Control) -> float:
 	return _container.get_combined_minimum_size().y
 
-func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):pass
+func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):
+	if _id_estacion == 0 && _id_proyecto == 0:
+		_moverPanel(arranque_paro, ui_graficador, 1105.0, -1100.0, 0.0)
 	#if _id_estacion != 0:
 		#
 		#btn_esconder_lista.z_index = 0;

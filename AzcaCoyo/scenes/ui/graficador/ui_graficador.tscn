@@ -1,14 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://0op1dh0r0bxv"]
+[gd_scene load_steps=13 format=3 uid="uid://0op1dh0r0bxv"]
 
 [ext_resource type="Script" uid="uid://vu1mghl1gluq" path="res://scripts/ui/graficador/ui_graficador.gd" id="1_h63pk"]
 [ext_resource type="Script" uid="uid://cermyieoqtc7q" path="res://addons/god_plot/tools/graphs/graph_2d.gd" id="1_ng6qm"]
+[ext_resource type="Texture2D" uid="uid://c5h08rw6c5llm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="2_vyr47"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="3_7ujgf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h63pk"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vyr47"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ctd1n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctd1n"]
+resource_local_to_scene = true
+atlas = ExtResource("2_vyr47")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44dou"]
+atlas = SubResource("AtlasTexture_ctd1n")
+region = Rect2(507, 138, 1038, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyr47"]
+resource_local_to_scene = true
+atlas = ExtResource("2_vyr47")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4grhq"]
+atlas = SubResource("AtlasTexture_vyr47")
+region = Rect2(37, 495, 80, 80)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vyr47"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ujgf"]
 
@@ -38,6 +55,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 28.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.109804, 0.109804, 0.109804, 1)
@@ -50,14 +68,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="separador1" type="Panel" parent="Panel3/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_vyr47")
-
 [node name="PanelContainer" type="PanelContainer" parent="Panel3/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ctd1n")
+
+[node name="TextureRect" type="TextureRect" parent="Panel3/VBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_44dou")
 
 [node name="lbl_titulo" type="Label" parent="Panel3/VBoxContainer/PanelContainer"]
 layout_mode = 2
@@ -65,6 +82,27 @@ theme_override_font_sizes/font_size = 32
 text = "título gráfica"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CerrarGraficador" type="Button" parent="Panel3/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="Panel3/VBoxContainer/PanelContainer/CerrarGraficador"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+pivot_offset = Vector2(35, 35)
+texture = SubResource("AtlasTexture_4grhq")
+expand_mode = 1
 
 [node name="separador2" type="Panel" parent="Panel3/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
@@ -107,3 +145,4 @@ horizontal_alignment = 1
 uppercase = true
 
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_datos_24h_recibidos"]
+[connection signal="pressed" from="Panel3/VBoxContainer/PanelContainer/CerrarGraficador" to="." method="_on_cerrar_graficador_pressed"]

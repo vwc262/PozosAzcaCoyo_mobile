@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqcwygax4h5k8"]
+[gd_scene load_steps=9 format=3 uid="uid://bqcwygax4h5k8"]
 
 [ext_resource type="Texture2D" uid="uid://bjjor4deu31nt" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="1_gdf5t"]
 [ext_resource type="Script" uid="uid://debiwsnpxjm65" path="res://scenes/ui/particular/particular_header.gd" id="1_jnlqe"]
 [ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="2_c4rju"]
+[ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="4_fukqq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c4rju"]
 
@@ -88,6 +89,7 @@ layout_mode = 2
 [node name="ID" type="Label" parent="Panel/Data_container"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_fukqq")
 theme_override_font_sizes/font_size = 60
 text = "00"
 
@@ -104,6 +106,8 @@ theme_override_constants/separation = -5
 [node name="name_site" type="Label" parent="Panel/Data_container/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.67451, 0.298039, 1)
+theme_override_fonts/font = ExtResource("4_fukqq")
 theme_override_font_sizes/font_size = 36
 text = "Nombre del Sitio"
 
@@ -111,6 +115,7 @@ text = "Nombre del Sitio"
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_fukqq")
 theme_override_font_sizes/font_size = 24
 text = "Nicolas San Juan No. 1314"
 

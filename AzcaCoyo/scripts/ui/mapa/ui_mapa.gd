@@ -130,8 +130,13 @@ func _set_perfil_reset(_show: bool):
 	perfil_container.visible = _show
 	header_particular_container.visible = _show
 	reset_container.visible = !_show
+	control_texture.texture.set('region', bombas_coor[false])
+	graficador_texture.texture.set('region', graficador_coor[false])
+	
 	if !_show:
 		GlobalSignals.on_mini_site_clicked.emit(0, 0)
+	else:
+		_moverPanel(arranque_paro, ui_graficador, 1105.0, -1100.0, 0.0)
 
 func _on_button_reset_pressed() -> void:
 	canHidden = true

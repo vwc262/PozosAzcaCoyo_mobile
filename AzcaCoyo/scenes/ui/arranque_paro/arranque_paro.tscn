@@ -230,12 +230,14 @@ texture = SubResource("AtlasTexture_h0xos")
 
 [node name="Button_ejecutar" type="Button" parent="Panel"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.392157)
 layout_mode = 0
 offset_left = 643.0
 offset_top = 150.0
 offset_right = 822.0
 offset_bottom = 332.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_h13cj")
+disabled = true
 flat = true
 
 [node name="tr_ejecutar" type="TextureRect" parent="Panel/Button_ejecutar"]

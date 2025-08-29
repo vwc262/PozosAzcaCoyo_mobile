@@ -29,6 +29,8 @@ var bomba: Señal;
 var perilla: Señal;
 var last_bomba_value: int = 0;
 
+var canZoom: bool = true
+
 const GRADIENT_TEXTURE_ON_OFF_UI_2D = preload("res://assets/textures/FX/gradient_texture_onOff_UI2D.tres")
 const GRADIENT_TEXTURE_OFF_ON_UI_2D = preload("res://assets/textures/FX/gradient_texture_offOn_UI2D.tres")
 const GRADIENT_TEXTURE_OVERLOAD_UI_2D = preload("res://assets/textures/FX/gradient_texture_overload_UI2D.tres")
@@ -55,12 +57,14 @@ var uri_reportes: String = "https://virtualwavecontrol.com.mx/Core24/crud/Insert
 func _ready() -> void:
 	GlobalSignals.connect_on_mini_site_clicked(_on_site_row_clicked, true)
 	GlobalSignals.connect_on_update_app(_on_update_app, true);
+	GlobalSignals.connect_on_go_perfil_particular(_set_perfil_reset, true)
 	_on_site_row_clicked(1, 23)
 	showButtos(0)
 	
 func _exit_tree() -> void:
 	GlobalSignals.connect_on_mini_site_clicked(_on_site_row_clicked, false)
 	GlobalSignals.connect_on_update_app(_on_update_app, false);
+	GlobalSignals.connect_on_go_perfil_particular(_set_perfil_reset, false)
 	
 func _on_update_app() -> void:
 	if  id_bomba != 0:
@@ -90,7 +94,9 @@ func _on_button_accion_pressed() -> void:
 	tr_accion.texture.set("region", boton_accion[arrancar])
 
 	ejecutar = false
-	tr_ejecutar.visible = true;
+	button_ejecutar.visible = true
+	button_ejecutar.disabled = false
+	button_ejecutar.modulate.a = 1
 
 	lbl_accion.text = "ENCENDER" if arrancar else "APAGAR"
 	lbl_accion.label_settings.font_color = Color.GREEN if arrancar else Color.RED
@@ -100,7 +106,7 @@ func _on_button_accion_pressed() -> void:
 	
 func _on_button_ejecutar_pressed() -> void:
 	ejecutar = !ejecutar
-	tr_ejecutar.visible = false;
+	button_ejecutar.visible = false;
 
 	send_command();
 
@@ -124,6 +130,10 @@ func send_command():
 	data_to_send.idEstacion = id_estacion
 
 	http_request.request(uri_reportes + str(id_proyecto), HEADERS, HTTPClient.METHOD_POST, JSON.stringify(data_to_send))
+	await get_tree().create_timer(5.0).timeout
+	ejecutar_background.visible = false
+	button_ejecutar.visible = true
+	button_ejecutar.modulate.a = 0.5
 
 func armar_codigo() -> int:
 	return ((id_estacion << 8) | (bomba.ordinal << 4) | ( 1 if arrancar else 2));
@@ -135,7 +145,7 @@ func _on_http_request_request_completed(_result: int, _response_code: int, _head
 	ejecutar = false
 	
 var show = true;
-	
+
 func anim_ejecutar(text: String):
 	text_to_display = text;
 	
@@ -150,9 +160,9 @@ func anim_ejecutar(text: String):
 		color_rect_background.visible = true;
 		get_tween().tween_property(color_rect_loading.material, "shader_parameter/fill_amount", 1.0, 1.0)
 		show = false
-		
+
 		start_writing();
-		
+
 	else:
 		color_rect_background.visible = false;
 		color_rect_loading.material.set_shader_parameter("fill_amount", 0.0);
@@ -162,7 +172,7 @@ func anim_ejecutar(text: String):
 		await get_tween().tween_property(ejecutar_background, "scale", Vector2(0.1, 0.1), 1.0).finished
 		ejecutar_background.visible = false;
 		show = true
-	
+
 func get_tween()->Tween:
 	var tween = create_tween().set_parallel(true) 
 	tween.set_ease(Tween.EASE_IN_OUT)
@@ -239,6 +249,11 @@ func showButtos(alpha: float):
 	tween_actual.kill()
 	tween_actual = null
 
+func _set_perfil_reset(_perfil: bool):
+	canZoom = !_perfil
 
 func _on_button_cerrar_pressed():
-	GlobalSignals.on_mini_site_clicked.emit(0, 0)
+	if canZoom:
+		GlobalSignals.on_mini_site_clicked.emit(0, 0)
+	else:
+		GlobalSignals.on_go_perfil_particular.emit(true)

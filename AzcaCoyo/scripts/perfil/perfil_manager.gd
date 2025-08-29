@@ -16,6 +16,7 @@ extends Node3D
 
 var target_point = Vector3(0, 0, 2.5)
 var diccionario_sitios: Dictionary = {};
+var selected_index: int = -1;
 @onready var camera_3d_perfil: TouchCameraController = %Camera3D_Perfil
 
 const MARCADOR_SITIO = preload("res://assets/Prefab/MarcadorSitio.tscn")
@@ -92,16 +93,14 @@ func _ready() -> void:
 	multi_mesh_instance_3d_labels.multimesh.mesh = quad_mesh_numero;
 	multi_mesh_instance_3d_labels.material_override = material_label;
 	
-	meshes.sort_custom(func(a, b): 
-		return abs(a.global_position.z - target_point.z) < abs(b.global_position.z - target_point.z)
-	);
-	
 	for child in meshes:
 		if child is MeshInstance3D:
 			if child.name.contains('_'):
 				var id_proyecto = int(child.name.split("_")[1]);
 				var id_estacion = int(child.name.split("_")[2]);
 				var id_signal_bomba: int = 0;
+				
+				i = id_estacion - 1 + (30 if id_proyecto == 23 else 0)
 				
 				estacion = GlobalData.get_estacion(id_estacion, id_proyecto);
 				
@@ -126,19 +125,20 @@ func _ready() -> void:
 				base_transform_labels.origin = child.position + Vector3(0.0,0.412,0.00)
 				base_transform_labels.basis = Basis.from_euler(Vector3(0,0,0))
 				
-				#var area = Area3D.new()
-				#area.input_ray_pickable = true 
+				var area = Area3D.new()
+				area.input_ray_pickable = true 
 
-				#var collision_shape : CollisionShape3D = CollisionShape3D.new()
-				#collision_shape.shape = instanced_sphere.mesh.create_convex_shape()
+				var collision_shape : CollisionShape3D = CollisionShape3D.new()
+				collision_shape.shape = quad_mesh_numero.create_convex_shape()
 				
-				#var static_body : StaticBody3D = StaticBody3D.new()
-				#static_body.transform = base_transform_sphere
+				var static_body : StaticBody3D = StaticBody3D.new()
+				static_body.transform = base_transform_labels
+				static_body.scale = Vector3.ONE * 0.75;
 
-				#area.add_child(collision_shape);
-				#static_body.add_child(area);
-				#multi_mesh_instance_3d_esferas.add_child(static_body)
-				#area.input_event.connect(_on_area_3d_input_event.bind(i))
+				area.add_child(collision_shape);
+				static_body.add_child(area);
+				multi_mesh_instance_3d_esferas.add_child(static_body)
+				area.input_event.connect(_on_area_3d_input_event.bind(i))
 				
 				multi_mesh_instance_3d_bombas.multimesh.set_instance_transform(i, base_transform_bomba)
 				multi_mesh_instance_3d_esferas.multimesh.set_instance_transform(i, base_transform_sphere)
@@ -160,13 +160,14 @@ func _ready() -> void:
 				
 				GlobalSignals.on_agregar_poi_perfil.emit(id_estacion, id_proyecto, base_transform_poi);
 				child.queue_free();
-				i += 1;
 				
 	GlobalSignals.connect_on_update_app(_on_update_app, true)
+	GlobalSignals.connect_on_mini_site_clicked(_on_site_row_clicked, true)
 	_on_update_app();
 	
 func _exit_tree() -> void:
 	GlobalSignals.connect_on_update_app(_on_update_app, false)
+	GlobalSignals.connect_on_mini_site_clicked(_on_site_row_clicked, false)
 				
 func _on_area_3d_input_event(_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int, instance_index: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
@@ -190,8 +191,8 @@ func _on_update_app():
 	
 		var color = signal_bomba.get_color_bomba_vec4()
 		
-		multi_mesh_instance_3d_bombas.multimesh.set_instance_custom_data(i, Color(color.x, color.y, color.z, color.w))
-		multi_mesh_instance_3d_esferas.multimesh.set_instance_custom_data(i, Color(color.x, color.y, color.z, color.w))
+		multi_mesh_instance_3d_bombas.multimesh.set_instance_custom_data(i, Color(color.x, color.y, color.z, 0.0))
+		multi_mesh_instance_3d_esferas.multimesh.set_instance_custom_data(i, Color(color.x, color.y, color.z, ( 1.0 if selected_index == i else 0.0)))
 		
 		i += 1;
 
@@ -221,3 +222,14 @@ func _process(_delta: float):
 		multi_mesh_instance_3d_labels.multimesh.set_instance_transform(i, _transform_label)
 		multi_mesh_instance_3d_esferas.multimesh.set_instance_transform(i, _transform_sphere)
 		multi_mesh_instance_3d_bombas.multimesh.set_instance_transform(i, _transform_bomba)
+
+func _on_site_row_clicked(_id_estacion: int, _id_proyecto: int):
+	if _id_estacion != 0 && _id_proyecto != 0:
+		if _id_proyecto == 22:
+			selected_index = _id_estacion - 1;
+		else:
+			selected_index = 30 + _id_estacion - 1;
+	else:
+		selected_index = -1;
+	
+	_on_update_app();

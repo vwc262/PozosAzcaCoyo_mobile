@@ -8,9 +8,10 @@ uniform float distancia_transicion = 4.5;
 uniform float suavizado_transicion = 1.0;
 
 uniform sampler2D albedo_texture : source_color;
-uniform vec2 atlas_position = vec2(0.0, 0.0); // Posición en el atlas (0-1)
+uniform sampler2D brillo_texture : source_color;
+uniform vec2 atlas_position = vec2(0.0, 0.0);
+uniform vec2 atlas_position_brillo = vec2(0.0, 0.0);
 uniform vec2 atlas_size = vec2(1.0, 1.0); 
-uniform vec2 resolution = vec2(1.0, 1.0); 
 
 // escala
 uniform float escala_minima = 0.5;
@@ -76,11 +77,15 @@ void vertex() {
 }
 
 void fragment() {    
+	
     // Calcular UVs dentro de la región del atlas
     vec2 atlas_uv = atlas_position + UV * atlas_size;
-	atlas_uv /= resolution;
-    
-    vec4 texture_color = texture(albedo_texture, atlas_uv);
-    ALBEDO = texture_color.rgb * instance_custom_data.rgb;
-    ALPHA = texture_color.a * instance_custom_data.a;
+	vec2 brillos_uv = (atlas_position_brillo + UV * atlas_size);
+    	
+	vec4 albedo = texture(albedo_texture, atlas_uv);
+    vec4 brillo = mix(vec4(0.0), texture(brillo_texture, brillos_uv), instance_custom_data.a);
+	//vec4 brillo = texture(brillo_texture, brillos_uv);
+	
+    ALBEDO = (albedo.rgb * instance_custom_data.rgb) + brillo.a;
+	ALPHA = albedo.a ; //texture_color.a * instance_custom_data.a;
 }

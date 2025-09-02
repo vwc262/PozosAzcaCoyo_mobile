@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cermyieoqtc7q" path="res://addons/god_plot/tools/graphs/graph_2d.gd" id="1_ng6qm"]
 [ext_resource type="Texture2D" uid="uid://bjjor4deu31nt" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="2_vyr47"]
 [ext_resource type="FontFile" uid="uid://be35xp26s64e8" path="res://assets/fonts/RobotoCondensed-Regular.ttf" id="3_7ujgf"]
+[ext_resource type="Texture2D" uid="uid://d0lytqha875sm" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.tres" id="3_ctd1n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h63pk"]
 
@@ -17,12 +18,8 @@ atlas = ExtResource("2_vyr47")
 atlas = SubResource("AtlasTexture_ctd1n")
 region = Rect2(507, 138, 1038, 67)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vyr47"]
-resource_local_to_scene = true
-atlas = ExtResource("2_vyr47")
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_4grhq"]
-atlas = SubResource("AtlasTexture_vyr47")
+atlas = ExtResource("3_ctd1n")
 region = Rect2(37, 495, 80, 80)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vyr47"]
@@ -84,7 +81,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CerrarGraficador" type="Button" parent="Panel3/VBoxContainer/PanelContainer"]
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(95, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 focus_mode = 0
@@ -96,6 +93,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -25.0
 offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2

@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://1p7dlaxn8rlb"]
 
 [ext_resource type="Shader" uid="uid://bqijyp1d8iil1" path="res://assets/shaders/shader_bomba.gdshader" id="1_2b0ul"]
-[ext_resource type="Texture2D" uid="uid://cgfnn2ntc08sj" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="2_2b0ul"]
+[ext_resource type="Texture2D" uid="uid://bjjor4deu31nt" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="2_2b0ul"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_07tev"]
 resource_local_to_scene = true

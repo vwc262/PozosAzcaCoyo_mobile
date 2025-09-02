@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://01dtb5ujsrtk"]
 
 [ext_resource type="Shader" uid="uid://dsoh76iwnm2lm" path="res://assets/shaders/shader_esfera.gdshader" id="1_46asf"]
-[ext_resource type="Texture2D" uid="uid://cgfnn2ntc08sj" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="2_erqvo"]
+[ext_resource type="Texture2D" uid="uid://bjjor4deu31nt" path="res://assets/textures/UI/Atlas/Atlas_AzcaCoyo.png" id="2_erqvo"]
 [ext_resource type="Texture2D" uid="uid://bn72h0d6rejp4" path="res://assets/curves/curve_near.tres" id="3_pi01a"]
 [ext_resource type="Texture2D" uid="uid://bfya1jl4lif14" path="res://assets/curves/curve_far.tres" id="4_erqvo"]
 [ext_resource type="Texture2D" uid="uid://b675cvm80wk2j" path="res://assets/curves/curve_y.tres" id="5_erqvo"]

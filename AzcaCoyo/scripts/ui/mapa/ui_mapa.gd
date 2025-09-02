@@ -68,10 +68,9 @@ func _on_camera_leave_initial_position():
 	btn_esconder_lista.z_index = 2;
 
 func _on_camera_reset_position():
-	hiden_panel = false;
-	get_tween().tween_property(tr_btn_esconder, "rotation_degrees", 90, transition_time)
-	get_tween().tween_property(panel_lista_mapa, "position", Vector2(0, 980), transition_time)
-	btn_esconder_lista.z_index = 2;
+	hiden_panel = false
+	btn_esconder_lista.z_index = 2
+	_mostrarTabla()
 
 func get_container_size(_container: Control) -> float:
 	return _container.get_combined_minimum_size().y
@@ -81,10 +80,15 @@ func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):
 		_moverPanel(arranque_paro, ui_graficador, 1105.0, -1100.0, 0.0)
 		control_texture.texture.set('region', bombas_coor[false])
 		graficador_texture.texture.set('region', graficador_coor[false])
-	#if _id_estacion != 0:
-		#
+		canHidden = true
+	if _id_estacion != 0:
 		#btn_esconder_lista.z_index = 0;
-		#get_tween().tween_property(panel_lista_mapa, "position", Vector2(0, 1960), transition_time)
+		hiden_panel = false
+		_mostrarTabla()
+
+func _mostrarTabla():
+	get_tween().tween_property(panel_lista_mapa, "position", Vector2(0, 980), transition_time)
+	get_tween().tween_property(tr_btn_esconder, "rotation_degrees", 90, transition_time)
 
 func _on_button_header_gui_input(event: InputEvent) -> void:
 	if canHidden:
@@ -126,7 +130,7 @@ func _set_texture_buttons(control: bool, graficador: bool):
 	control_texture.texture.set('region', bombas_coor[control])
 	graficador_texture.texture.set('region', graficador_coor[graficador])
 
-func _set_perfil_reset(_show: bool):
+func _set_perfil_reset(_show: bool, _id_estacion: int, _id_proyecto: int):
 	perfil_container.visible = _show
 	header_particular_container.visible = _show
 	reset_container.visible = !_show
@@ -159,4 +163,4 @@ func _on_button_graficador_pressed() -> void:
 
 func _on_go_to_perfil_pressed():
 	GlobalSceneManager.load_perfil()
-	GlobalSignals.on_go_perfil_particular.emit(false)
+	GlobalSignals.on_go_perfil_particular.emit(false, 0, 0)

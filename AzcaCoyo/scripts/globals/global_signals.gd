@@ -10,7 +10,7 @@ signal on_row_site_clicked_at_particular(_id:int, _id_proyecto: int)
 signal on_go_to_poi(_tipo:TIPO_POI.ENUM_POI)
 signal on_agregar_poi_perfil(_id_estacion:int, _transform: Transform3D)
 signal on_desactivar_eventos(_desactivar: bool)
-signal on_go_perfil_particular(_isParticular: bool)
+signal on_go_perfil_particular(_isParticular: bool, _id_estacion: int, _id_proyecto: int)
 #endregion
 
 #region UI <-> escenas

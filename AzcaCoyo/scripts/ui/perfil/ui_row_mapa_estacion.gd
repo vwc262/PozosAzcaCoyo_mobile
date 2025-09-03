@@ -66,7 +66,7 @@ func _on_button_gui_input(event):
 		_manejar_click()
 		GlobalSignals.on_desactivar_eventos.emit(false)
 
-func _set_perfil_reset(_perfil: bool):
+func _set_perfil_reset(_perfil: bool, _id_estacion: int, _id_proyecto: int):
 	canZoom = !_perfil
 
 func _manejar_click():
@@ -91,8 +91,7 @@ func _go_to_particular():
 	var intervalo = tiempo_actual - tiempo_click
 
 	if intervalo < UMBRAL_SINGLE_CLICK:
-		#var nombre_sitio = estacion.nombre.replace(" ", "_").replace(".","")
 		GlobalSceneManager.load_particular("ParticularParent") # Ir a
-		GlobalSignals.on_go_perfil_particular.emit(true)
+		GlobalSignals.on_go_perfil_particular.emit(true, id_Estacion, id_Proyecto)
 		site_selected.visible = true
 		_manejar_click()

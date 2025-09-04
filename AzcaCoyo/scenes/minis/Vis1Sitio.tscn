@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://clau2t3o727nr"]
+[gd_scene load_steps=52 format=4 uid="uid://clau2t3o727nr"]
 
 [ext_resource type="PackedScene" uid="uid://ebl2i7a2l1m3" path="res://assets/models/Sitios/PozoPart_01_Azcp.glb" id="1_b5sf2"]
 [ext_resource type="PackedScene" uid="uid://b76w1ats4g8sq" path="res://assets/models/Sitios/Ciclorama_Part.glb" id="2_runaa"]
@@ -11,6 +11,15 @@
 [ext_resource type="Texture2D" uid="uid://bll734sbsfncg" path="res://assets/textures/Tiles/Cast_In_Situ_Concrete_2K_D.jpg" id="5_0q3yx"]
 [ext_resource type="Texture2D" uid="uid://c0du1w8mb046b" path="res://assets/textures/NormalMaps/vigrejf_2K_Normal.jpg" id="6_4i2lg"]
 [ext_resource type="PackedScene" uid="uid://3ua5jr1hhslq" path="res://assets/models/Sitios/TerrenoCurvo_Part.glb" id="9_ecxm5"]
+[ext_resource type="PackedScene" uid="uid://c18w72ltty6kv" path="res://assets/models/Sitios/PozoPart_01_Azcp_v2.glb" id="12_exvh2"]
+[ext_resource type="Shader" uid="uid://62hykv5fgnq0" path="res://assets/shaders/DirtHeightBlend_Strd.gdshader" id="13_0bohg"]
+[ext_resource type="Shader" uid="uid://chmnfk2ipxkqj" path="res://assets/shaders/FX/GradientColorTransition.gdshader" id="13_rjdj6"]
+[ext_resource type="Texture2D" uid="uid://dn5n1xcr2bc0y" path="res://assets/textures/Tiles/Excavated_Mud_2K_D.jpg" id="14_8pkd5"]
+[ext_resource type="Texture2D" uid="uid://ck523itaky6lq" path="res://assets/textures/FX/gradient_texture_offOn_UI2D.tres" id="14_b5x38"]
+[ext_resource type="Texture2D" uid="uid://g0cgw16wn47y" path="res://assets/textures/Tiles/Concrete_Road_D.jpg" id="17_ewsdv"]
+[ext_resource type="Material" uid="uid://b6sxhejeemk83" path="res://assets/Materials/Shaded/dirtBlnd_Stucco_material.tres" id="18_d3bfu"]
+[ext_resource type="Shader" uid="uid://bdiwormwcdub1" path="res://assets/shaders/MaskedMasterShader.gdshader" id="19_olbko"]
+[ext_resource type="Texture2D" uid="uid://b3limny7nihwo" path="res://assets/textures/Tiles/T_FenceC_opacity.PNG" id="20_3b8wv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v2fqj"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -27,10 +36,11 @@ sky = SubResource("Sky_ecxm5")
 ambient_light_color = Color(0.379297, 0.23184, 0.677752, 1)
 ambient_light_energy = 3.07
 tonemap_mode = 4
-tonemap_exposure = 2.09
+tonemap_exposure = 2.25
 glow_enabled = true
-glow_intensity = 1.69
-glow_strength = 0.76
+glow_normalized = true
+glow_intensity = 5.01
+glow_strength = 0.88
 glow_bloom = 1.0
 glow_hdr_threshold = 1.24
 glow_hdr_scale = 1.86
@@ -248,12 +258,73 @@ normal_scale = 0.9
 normal_texture = ExtResource("4_0q3yx")
 uv1_scale = Vector3(8, 8, 8)
 
+[sub_resource type="Gradient" id="Gradient_hfp5i"]
+offsets = PackedFloat32Array(0.188525, 0.262295, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u3pq1"]
+gradient = SubResource("Gradient_hfp5i")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dchyi"]
+render_priority = 0
+shader = ExtResource("13_0bohg")
+shader_parameter/base_texture = ExtResource("2_v2fqj")
+shader_parameter/dirt_texture = ExtResource("14_8pkd5")
+shader_parameter/gradient = SubResource("GradientTexture1D_u3pq1")
+shader_parameter/metalness = 0.0
+shader_parameter/model_height = 17.35
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2sfhd"]
+render_priority = 0
+shader = ExtResource("13_rjdj6")
+shader_parameter/gradient = ExtResource("14_b5x38")
+shader_parameter/percentage = -1.0
+shader_parameter/fresnel_power = 3.0
+shader_parameter/fresnel_color = Color(1, 0.862745, 0.572549, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6oh8"]
+render_priority = 0
+shader = ExtResource("13_0bohg")
+shader_parameter/base_texture = ExtResource("4_n2mcf")
+shader_parameter/dirt_texture = ExtResource("14_8pkd5")
+shader_parameter/gradient = SubResource("GradientTexture1D_u3pq1")
+shader_parameter/metalness = 0.0
+shader_parameter/model_height = 17.35
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1wmqq"]
+render_priority = 0
+shader = ExtResource("13_0bohg")
+shader_parameter/base_texture = ExtResource("4_n2mcf")
+shader_parameter/dirt_texture = ExtResource("14_8pkd5")
+shader_parameter/gradient = SubResource("GradientTexture1D_u3pq1")
+shader_parameter/metalness = 0.0
+shader_parameter/model_height = 17.35
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f16sb"]
+render_priority = 0
+shader = ExtResource("19_olbko")
+shader_parameter/albedo = Color(0.427493, 0.427493, 0.427493, 1)
+shader_parameter/base_texture = ExtResource("20_3b8wv")
+shader_parameter/index = 0
+shader_parameter/uvScale = Vector3(1, 1, 1)
+shader_parameter/useAlpha = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e8aax"]
+render_priority = 0
+shader = ExtResource("13_0bohg")
+shader_parameter/base_texture = ExtResource("2_v2fqj")
+shader_parameter/dirt_texture = ExtResource("17_ewsdv")
+shader_parameter/gradient = SubResource("GradientTexture1D_u3pq1")
+shader_parameter/metalness = 0.0
+shader_parameter/model_height = 17.35
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_n2mcf")
 
 [node name="PozoPart_01_Azcp" parent="." instance=ExtResource("1_b5sf2")]
+visible = false
 
 [node name="Terreno" parent="PozoPart_01_Azcp" index="0"]
 mesh = SubResource("ArrayMesh_rukll")
@@ -291,9 +362,9 @@ omni_attenuation = 0.095
 [node name="SpotLight3D" type="SpotLight3D" parent="OmniLight3D"]
 transform = Transform3D(0.376602, 0.474831, 0.795429, -0.926311, 0.203147, 0.317301, -0.0109243, -0.85631, 0.516346, 53.5406, 22.5629, 37.3726)
 light_color = Color(1, 1, 0.807843, 1)
-light_energy = 6.571
+light_energy = 3.5
 light_indirect_energy = 6.624
-light_volumetric_fog_energy = 0.0
+light_volumetric_fog_energy = 0.97
 light_specular = 12.128
 distance_fade_enabled = true
 distance_fade_begin = 0.0
@@ -306,7 +377,7 @@ spot_angle_attenuation = 1.86607
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10779, 14.9215, -16.5381)
 light_color = Color(0.86, 0.81485, 0.473, 1)
-light_energy = 0.025
+light_energy = 0.0
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 light_specular = 1.063
@@ -343,6 +414,26 @@ shadow_blur = 4.172
 [node name="Piso_Curvo" parent="TerrenoCurvo_Part" index="0"]
 material_override = SubResource("StandardMaterial3D_x3gi6")
 
+[node name="PozoPart_01_Azcp_v2" parent="." instance=ExtResource("12_exvh2")]
+transform = Transform3D(3.4572, 0, 0, 0, 3.4572, 0, 0, 0, 3.4572, 0, 0, 0)
+
+[node name="Bomba_002" parent="PozoPart_01_Azcp_v2" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_dchyi")
+surface_material_override/1 = SubResource("ShaderMaterial_2sfhd")
+surface_material_override/3 = SubResource("ShaderMaterial_i6oh8")
+surface_material_override/5 = SubResource("ShaderMaterial_1wmqq")
+
+[node name="Walls" parent="PozoPart_01_Azcp_v2" index="2"]
+surface_material_override/0 = ExtResource("18_d3bfu")
+
+[node name="Malla_004" parent="PozoPart_01_Azcp_v2" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_f16sb")
+
+[node name="puerta1" parent="PozoPart_01_Azcp_v2" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_e8aax")
+surface_material_override/1 = ExtResource("18_d3bfu")
+
 [editable path="PozoPart_01_Azcp"]
 [editable path="Ciclorama_Part"]
 [editable path="TerrenoCurvo_Part"]
+[editable path="PozoPart_01_Azcp_v2"]

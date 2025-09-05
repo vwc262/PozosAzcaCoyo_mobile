@@ -1,6 +1,8 @@
 extends Node
 
 @export var scene_row_mapa_estacion: PackedScene
+
+@onready var scroll_container = %ScrollContainer
 @onready var sites_container = %SitesContainer
 @onready var fondoProyecto = %Fondo
 @onready var lbl_nombre_interceptor: Label = %lbl_nombre_interceptor
@@ -19,6 +21,7 @@ const UMBRAL_SINGLE_CLICK := 0.25
 var canZoom: bool = true
 var tiempo_click: float = 0.0
 var tween_actual: Tween
+var tween_scroll: Tween
 
 var esta_expandido: bool = false
 
@@ -72,7 +75,7 @@ func _on_update_app():
 	lbl_total_online.text = str(online_count);
 	lbl_total_offline.text = str(id_estaciones.size() - online_count);
 
-func _set_perfil_reset(_perfil: bool):
+func _set_perfil_reset(_perfil: bool, _id_estacion: int, _id_proyecto: int):
 	canZoom = !_perfil
 
 func _on_button_gui_input(event: InputEvent) -> void:
@@ -109,6 +112,35 @@ func _cambiarAlturaPanel(_nueva_altura: float):
 	tween_actual.kill()
 	tween_actual = null
 
+func _moverScroll(_nuevaPosicion: float):
+	var nueva_posicion = _nuevaPosicion
+
+	if tween_scroll and tween_scroll.is_running():
+		tween_scroll.kill()
+
+	tween_scroll = create_tween()
+	tween_scroll.set_ease(Tween.EASE_IN_OUT)
+	tween_scroll.set_trans(Tween.TRANS_SINE)
+	tween_scroll.tween_property(scroll_container, "scroll_vertical", nueva_posicion, 0.5)
+
+	await tween_scroll.finished
+	tween_scroll.kill()
+	tween_scroll = null
+
+func _centrarSitioSeleccionado(_id_estacion: int, _id_proyecto: int):
+	var altura_viewport = scroll_container.get_size().y
+	var posicion_relativa: float = 0
+	var altura_objeto: float = 0
+	var scroll_target: float = 0
+
+	for hijo in sites_container.get_children():
+		if hijo.id_Estacion == _id_estacion:
+			posicion_relativa = hijo.position.y
+			altura_objeto = hijo.size.y
+	scroll_target = posicion_relativa - (altura_viewport / 2) + (altura_objeto / 2) if _id_estacion != 0 && _id_proyecto == id_proyecto else 0
+
+	_moverScroll(scroll_target)
+
 func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):
 	if _id_proyecto == id_proyecto:
 		esta_expandido = true
@@ -119,4 +151,6 @@ func _on_mini_site_clicked(_id_estacion: int, _id_proyecto: int):
 	else:
 		esta_expandido = false
 		_cambiarAlturaPanel(100)
+
+	_centrarSitioSeleccionado(_id_estacion, _id_proyecto)
 	tr_seleccion.visible = _id_proyecto == id_proyecto

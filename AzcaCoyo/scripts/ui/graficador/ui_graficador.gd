@@ -166,7 +166,7 @@ func iniciar_series(nivel: Señal) -> void:
 	line_indexes.append(nivel.id_signal)
 	fetch_data(nivel)
 
-func _set_perfil_reset(_perfil: bool):
+func _set_perfil_reset(_perfil: bool, _id_estacion: int, _id_proyecto: int):
 	canZoom = !_perfil
 
 func _on_cerrar_graficador_pressed():

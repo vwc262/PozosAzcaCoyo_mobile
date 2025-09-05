@@ -249,7 +249,7 @@ func showButtos(alpha: float):
 	tween_actual.kill()
 	tween_actual = null
 
-func _set_perfil_reset(_perfil: bool):
+func _set_perfil_reset(_perfil: bool, _id_estacion: int, _id_proyecto: int):
 	canZoom = !_perfil
 
 func _on_button_cerrar_pressed():

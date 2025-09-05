@@ -2,10 +2,10 @@
 
 [ext_resource type="Shader" uid="uid://62hykv5fgnq0" path="res://assets/shaders/DirtHeightBlend_Strd.gdshader" id="1_k5irv"]
 [ext_resource type="Texture2D" uid="uid://8tla7xu5r6s5" path="res://assets/textures/Tiles/Stucco_2K_Albedo.jpg" id="2_p0uix"]
-[ext_resource type="Texture2D" uid="uid://g0cgw16wn47y" path="res://assets/textures/Tiles/Concrete_Road_D.jpg" id="3_gevh0"]
+[ext_resource type="Texture2D" uid="uid://dn5n1xcr2bc0y" path="res://assets/textures/Tiles/Excavated_Mud_2K_D.jpg" id="3_k5irv"]
 
 [sub_resource type="Gradient" id="Gradient_hfp5i"]
-offsets = PackedFloat32Array(0.188525, 0.262295, 1)
+offsets = PackedFloat32Array(0.180328, 0.344262, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_u3pq1"]
@@ -15,7 +15,9 @@ gradient = SubResource("Gradient_hfp5i")
 render_priority = 0
 shader = ExtResource("1_k5irv")
 shader_parameter/base_texture = ExtResource("2_p0uix")
-shader_parameter/dirt_texture = ExtResource("3_gevh0")
+shader_parameter/dirt_texture = ExtResource("3_k5irv")
 shader_parameter/gradient = SubResource("GradientTexture1D_u3pq1")
 shader_parameter/metalness = 0.0
+shader_parameter/rough = 1.0
 shader_parameter/model_height = 17.35
+shader_parameter/tile = 1.0
